@@ -31,7 +31,7 @@ public class playerController : MonoBehaviour, IDamage
     void Update()
     {
         //draw debug ray to see how far player can shoot
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.blue);
+        Debug.DrawRay(Camera.main.transform.position + (Camera.main.transform.forward * .5f), Camera.main.transform.forward * shootDist, Color.blue);
 
         movement();
 
