@@ -129,4 +129,12 @@ public class GameManager : MonoBehaviour
         SetReticle();
         reticle.SetActive(reticleIsShowing);
     }
+
+    public void WinGame()
+    {
+        statePaused();
+
+        activeMenu = winMenu;
+        activeMenu.SetActive(isPaused);
+    }
 }
