@@ -66,7 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdPos: {fileID: 2031437980947737274}
   pickupRange: 5
-  pickupSpeed: 25
+  pickupSpeed: 10
   hold: {fileID: 0}
   rb: {fileID: 0}
 --- !u!20 &3694127645133306816
