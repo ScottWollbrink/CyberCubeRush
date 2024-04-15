@@ -10,16 +10,24 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject levelSelectMenu;
     [SerializeField] GameObject winMenu;
+    [SerializeField] GameObject settingsMenu;
+    [SerializeField] GameObject reticle;
 
     private GameObject player;
 
     public bool isPaused;
+    public bool reticleIsShowing;
 
 
     void Awake()
     {
         Instance = this;
         player = GameObject.FindWithTag("Player");
+    }
+
+    private void Start()
+    {
+        CheckReticle();
     }
 
 
@@ -46,7 +54,17 @@ public class GameManager : MonoBehaviour
             }
             else // paused
             {
-                stateUnpaused();
+                if (activeMenu == levelSelectMenu || activeMenu == settingsMenu)
+                {
+                    activeMenu.SetActive(!isPaused);
+                    activeMenu = pauseMenu;
+                    activeMenu.SetActive(isPaused);
+
+                }
+                else
+                {
+                    stateUnpaused();
+                }
             }
         }
     }
@@ -57,6 +75,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+        reticle.SetActive(false);
     }
 
     public void stateUnpaused()
@@ -67,6 +86,10 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         activeMenu.SetActive(isPaused);
         activeMenu = null;
+        if (reticleIsShowing)
+        {
+            reticle.SetActive(true);
+        }
     }
 
     public void ReturnToPause()
@@ -79,10 +102,31 @@ public class GameManager : MonoBehaviour
         SwitchScene(levelSelectMenu);
     }
 
+    public void DisplaySettings()
+    {
+        SwitchScene(settingsMenu);
+    }
+
     private void SwitchScene(GameObject scene)
     {
         activeMenu.SetActive(false);
         activeMenu = scene;
         activeMenu.SetActive(true);
+    }
+
+    private void CheckReticle()
+    {
+        reticleIsShowing = reticle.activeSelf;
+    }
+
+    public void SetReticle()
+    {
+        reticleIsShowing = !reticleIsShowing;
+    }
+
+    private void ToggleReticle()
+    {
+        SetReticle();
+        reticle.SetActive(reticleIsShowing);
     }
 }
