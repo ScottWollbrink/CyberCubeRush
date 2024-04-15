@@ -19,6 +19,16 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.Instance.DisplayLevelSelect();
     }
 
+    public void Settings()
+    {
+        GameManager.Instance.DisplaySettings();
+    }
+
+    public void ToggleReticle()
+    {
+        GameManager.Instance.SetReticle();
+    }
+
     public void Quit()
     {
 #if UNITY_EDITOR
