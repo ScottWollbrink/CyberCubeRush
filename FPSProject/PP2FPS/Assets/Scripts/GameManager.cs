@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject reticle;
 
-    private GameObject player;
+    public GameObject player;
 
     public bool isPaused;
     public bool reticleIsShowing;
