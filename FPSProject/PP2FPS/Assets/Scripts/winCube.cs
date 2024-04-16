@@ -17,7 +17,7 @@ public class winCube : MonoBehaviour, IWinCube
 
     IEnumerator waitWin()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.25f);
 
         GameManager.Instance.WinGame();
     }
