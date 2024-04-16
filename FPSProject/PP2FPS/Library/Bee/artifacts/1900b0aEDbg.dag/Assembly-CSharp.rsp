@@ -357,7 +357,10 @@
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/HoldController.cs"
 "Assets/Scripts/IDamage.cs"
+"Assets/Scripts/IWinCube.cs"
 "Assets/Scripts/playerController.cs"
+"Assets/Scripts/winCube.cs"
+"Assets/Scripts/winPosition.cs"
 -langversion:9.0
 
 /deterministic

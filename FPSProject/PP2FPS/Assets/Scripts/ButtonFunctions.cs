@@ -29,6 +29,16 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.Instance.SetReticle();
     }
 
+    public void Return()
+    {
+        GameManager.Instance.ReturnToPause();
+    }
+
+    public void SelectLevel(int level)
+    {
+        SceneManager.LoadScene($"Level{level}");
+    }
+
     public void Quit()
     {
 #if UNITY_EDITOR
