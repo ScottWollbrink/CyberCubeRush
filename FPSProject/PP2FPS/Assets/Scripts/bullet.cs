@@ -23,8 +23,7 @@ public class bullet : MonoBehaviour
         if(dmg != null)
         {
             dmg.takeDamage(damage);
+            Destroy(gameObject, 0);
         }
-
-        Destroy(gameObject);
     }
 }
