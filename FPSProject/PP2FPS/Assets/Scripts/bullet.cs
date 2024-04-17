@@ -24,7 +24,6 @@ public class bullet : MonoBehaviour
         {
             return;
         }
-
         IDamage dmg = other.GetComponent<IDamage>();
 
         if(dmg != null && !hitHappen)
