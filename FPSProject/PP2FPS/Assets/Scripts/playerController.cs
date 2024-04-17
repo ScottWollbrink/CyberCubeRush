@@ -78,7 +78,7 @@ public class playerController : MonoBehaviour, IDamage
             // create a IDamage called dmg to hold information of the object hit
             IDamage dmg = hit.collider.GetComponent<IDamage>();
             // checkt to see if dmg has an IDmage
-            if (hit.transform != transform &&dmg != null)
+            if (hit.transform != transform && dmg != null)
             {
                 // pass damage to dmg take damage method
                 dmg.takeDamage(shootDamage);
