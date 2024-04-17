@@ -36,6 +36,7 @@ public class enemyAi : MonoBehaviour, IDamage
             {
                 StartCoroutine(shoot());
             }
+
             if(agent.remainingDistance <= agent.stoppingDistance)
             {
                 faceTarget();
@@ -70,6 +71,7 @@ public class enemyAi : MonoBehaviour, IDamage
     {
         health -= damage;
         StartCoroutine(redFlash());
+        agent.SetDestination(GameManager.Instance.player.transform.position);
 
         agent.SetDestination(GameManager.Instance.player.transform.position);
 
