@@ -95,7 +95,7 @@ public class playerController : MonoBehaviour, IDamage
 
         if (HP <= 0) 
         {
-            
+            GameManager.Instance.LoseGame();
         }
     }
 }
