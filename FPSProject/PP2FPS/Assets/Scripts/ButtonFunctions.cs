@@ -37,6 +37,7 @@ public class ButtonFunctions : MonoBehaviour
     public void SelectLevel(int level)
     {
         SceneManager.LoadScene($"Level{level}");
+        GameManager.Instance.stateUnpaused();
     }
 
     public void Quit()
