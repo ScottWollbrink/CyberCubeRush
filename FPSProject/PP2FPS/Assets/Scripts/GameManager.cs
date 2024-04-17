@@ -1,6 +1,5 @@
 using System;
 using System.Xml.Serialization;
-using UnityEditor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,7 +10,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject levelSelectMenu;
     [SerializeField] GameObject winMenu;
-    [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject reticle;
 
@@ -138,13 +136,5 @@ public class GameManager : MonoBehaviour
 
         activeMenu = winMenu;
         activeMenu.SetActive(isPaused);
-    }
-
-    public void LoseGame()
-    {
-        statePaused();
-        activeMenu = loseMenu;
-        activeMenu.SetActive(isPaused);
-
     }
 }
