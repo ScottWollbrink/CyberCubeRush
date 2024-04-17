@@ -9,6 +9,8 @@ public class bullet : MonoBehaviour
     [SerializeField] int destroyTime;
 
     [SerializeField] Rigidbody rb;
+
+    bool hitHappen;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +20,18 @@ public class bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger)
+        {
+            return;
+        }
+
         IDamage dmg = other.GetComponent<IDamage>();
 
-        if(dmg != null)
+        if(dmg != null && !hitHappen)
         {
             dmg.takeDamage(damage);
-            Destroy(gameObject, 0);
+            hitHappen = true;
         }
+        Destroy(gameObject);
     }
 }

@@ -12,8 +12,11 @@ public class enemyAi : MonoBehaviour, IDamage
 
     [SerializeField] int health;
     [SerializeField] float shootRate;
+    [SerializeField] int rotateSpeed;
 
     bool isShooting;
+    bool inRange;
+    Vector3 playerDir;
 
     // Start is called before the first frame update
     void Start()
@@ -24,18 +27,51 @@ public class enemyAi : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        agent.SetDestination(GameManager.Instance.player.transform.position);
-
-        if (!isShooting )
+        if (inRange)
         {
-            StartCoroutine(shoot());
+            playerDir = GameManager.Instance.player.transform.position - transform.position;
+            agent.SetDestination(GameManager.Instance.player.transform.position);
+
+            if (!isShooting)
+            {
+                StartCoroutine(shoot());
+            }
+            if(agent.remainingDistance <= agent.stoppingDistance)
+            {
+                faceTarget();
+            }
         }
+        
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            inRange = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            inRange = false;
+        }
+    }
+
+    void faceTarget()
+    {
+        Quaternion rotate = Quaternion.LookRotation(playerDir);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotate, Time.deltaTime * rotateSpeed);
     }
 
     public void takeDamage(int damage)
     {
         health -= damage;
         StartCoroutine(redFlash());
+
+        agent.SetDestination(GameManager.Instance.player.transform.position);
 
         if (health <= 0)
         {
