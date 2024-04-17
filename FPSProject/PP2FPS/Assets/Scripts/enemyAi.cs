@@ -21,7 +21,7 @@ public class enemyAi : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-
+        GameManager.Instance.UpdateEnemyCounter(1);
     }
 
     // Update is called once per frame
@@ -77,6 +77,7 @@ public class enemyAi : MonoBehaviour, IDamage
 
         if (health <= 0)
         {
+            GameManager.Instance.UpdateEnemyCounter(-1);
             Destroy(gameObject);
         }
     }
