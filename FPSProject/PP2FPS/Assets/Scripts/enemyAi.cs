@@ -73,8 +73,6 @@ public class enemyAi : MonoBehaviour, IDamage
         StartCoroutine(redFlash());
         agent.SetDestination(GameManager.Instance.player.transform.position);
 
-        agent.SetDestination(GameManager.Instance.player.transform.position);
-
         if (health <= 0)
         {
             GameManager.Instance.UpdateEnemyCounter(-1);

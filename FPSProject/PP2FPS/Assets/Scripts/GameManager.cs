@@ -75,6 +75,10 @@ public class GameManager : MonoBehaviour
                     activeMenu.SetActive(isPaused);
 
                 }
+                else if (activeMenu == loseMenu)
+                {
+                    // dont allow to unpause
+                }
                 else
                 {
                     stateUnpaused();

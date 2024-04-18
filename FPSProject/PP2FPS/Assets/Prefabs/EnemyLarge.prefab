@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2568675851587816774}
   - component: {fileID: 2389567046303549253}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: EnemyLarge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,8 +31,8 @@ Transform:
   m_GameObject: {fileID: 3302715600836414908}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 20}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 20}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4473911952137155231}
@@ -55,9 +55,9 @@ MonoBehaviour:
   model: {fileID: 5090195649836601295}
   shootPos: {fileID: 4473911952137155231}
   bullet: {fileID: 8347150824538328265, guid: 33e8cfe3001dfec459a5104bea805fda, type: 3}
-  health: 3
-  shootRate: 0.75
-  rotateSpeed: 0
+  health: 10
+  shootRate: 1
+  rotateSpeed: 1
 --- !u!195 &2874952300478390784
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -68,7 +68,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 6
+  m_Speed: 3
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 300
@@ -168,11 +168,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 10
+  m_Radius: 50
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6604669875917015748
 GameObject:
@@ -199,7 +199,7 @@ Transform:
   m_GameObject: {fileID: 6604669875917015748}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.75}
+  m_LocalPosition: {x: 0, y: -0.125, z: 0.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
