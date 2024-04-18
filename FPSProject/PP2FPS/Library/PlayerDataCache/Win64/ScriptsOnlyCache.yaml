@@ -4,7 +4,9 @@ ScriptsOnlyBuild:
     - ButtonFunctions
     - GameManager
     - HoldController
+    - bullet
     - cameraController
+    - enemyAi
     - playerController
     - winCube
     - winPosition
@@ -17,6 +19,9 @@ ScriptsOnlyBuild:
     - TMPro.TMP_StyleSheet
     Unity.TextMeshPro.dll:
     - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
     - TMPro.TextMeshProUGUI
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -96,6 +101,111 @@ ScriptsOnlyBuild:
     methodName: Quit
   - assembly: Assembly-CSharp
     fullTypeName: ButtonFunctions
+    methodName: LevelSelect
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Restart
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Quit
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Settings
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: LevelSelect
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Resume
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Return
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: ToggleReticle
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: SelectLevel
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: SelectLevel
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: SelectLevel
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Return
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Quit
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: LevelSelect
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Restart
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Quit
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: LevelSelect
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Restart
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Quit
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Settings
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: LevelSelect
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Resume
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Return
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: ToggleReticle
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: SelectLevel
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: SelectLevel
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: SelectLevel
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Return
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Quit
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: LevelSelect
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Restart
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Quit
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: LevelSelect
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Restart
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
+    methodName: Quit
+  - assembly: Assembly-CSharp
+    fullTypeName: ButtonFunctions
     methodName: Settings
   - assembly: Assembly-CSharp
     fullTypeName: ButtonFunctions
@@ -105,6 +215,103 @@ ScriptsOnlyBuild:
     methodName: Resume
   sceneClasses:
     Assets/Scenes/Level1.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 96
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1600}
+    - Class: 114
+      Script: {instanceID: 2252}
+    - Class: 114
+      Script: {instanceID: 2612}
+    - Class: 114
+      Script: {instanceID: 2816}
+    - Class: 114
+      Script: {instanceID: 3106}
+    - Class: 114
+      Script: {instanceID: 4920}
+    - Class: 114
+      Script: {instanceID: 4974}
+    - Class: 114
+      Script: {instanceID: 5044}
+    - Class: 114
+      Script: {instanceID: 5326}
+    - Class: 114
+      Script: {instanceID: 5614}
+    - Class: 114
+      Script: {instanceID: 5764}
+    - Class: 114
+      Script: {instanceID: 5812}
+    - Class: 114
+      Script: {instanceID: 6086}
+    - Class: 114
+      Script: {instanceID: 7962}
+    - Class: 114
+      Script: {instanceID: 7966}
+    - Class: 114
+      Script: {instanceID: 7970}
+    - Class: 114
+      Script: {instanceID: 7982}
+    - Class: 114
+      Script: {instanceID: 7986}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 135
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 143
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 195
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 238
+      Script: {instanceID: 0}
+    Assets/Scenes/Level2.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -135,57 +342,67 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
+    - Class: 96
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1560}
+      Script: {instanceID: 1600}
     - Class: 114
-      Script: {instanceID: 1602}
+      Script: {instanceID: 2190}
     - Class: 114
-      Script: {instanceID: 2192}
+      Script: {instanceID: 2252}
     - Class: 114
-      Script: {instanceID: 2254}
+      Script: {instanceID: 2612}
     - Class: 114
-      Script: {instanceID: 2320}
+      Script: {instanceID: 2816}
     - Class: 114
-      Script: {instanceID: 2616}
+      Script: {instanceID: 3106}
     - Class: 114
-      Script: {instanceID: 2820}
+      Script: {instanceID: 4096}
     - Class: 114
-      Script: {instanceID: 3110}
+      Script: {instanceID: 4346}
     - Class: 114
-      Script: {instanceID: 4100}
+      Script: {instanceID: 4920}
     - Class: 114
-      Script: {instanceID: 4258}
+      Script: {instanceID: 4974}
     - Class: 114
-      Script: {instanceID: 4352}
+      Script: {instanceID: 5044}
     - Class: 114
-      Script: {instanceID: 4592}
+      Script: {instanceID: 5326}
     - Class: 114
-      Script: {instanceID: 4928}
+      Script: {instanceID: 5614}
     - Class: 114
-      Script: {instanceID: 5050}
+      Script: {instanceID: 5764}
     - Class: 114
-      Script: {instanceID: 5332}
+      Script: {instanceID: 5812}
     - Class: 114
-      Script: {instanceID: 5710}
+      Script: {instanceID: 6086}
     - Class: 114
-      Script: {instanceID: 5770}
+      Script: {instanceID: 7962}
     - Class: 114
-      Script: {instanceID: 6070}
+      Script: {instanceID: 7966}
     - Class: 114
-      Script: {instanceID: 6094}
+      Script: {instanceID: 7970}
+    - Class: 114
+      Script: {instanceID: 7982}
+    - Class: 114
+      Script: {instanceID: 7986}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 135
       Script: {instanceID: 0}
     - Class: 136
       Script: {instanceID: 0}
     - Class: 143
       Script: {instanceID: 0}
     - Class: 157
+      Script: {instanceID: 0}
+    - Class: 195
       Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
@@ -197,30 +414,7 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
-    Assets/Scenes/Level2.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 89
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
+    - Class: 238
       Script: {instanceID: 0}
     Assets/Scenes/Level3.unity:
     - Class: 1
@@ -243,17 +437,45 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1600}
+    - Class: 114
+      Script: {instanceID: 2252}
+    - Class: 114
+      Script: {instanceID: 2612}
+    - Class: 114
+      Script: {instanceID: 2816}
+    - Class: 114
+      Script: {instanceID: 3106}
+    - Class: 114
+      Script: {instanceID: 4920}
+    - Class: 114
+      Script: {instanceID: 5044}
+    - Class: 114
+      Script: {instanceID: 5326}
+    - Class: 114
+      Script: {instanceID: 5614}
+    - Class: 114
+      Script: {instanceID: 5764}
+    - Class: 114
+      Script: {instanceID: 6086}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
   scriptHashData:
-  - hash:
-      serializedVersion: 2
-      Hash: 540882762544409cc4530e60db00e951
-    assemblyName: UnityEngine.UI
-    namespaceName: UnityEngine.UI
-    className: CanvasScaler
   - hash:
       serializedVersion: 2
       Hash: 55060a7bf226ac385ce19ebd450f199f
@@ -350,12 +572,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: ButtonFunctions
-  - hash:
-      serializedVersion: 2
-      Hash: 0a52f6a7c710602c2fbdc76e1e14dd41
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: winPosition
   - hash:
       serializedVersion: 2
       Hash: 1ab136900c0edaeeb49424c852595030
@@ -652,12 +868,6 @@ ScriptsOnlyBuild:
     className: DictionaryAsset
   - hash:
       serializedVersion: 2
-      Hash: 3333e35dc35e6bd0f325ab20f5cceb11
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: winCube
-  - hash:
-      serializedVersion: 2
       Hash: e7e95903ca66d58e1a7cbd71f824e16d
     assemblyName: Unity.TextMeshPro
     namespaceName: TMPro
@@ -680,12 +890,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnPointerClickMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 0ae4e9945f648f58eb277241880638da
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: playerController
   - hash:
       serializedVersion: 2
       Hash: 0b63f6d3335e11939ce8790b904c8691
@@ -772,6 +976,12 @@ ScriptsOnlyBuild:
     className: Slider
   - hash:
       serializedVersion: 2
+      Hash: fce7c6bac826f839d4a238982cf123ec
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: enemyAi
+  - hash:
+      serializedVersion: 2
       Hash: 33f160a5c07e580c29aba2bd1e4db811
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
@@ -838,7 +1048,7 @@ ScriptsOnlyBuild:
     className: Text
   - hash:
       serializedVersion: 2
-      Hash: 7c6f82fb60b299bb16cc4bd35e5ff515
+      Hash: 01f6a96943b8298f03b5435fe6d9839d
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GameManager
@@ -848,6 +1058,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.State
     namespaceName: Unity.VisualScripting
     className: StateGraphAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 540882762544409cc4530e60db00e951
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: CanvasScaler
   - hash:
       serializedVersion: 2
       Hash: ef38c1407dba8c1f5d69f5db61a694fe
@@ -860,12 +1076,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: AspectRatioFitter
-  - hash:
-      serializedVersion: 2
-      Hash: 1a1a97ed967bb8395831b87658af669e
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: cameraController
   - hash:
       serializedVersion: 2
       Hash: 9637dcdf3068a91dfe653e61bb82f13d
@@ -890,12 +1100,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnTriggerStay2DMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 8e08d02bb2711a9d531146771afbca00
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: HoldController
   - hash:
       serializedVersion: 2
       Hash: 9104447b683bf70406fa01f12ecb564a
@@ -1144,13 +1348,37 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 79704de44f6d8f52ee66c9c76b497ce7
+      Hash: 1a1a97ed967bb8395831b87658af669e
     assemblyName: Assembly-CSharp
     namespaceName: 
-    className: enemyAi
+    className: cameraController
+  - hash:
+      serializedVersion: 2
+      Hash: 3333e35dc35e6bd0f325ab20f5cceb11
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: winCube
+  - hash:
+      serializedVersion: 2
+      Hash: 009fb5e5ed0744cbb6bc71d52738deed
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: playerController
+  - hash:
+      serializedVersion: 2
+      Hash: 8e08d02bb2711a9d531146771afbca00
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: HoldController
+  - hash:
+      serializedVersion: 2
+      Hash: 0a52f6a7c710602c2fbdc76e1e14dd41
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: winPosition
   platform: 19
   scenePathNames:
-  - Assets/Scenes/Level1.unity
   - Assets/Scenes/Level2.unity
+  - Assets/Scenes/Level1.unity
   - Assets/Scenes/Level3.unity
   playerPath: D:/GameDev/PP2FPS/FPSProject/PP2FPS/Build/PP2FPS.exe
