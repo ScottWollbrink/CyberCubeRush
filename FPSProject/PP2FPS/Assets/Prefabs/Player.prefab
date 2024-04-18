@@ -209,14 +209,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 264993201372791677}
-  HP: 5
+  maxHP: 5
   speed: 6
   jumpSpeed: 12
   maxJumps: 2
   gravity: 25
   shootDamage: 1
   shootRate: 0.25
-  shootDist: 25
+  shootDist: 35
 --- !u!143 &264993201372791677
 CharacterController:
   m_ObjectHideFlags: 0
@@ -312,7 +312,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.1
+  m_Height: 0.1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

@@ -6,7 +6,8 @@ public class playerController : MonoBehaviour, IDamage
 {
     [SerializeField] CharacterController controller;
 
-    [SerializeField] int HP;
+    [SerializeField] int maxHP;
+    private int currentHP;
     [SerializeField] int speed;
     [SerializeField] int jumpSpeed;
     [SerializeField] int maxJumps;
@@ -21,10 +22,12 @@ public class playerController : MonoBehaviour, IDamage
     bool isShooting;
     int jumpedTimes;
 
+
     // Start is called before the first frame update
     void Start()
     {
-
+        currentHP = maxHP;
+        UpdatePlayerUI();
     }
 
     // Update is called once per frame
@@ -78,7 +81,7 @@ public class playerController : MonoBehaviour, IDamage
             // create a IDamage called dmg to hold information of the object hit
             IDamage dmg = hit.collider.GetComponent<IDamage>();
             // checkt to see if dmg has an IDmage
-            if (hit.transform != transform &&dmg != null)
+            if (hit.transform != transform && dmg != null)
             {
                 // pass damage to dmg take damage method
                 dmg.takeDamage(shootDamage);
@@ -91,11 +94,25 @@ public class playerController : MonoBehaviour, IDamage
 
     public void takeDamage(int amount)
     {
-        HP -= amount;
+        currentHP -= amount;
+        UpdatePlayerUI();
+        StartCoroutine(FlashDamage());
 
-        if (HP <= 0) 
+        if (currentHP <= 0) 
         {
-            
+            GameManager.Instance.LoseGame();
         }
+    }
+
+    IEnumerator FlashDamage()
+    {
+        GameManager.Instance.playerDamageScreen.SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        GameManager.Instance.playerDamageScreen.SetActive(false);
+    }
+
+    private void UpdatePlayerUI()
+    {
+        GameManager.Instance.playerHPBar.fillAmount = (float)currentHP / maxHP;
     }
 }

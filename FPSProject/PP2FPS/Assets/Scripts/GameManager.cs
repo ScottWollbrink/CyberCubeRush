@@ -1,6 +1,9 @@
 using System;
+using System.Collections;
 using System.Xml.Serialization;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,8 +13,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject levelSelectMenu;
     [SerializeField] GameObject winMenu;
+    [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject reticle;
+
+
+    public GameObject playerDamageScreen;
+    public Image playerHPBar;
+    public TMP_Text enemyCounter;
+    private int enemyCount;
+    public GameObject goalLabel;
+    public float goalMsgDisplayTime;
 
     public GameObject player;
 
@@ -28,6 +40,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         CheckReticle();
+        StartCoroutine(ToggleGoalLabel(goalMsgDisplayTime));
+
     }
 
 
@@ -61,6 +75,10 @@ public class GameManager : MonoBehaviour
                     activeMenu.SetActive(isPaused);
 
                 }
+                else if (activeMenu == loseMenu)
+                {
+                    // dont allow to unpause
+                }
                 else
                 {
                     stateUnpaused();
@@ -89,6 +107,27 @@ public class GameManager : MonoBehaviour
         if (reticleIsShowing)
         {
             reticle.SetActive(true);
+        }
+    }
+
+    IEnumerator ToggleGoalLabel(float time)
+    {
+        goalLabel.SetActive(true);
+        yield return new WaitForSeconds(time);
+        goalLabel.SetActive(false);
+    }
+
+    public void UpdateEnemyCounter(int amount)
+    {
+        enemyCount += amount;
+        enemyCounter.text = enemyCount.ToString("F0");
+
+        if (enemyCount <= 0)
+        {
+            statePaused();
+
+            activeMenu = winMenu;
+            activeMenu.SetActive(isPaused);
         }
     }
 
@@ -136,5 +175,13 @@ public class GameManager : MonoBehaviour
 
         activeMenu = winMenu;
         activeMenu.SetActive(isPaused);
+    }
+
+    public void LoseGame()
+    {
+        statePaused();
+        activeMenu = loseMenu;
+        activeMenu.SetActive(isPaused);
+
     }
 }
