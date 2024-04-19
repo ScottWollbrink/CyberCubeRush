@@ -9,6 +9,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int maxHP;
     private int currentHP;
     [SerializeField] int speed;
+    [SerializeField] int sprintSpeed;
     [SerializeField] int jumpSpeed;
     [SerializeField] int maxJumps;
     [SerializeField] int gravity;
@@ -53,6 +54,15 @@ public class playerController : MonoBehaviour, IDamage
         // move the controler in the direction inputed
         controller.Move(moveDir * speed * Time.deltaTime);
         // check to see if player is pressing the shoot button and can shoot
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            speed += sprintSpeed;
+        }
+        else if(Input.GetKeyUp(KeyCode.LeftShift)) 
+        {
+            speed -= sprintSpeed;
+        }
+
         if (Input.GetButton("Shoot") && !isShooting)
         {
             StartCoroutine(shoot());
