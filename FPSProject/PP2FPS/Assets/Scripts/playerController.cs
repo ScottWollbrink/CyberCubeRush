@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage
 {
     [SerializeField] CharacterController controller;
 
+    [Header("Player Basics")]
     [SerializeField] int maxHP;
     private int currentHP;
     [SerializeField] int speed;
@@ -14,6 +16,15 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int maxJumps;
     [SerializeField] int gravity;
 
+    [Header("WallJump")]
+    [SerializeField] LayerMask wallMask;
+    [SerializeField] LayerMask groundMask;
+    [SerializeField] int maxWallJumps;
+    [SerializeField] float distanceToWallCheck;
+    [SerializeField] float distanceToGround;
+    [SerializeField] int wallJumpSpeed;
+
+    [Header("Shooting")]
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
@@ -22,6 +33,11 @@ public class playerController : MonoBehaviour, IDamage
     Vector3 playerVel;
     bool isShooting;
     int jumpedTimes;
+    int wallJumpTimes;
+    RaycastHit leftWallHit;
+    RaycastHit rightWallHit;
+    bool wallLeft;
+    bool wallRight;
 
 
     // Start is called before the first frame update
@@ -38,7 +54,7 @@ public class playerController : MonoBehaviour, IDamage
         Debug.DrawRay(Camera.main.transform.position + (Camera.main.transform.forward * .5f), Camera.main.transform.forward * shootDist, Color.blue);
 
         movement();
-
+        WallCheck();
     }
 
     void movement()
@@ -47,6 +63,7 @@ public class playerController : MonoBehaviour, IDamage
         if (controller.isGrounded)
         {
             jumpedTimes = 0;
+            wallJumpTimes = 0;
             playerVel = Vector3.zero;
         }
         // get movemetn input and multiply by there movement vectors
@@ -69,8 +86,13 @@ public class playerController : MonoBehaviour, IDamage
         }
 
         // check to see if player is pressing the jump button and is not over the max number of concurent jumps
-        if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps)
+        
+        if (Input.GetButtonDown("Jump") && wallJumpTimes < maxWallJumps && offTheGround() && (wallRight || wallLeft))
         {
+            WallJump();
+        }
+        else if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps) 
+        { 
             jumpedTimes++;
             playerVel.y = jumpSpeed;
         }
@@ -124,5 +146,44 @@ public class playerController : MonoBehaviour, IDamage
     private void UpdatePlayerUI()
     {
         GameManager.Instance.playerHPBar.fillAmount = (float)currentHP / maxHP;
+    }
+
+    private void WallJump()
+    {
+        Vector3 wallNormal;
+        Vector3 wallJumpforce;
+        if (wallRight)
+        {
+            wallNormal = rightWallHit.normal;
+            wallJumpforce = transform.up * jumpSpeed + wallNormal * wallJumpSpeed;
+            if (jumpedTimes > 0)
+            {
+                jumpedTimes--;
+            }
+            wallJumpTimes++;
+            playerVel = wallJumpforce;
+        }
+        else if (wallLeft)
+        {
+            wallNormal = leftWallHit.normal;
+            wallJumpforce = transform.up * jumpSpeed + wallNormal * wallJumpSpeed;
+            if (jumpedTimes > 0) 
+            { 
+                jumpedTimes--; 
+            }
+            wallJumpTimes++;
+            playerVel = wallJumpforce;
+        }
+        
+    }
+
+    private void WallCheck()
+    {
+        wallRight = Physics.Raycast(transform.position, transform.right, out rightWallHit, distanceToWallCheck, wallMask);
+        wallLeft = Physics.Raycast(transform.position, -transform.right, out leftWallHit, distanceToWallCheck, wallMask);
+    }
+    private bool offTheGround()
+    {
+        return !Physics.Raycast(transform.position, -transform.up, distanceToGround, groundMask);
     }
 }
