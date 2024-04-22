@@ -140,6 +140,10 @@ public class GameManager : MonoBehaviour
     {
         SwitchScene(levelSelectMenu);
     }
+    public void SelectLevel(int level)
+    {
+        GetComponent<ButtonFunctions>().SelectLevel(level);
+    }
 
     public void DisplaySettings()
     {
