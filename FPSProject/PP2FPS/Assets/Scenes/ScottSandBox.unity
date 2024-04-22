@@ -204,34 +204,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5044427278195277036, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
-      propertyPath: sprintSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5044427278195277036, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
-      propertyPath: maxWallJumps
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5044427278195277036, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
-      propertyPath: wallJumpSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5044427278195277036, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
-      propertyPath: wallMask.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 5044427278195277036, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
-      propertyPath: distanceToGround
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5044427278195277036, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
-      propertyPath: groundMask.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 5044427278195277036, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
-      propertyPath: distanceToWallCheck
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8448542303249295286, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.245796
@@ -483,10 +455,6 @@ PrefabInstance:
     - target: {fileID: 1923326719888785737, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 1923326719888785737, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3225409833760793719, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
       propertyPath: m_Pivot.x
@@ -751,18 +719,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 7246397484584611509, guid: eed700b2104fa8246b6a9e8cbbc0a67a, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7246397484584611509, guid: eed700b2104fa8246b6a9e8cbbc0a67a, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7246397484584611509, guid: eed700b2104fa8246b6a9e8cbbc0a67a, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -888,14 +844,6 @@ PrefabInstance:
     - target: {fileID: 2675262111745355750, guid: a5bfc3f1a022f6842b3211ed9c31f34b, type: 3}
       propertyPath: m_Name
       value: Pickup Cube
-      objectReference: {fileID: 0}
-    - target: {fileID: 2675262111745355750, guid: a5bfc3f1a022f6842b3211ed9c31f34b, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2675262111745355750, guid: a5bfc3f1a022f6842b3211ed9c31f34b, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1049,22 +997,6 @@ PrefabInstance:
     - target: {fileID: 1131696274550989026, guid: fa059e7088772544f8dcf1f03750c97a, type: 3}
       propertyPath: m_Name
       value: WinPedistool
-      objectReference: {fileID: 0}
-    - target: {fileID: 1131696274550989026, guid: fa059e7088772544f8dcf1f03750c97a, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1131696274550989026, guid: fa059e7088772544f8dcf1f03750c97a, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3502279142917525864, guid: fa059e7088772544f8dcf1f03750c97a, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3502279142917525864, guid: fa059e7088772544f8dcf1f03750c97a, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6798001566509362267, guid: fa059e7088772544f8dcf1f03750c97a, type: 3}
       propertyPath: m_LocalPosition.x

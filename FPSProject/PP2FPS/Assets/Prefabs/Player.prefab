@@ -211,9 +211,20 @@ MonoBehaviour:
   controller: {fileID: 264993201372791677}
   maxHP: 5
   speed: 6
+  sprintSpeed: 3
   jumpSpeed: 12
   maxJumps: 2
   gravity: 25
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 64
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 128
+  maxWallJumps: 2
+  distanceToWallCheck: 1
+  distanceToGround: 2
+  wallJumpSpeed: 3
   shootDamage: 1
   shootRate: 0.25
   shootDist: 35
