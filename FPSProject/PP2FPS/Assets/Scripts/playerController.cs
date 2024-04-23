@@ -74,8 +74,8 @@ public class playerController : MonoBehaviour, IDamage
         if (platform != null)
         {
             platformMovement = platform.position - lastPlatfromPosition;
-            float speedScale = 0.825f;
-            playerVel += platformMovement * (speedScale / Time.deltaTime);
+            float speedScale = 0.825f; // not implemented correctly, causing the platform boosting while jumping
+            playerVel += platformMovement * Time.deltaTime;//(speedScale / Time.deltaTime);
 
             lastPlatfromPosition = platform.position;
             canLeavePlatform = true;
