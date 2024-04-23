@@ -41,7 +41,6 @@ public class playerController : MonoBehaviour, IDamage
     private Vector3 platformMovement;
     private Transform platform;
     private Vector3 lastPlatfromPosition;
-    bool canLeavePlatform;
 
 
     // Start is called before the first frame update
@@ -74,21 +73,10 @@ public class playerController : MonoBehaviour, IDamage
         if (platform != null)
         {
             platformMovement = platform.position - lastPlatfromPosition;
-            float speedScale = 0.825f; // not implemented correctly, causing the platform boosting while jumping
-            playerVel += platformMovement * Time.deltaTime;//(speedScale / Time.deltaTime);
+            float speedScale = 205f;
+            playerVel += platformMovement * speedScale;
 
             lastPlatfromPosition = platform.position;
-            canLeavePlatform = true;
-        }
-        else
-        {
-            if (canLeavePlatform)
-            {
-                float speedScale = 0.825f;
-                playerVel -= platformMovement * (speedScale / Time.deltaTime);
-                lastPlatfromPosition = transform.position;
-                canLeavePlatform = false;
-            }
         }
 
         // get movemetn input and multiply by there movement vectors
@@ -222,7 +210,6 @@ public class playerController : MonoBehaviour, IDamage
             transform.parent = platform;
 
             lastPlatfromPosition = platform.position;
-            canLeavePlatform = true;
         }
     }
 
@@ -232,7 +219,6 @@ public class playerController : MonoBehaviour, IDamage
         {
             transform.parent = null;
             platform = null;
-            canLeavePlatform = false;
         }
     }
 }
