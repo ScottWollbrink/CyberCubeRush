@@ -38,6 +38,10 @@ public class playerController : MonoBehaviour, IDamage
     RaycastHit rightWallHit;
     bool wallLeft;
     bool wallRight;
+    private Vector3 platformMovement;
+    private Transform platform;
+    private Vector3 lastPlatfromPosition;
+    bool canLeavePlatform;
 
 
     // Start is called before the first frame update
@@ -66,6 +70,27 @@ public class playerController : MonoBehaviour, IDamage
             wallJumpTimes = 0;
             playerVel = Vector3.zero;
         }
+
+        if (platform != null)
+        {
+            platformMovement = platform.position - lastPlatfromPosition;
+            float speedScale = 0.825f;
+            playerVel += platformMovement * (speedScale / Time.deltaTime);
+
+            lastPlatfromPosition = platform.position;
+            canLeavePlatform = true;
+        }
+        else
+        {
+            if (canLeavePlatform)
+            {
+                float speedScale = 0.825f;
+                playerVel -= platformMovement * (speedScale / Time.deltaTime);
+                lastPlatfromPosition = transform.position;
+                canLeavePlatform = false;
+            }
+        }
+
         // get movemetn input and multiply by there movement vectors
         moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         // move the controler in the direction inputed
@@ -96,10 +121,12 @@ public class playerController : MonoBehaviour, IDamage
             jumpedTimes++;
             playerVel.y = jumpSpeed;
         }
+        
         // add gravity to the player so that they fall when going over and edge or jump
         playerVel.y -= gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
 
+        
     }
 
     IEnumerator shoot()
@@ -185,5 +212,27 @@ public class playerController : MonoBehaviour, IDamage
     private bool offTheGround()
     {
         return !Physics.Raycast(transform.position, -transform.up, distanceToGround, groundMask);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Platform"))
+        {
+            platform = other.transform;
+            transform.parent = platform;
+
+            lastPlatfromPosition = platform.position;
+            canLeavePlatform = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Platform"))
+        {
+            transform.parent = null;
+            platform = null;
+            canLeavePlatform = false;
+        }
     }
 }
