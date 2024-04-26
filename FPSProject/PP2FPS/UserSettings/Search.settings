@@ -8,6 +8,15 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
+	"last_search.3BE40471" = "ref:-1678:"
+	"OpenInspectorPreview.3BE40471" = "0"
+	"currentGroup.3BE40471" = "scene"
+	"last_search.110DEAF1" = "ref:-1678:"
+	"OpenInspectorPreview.110DEAF1" = "0"
+	"currentGroup.110DEAF1" = "scene"
+	"last_search.E8DA15E5" = "ref:-1678:"
+	"OpenInspectorPreview.E8DA15E5" = "0"
+	"currentGroup.E8DA15E5" = "asset"
 }
 providers = {
 	adb = {
@@ -59,6 +68,7 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"ref:-1678:"
 ]
 searchItemFavorites = [
 ]

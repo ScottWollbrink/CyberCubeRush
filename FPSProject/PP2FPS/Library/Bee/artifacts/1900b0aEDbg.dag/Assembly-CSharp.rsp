@@ -365,10 +365,12 @@
 "Assets/Scripts/HoldController.cs"
 "Assets/Scripts/IDamage.cs"
 "Assets/Scripts/IWinCube.cs"
+"Assets/Scripts/Lava.cs"
 "Assets/Scripts/MovingPlatformController.cs"
 "Assets/Scripts/playerController.cs"
 "Assets/Scripts/winCube.cs"
 "Assets/Scripts/winPosition.cs"
+"Assets/Turret.cs"
 -langversion:9.0
 
 /deterministic
