@@ -47,7 +47,7 @@ public class playerController : MonoBehaviour, IDamage
     void Start()
     {
         currentHP = maxHP;
-        UpdatePlayerUI();
+        SpawnPlayer();
     }
 
     // Update is called once per frame
@@ -220,5 +220,15 @@ public class playerController : MonoBehaviour, IDamage
             transform.parent = null;
             platform = null;
         }
+    }
+
+    public void SpawnPlayer()
+    {
+        currentHP = maxHP;
+        UpdatePlayerUI();
+
+        controller.enabled = false;
+        transform.position = GameManager.Instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
     }
 }

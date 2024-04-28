@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public float goalMsgDisplayTime;
 
     public GameObject player;
+    public GameObject playerSpawnPos;
 
     public bool isPaused;
     public bool reticleIsShowing;
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         player = GameObject.FindWithTag("Player");
+        playerSpawnPos = GameObject.FindWithTag("Player Spawn Position");
     }
 
     private void Start()
