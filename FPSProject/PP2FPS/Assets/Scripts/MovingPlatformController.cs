@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class MovingPlatformController : MonoBehaviour
 {
     [SerializeField] Transform platform;
     [SerializeField] Transform startPoint;
     [SerializeField] Transform endPoint;
-    [SerializeField] float speed;
+    [SerializeField] public float speed;
 
     bool movingToEndPoint = true;
 
@@ -22,15 +22,15 @@ public class NewBehaviourScript : MonoBehaviour
     {
         Vector3 targetLocation = whereToMove();
 
-        platform.position = Vector3.Lerp(platform.position, targetLocation, speed * Time.deltaTime);
+        platform.position = Vector3.MoveTowards(platform.position, targetLocation, speed * Time.deltaTime);
 
-        if ((targetLocation - platform.position).magnitude <= 0.1f) 
+        if ((targetLocation - platform.position).magnitude <= 0.3f) 
         { 
             movingToEndPoint = !movingToEndPoint;
         }
     }
 
-    Vector3 whereToMove()
+    public Vector3 whereToMove()
     {
         if (movingToEndPoint)
         {

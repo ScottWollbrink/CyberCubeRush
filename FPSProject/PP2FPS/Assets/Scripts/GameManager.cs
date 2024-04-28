@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject reticle;
+    public GameObject checkpointMenu;
 
 
     public GameObject playerDamageScreen;
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
     public float goalMsgDisplayTime;
 
     public GameObject player;
+    public playerController playerCntrl;
     public GameObject playerSpawnPos;
 
     public bool isPaused;
@@ -36,6 +38,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         player = GameObject.FindWithTag("Player");
+        playerCntrl = player.GetComponent<playerController>();
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Position");
     }
 

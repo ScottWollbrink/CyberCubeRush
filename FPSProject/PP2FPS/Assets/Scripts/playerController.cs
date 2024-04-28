@@ -39,8 +39,9 @@ public class playerController : MonoBehaviour, IDamage
     bool wallLeft;
     bool wallRight;
     private Vector3 platformMovement;
-    private Transform platform;
-    private Vector3 lastPlatfromPosition;
+    private GameObject platform;
+    private Vector3 targetLocation;
+    private float platformSpeed;
 
 
     // Start is called before the first frame update
@@ -70,19 +71,29 @@ public class playerController : MonoBehaviour, IDamage
             playerVel = Vector3.zero;
         }
 
-        if (platform != null)
-        {
-            platformMovement = platform.position - lastPlatfromPosition;
-            float speedScale = 205f;
-            playerVel += platformMovement * speedScale;
-
-            lastPlatfromPosition = platform.position;
-        }
-
         // get movemetn input and multiply by there movement vectors
-        moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
-        // move the controler in the direction inputed
-        controller.Move(moveDir * speed * Time.deltaTime);
+        if (platform == null)
+        {
+            moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
+            // move the controler in the direction inputed
+            controller.Move(moveDir * speed * Time.deltaTime);
+        }
+        else
+        {
+            moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
+            if (moveDir == Vector3.zero)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, platform.GetComponentInParent<MovingPlatformController>().whereToMove() + Vector3.up, platformSpeed * Time.deltaTime);
+                controller.enabled = false;
+            }
+            else
+            {
+                controller.enabled = true;
+                controller.Move(moveDir * speed * Time.deltaTime);
+            }
+
+            // move the controler in the direction inputed
+        }
         // check to see if player is pressing the shoot button and can shoot
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -107,7 +118,7 @@ public class playerController : MonoBehaviour, IDamage
         else if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps) 
         { 
             jumpedTimes++;
-            playerVel.y = jumpSpeed;
+            playerVel.y = jumpSpeed;            
         }
         
         // add gravity to the player so that they fall when going over and edge or jump
@@ -206,10 +217,10 @@ public class playerController : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Platform"))
         {
-            platform = other.transform;
-            transform.parent = platform;
-
-            lastPlatfromPosition = platform.position;
+            platform = other.gameObject;
+            //transform.parent = platform.transform;
+            platformSpeed = platform.GetComponentInParent<MovingPlatformController>().speed;
+            controller.enabled = false;
         }
     }
 
@@ -217,8 +228,9 @@ public class playerController : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Platform"))
         {
-            transform.parent = null;
+            //transform.parent = null;
             platform = null;
+            controller.enabled = true;
         }
     }
 

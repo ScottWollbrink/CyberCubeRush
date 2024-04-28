@@ -40,6 +40,12 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.Instance.stateUnpaused();
     }
 
+    public void Respawn()
+    {
+        GameManager.Instance.playerCntrl.SpawnPlayer();
+        GameManager.Instance.stateUnpaused();
+    }
+
     public void Quit()
     {
 #if UNITY_EDITOR
