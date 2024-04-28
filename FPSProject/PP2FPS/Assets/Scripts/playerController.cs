@@ -19,6 +19,7 @@ public class playerController : MonoBehaviour, IDamage
     [Header("WallJump")]
     [SerializeField] LayerMask wallMask;
     [SerializeField] LayerMask groundMask;
+    [SerializeField] LayerMask movingPlatformMask;
     [SerializeField] int maxWallJumps;
     [SerializeField] float distanceToWallCheck;
     [SerializeField] float distanceToGround;
@@ -38,10 +39,10 @@ public class playerController : MonoBehaviour, IDamage
     RaycastHit rightWallHit;
     bool wallLeft;
     bool wallRight;
-    private Vector3 platformMovement;
     private GameObject platform;
     private Vector3 targetLocation;
     private float platformSpeed;
+
 
 
     // Start is called before the first frame update
@@ -72,18 +73,11 @@ public class playerController : MonoBehaviour, IDamage
         }
 
         // get movemetn input and multiply by there movement vectors
-        if (platform == null)
+        if (CheckForPlatform())
         {
             moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
-            // move the controler in the direction inputed
-            controller.Move(moveDir * speed * Time.deltaTime);
-        }
-        else
-        {
-            moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
-            if (moveDir == Vector3.zero)
+            if (moveDir == Vector3.zero && !Input.GetButton("Jump"))
             {
-                transform.position = Vector3.MoveTowards(transform.position, platform.GetComponentInParent<MovingPlatformController>().whereToMove() + Vector3.up, platformSpeed * Time.deltaTime);
                 controller.enabled = false;
             }
             else
@@ -91,8 +85,12 @@ public class playerController : MonoBehaviour, IDamage
                 controller.enabled = true;
                 controller.Move(moveDir * speed * Time.deltaTime);
             }
-
+        }
+        else
+        {
             // move the controler in the direction inputed
+            moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
+            controller.Move(moveDir * speed * Time.deltaTime);
         }
         // check to see if player is pressing the shoot button and can shoot
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -116,7 +114,8 @@ public class playerController : MonoBehaviour, IDamage
             WallJump();
         }
         else if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps) 
-        { 
+        {
+            controller.enabled = true;
             jumpedTimes++;
             playerVel.y = jumpSpeed;            
         }
@@ -213,28 +212,28 @@ public class playerController : MonoBehaviour, IDamage
         return !Physics.Raycast(transform.position, -transform.up, distanceToGround, groundMask);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private bool CheckForPlatform()
     {
-        if (other.CompareTag("Platform"))
+        RaycastHit hit;
+        // create a raycast and check to see if it hit something        
+        if (Physics.Raycast(transform.position, -transform.up, out hit, 1.25f, movingPlatformMask))
         {
-            platform = other.gameObject;
-            //transform.parent = platform.transform;
+            platform = hit.collider.gameObject;
             platformSpeed = platform.GetComponentInParent<MovingPlatformController>().speed;
             controller.enabled = false;
+            transform.parent = platform.transform;
+            return true;
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Platform"))
+        else
         {
-            //transform.parent = null;
             platform = null;
             controller.enabled = true;
+            transform.parent = null;
+            return false;
         }
     }
 
-    public void SpawnPlayer()
+public void SpawnPlayer()
     {
         currentHP = maxHP;
         UpdatePlayerUI();
