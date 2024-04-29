@@ -31,7 +31,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
     public playerController playerCntrl;
+    public HoldController holdController;
     public GameObject playerSpawnPos;
+    public GameObject cubeSpawnPos;
 
     public bool isPaused;
     public bool reticleIsShowing;
@@ -42,7 +44,9 @@ public class GameManager : MonoBehaviour
         Instance = this;
         player = GameObject.FindWithTag("Player");
         playerCntrl = player.GetComponent<playerController>();
+        holdController = Camera.main.GetComponent<HoldController>();
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Position");
+        cubeSpawnPos = GameObject.FindWithTag("Cube Spwan Position");
     }
 
     private void Start()
