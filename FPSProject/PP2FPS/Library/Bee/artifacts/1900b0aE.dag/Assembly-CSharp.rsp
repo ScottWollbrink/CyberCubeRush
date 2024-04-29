@@ -360,16 +360,19 @@
 "Assets/Scripts/bullet.cs"
 "Assets/Scripts/ButtonFunctions.cs"
 "Assets/Scripts/cameraController.cs"
+"Assets/Scripts/Checkpoint.cs"
 "Assets/Scripts/enemyAi.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/HoldController.cs"
 "Assets/Scripts/IDamage.cs"
 "Assets/Scripts/IWinCube.cs"
 "Assets/Scripts/Lava.cs"
+"Assets/Scripts/Lazer.cs"
 "Assets/Scripts/MovingPlatformController.cs"
 "Assets/Scripts/playerController.cs"
 "Assets/Scripts/WinCube.cs"
 "Assets/Scripts/WinPosition.cs"
+"Assets/Turret.cs"
 -langversion:9.0
 
 /deterministic

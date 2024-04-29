@@ -119,10 +119,13 @@ public class playerController : MonoBehaviour, IDamage
             jumpedTimes++;
             playerVel.y = jumpSpeed;            
         }
-        
+
         // add gravity to the player so that they fall when going over and edge or jump
-        playerVel.y -= gravity * Time.deltaTime;
-        controller.Move(playerVel * Time.deltaTime);
+        if (controller.enabled)
+        {
+            playerVel.y -= gravity * Time.deltaTime;
+            controller.Move(playerVel * Time.deltaTime);
+        }
 
         
     }
@@ -216,7 +219,7 @@ public class playerController : MonoBehaviour, IDamage
     {
         RaycastHit hit;
         // create a raycast and check to see if it hit something        
-        if (Physics.Raycast(transform.position, -transform.up, out hit, 1.25f, movingPlatformMask))
+        if (Physics.Raycast(transform.position, -transform.up, out hit, 1.15f, movingPlatformMask))
         {
             platform = hit.collider.gameObject;
             platformSpeed = platform.GetComponentInParent<MovingPlatformController>().speed;
