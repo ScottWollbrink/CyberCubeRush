@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Turret : MonoBehaviour
+public class Turret : MonoBehaviour, IDamage
 {
     [SerializeField] Renderer model;
     [SerializeField] Transform[] shootPositions;
