@@ -106,7 +106,7 @@ public class playerController : MonoBehaviour, IDamage
             speed -= sprintSpeed;
         }
 
-        if (Input.GetButton("Shoot") && !isShooting)
+        if (Input.GetButton("Shoot") && !isShooting && gunList.Count > 0 && gunList[selectedGun].ammoCurrent > 0)
         {
             StartCoroutine(shoot());
         }
@@ -138,6 +138,8 @@ public class playerController : MonoBehaviour, IDamage
     {
         isShooting = true;
         // create a Raycasthit to pass into physics raycast
+        gunList[selectedGun].ammoCurrent--;
+        GameManager.Instance.ammoCurr.text = gunList[selectedGun].ammoCurrent.ToString("F0");
         RaycastHit hit;
         // create a raycast and check to see if it hit something
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
@@ -149,6 +151,10 @@ public class playerController : MonoBehaviour, IDamage
             {
                 // pass damage to dmg take damage method
                 dmg.takeDamage(shootDamage);
+            }
+            else
+            {
+                Instantiate(gunList[selectedGun].hitEffect, hit.point, Quaternion.identity);
             }
         }
         // create a timer that will last for the time passed in by shootRate
@@ -262,8 +268,8 @@ public class playerController : MonoBehaviour, IDamage
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
-        //GameManager.Instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
-        //GameManager.Instance.ammoMin.text = gunList[selectedGun].ammoCurrent.ToString("F0");
+        GameManager.Instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
+        GameManager.Instance.ammoCurr.text = gunList[selectedGun].ammoCurrent.ToString("F0");
     }
 
     private void SelectGun()
@@ -289,7 +295,7 @@ public class playerController : MonoBehaviour, IDamage
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
-        //GameManager.Instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
-        //GameManager.Instance.ammoMin.text = gunList[selectedGun].ammoCurrent.ToString("F0");
+        GameManager.Instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
+        GameManager.Instance.ammoCurr.text = gunList[selectedGun].ammoCurrent.ToString("F0");
     }
 }

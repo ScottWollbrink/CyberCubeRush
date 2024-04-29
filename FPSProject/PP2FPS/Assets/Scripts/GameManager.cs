@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerDamageScreen;
     public Image playerHPBar;
     public TMP_Text enemyCounter;
-    public TMP_Text ammoMin;
+    public TMP_Text ammoCurr;
     public TMP_Text ammoMax;
 
     private int enemyCount;
