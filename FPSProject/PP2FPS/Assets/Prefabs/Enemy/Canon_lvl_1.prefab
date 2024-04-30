@@ -227,6 +227,8 @@ MonoBehaviour:
   health: 1
   shootRate: 0.8
   playerTrackingSpeed: 2
+  viewCone: 90
+  roamWait: 4
 --- !u!95 &95000012794672780
 Animator:
   serializedVersion: 5
