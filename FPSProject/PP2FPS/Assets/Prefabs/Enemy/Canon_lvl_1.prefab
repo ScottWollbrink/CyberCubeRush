@@ -224,7 +224,7 @@ MonoBehaviour:
   swivle: {fileID: 4000014011301926}
   bullet: {fileID: 8347150824538328265, guid: 33e8cfe3001dfec459a5104bea805fda, type: 3}
   animator: {fileID: 95000012794672780}
-  health: 1
+  health: 3
   shootRate: 0.8
   playerTrackingSpeed: 2
   viewCone: 90

@@ -26,11 +26,7 @@ public class Turret : MonoBehaviour, IDamage
     float angleToPlayer;
     Vector3 playerDir;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        GameManager.Instance.UpdateEnemyCounter(1);
-    }
+    
 
     // Update is called once per frame
     void Update()

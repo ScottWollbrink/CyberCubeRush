@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using UnityEngine;
 
@@ -39,14 +40,13 @@ public class Spawner : MonoBehaviour
     IEnumerator spwan()
     {
         isSpawning = true;
-        for (int i = 0; i < spawnPos.Length; i++)
+        for (int i = 0; i < numToSpawn; i++)
         {
             arrayPos = i;
             Instantiate(objectToSpawn, spawnPos[arrayPos].position, spawnPos[arrayPos].rotation);
             spawnCount++;
             yield return new WaitForSeconds(spawnTimer);
-            isSpawning = false;
         }
-        
+        isSpawning = false;
     }
 }
