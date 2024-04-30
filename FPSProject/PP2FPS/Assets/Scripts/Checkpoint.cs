@@ -11,6 +11,10 @@ public class Checkpoint : MonoBehaviour
         {
             GameManager.Instance.playerSpawnPos.transform.position = transform.position;
             StartCoroutine(DisplayCheckpointPopup());
+            if (GameManager.Instance.holdController.hasCube)
+            {
+                GameManager.Instance.cubeSpawnPos.transform.position = transform.position;
+            }
         }
     }
 

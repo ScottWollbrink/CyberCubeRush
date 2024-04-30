@@ -18,11 +18,6 @@ public class enemyAi : MonoBehaviour, IDamage
     bool inRange;
     Vector3 playerDir;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        GameManager.Instance.UpdateEnemyCounter(1);
-    }
 
     // Update is called once per frame
     void Update()

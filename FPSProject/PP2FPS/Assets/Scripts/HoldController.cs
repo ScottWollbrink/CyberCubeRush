@@ -12,6 +12,8 @@ public class HoldController : MonoBehaviour
     [HideInInspector] public GameObject hold;
     [SerializeField] Rigidbody rb;
 
+    [HideInInspector] public bool hasCube;
+
     private void Update()
     {
         if (Input.GetButtonDown("Pickup"))
@@ -45,6 +47,7 @@ public class HoldController : MonoBehaviour
             //Pickup
             if (hit.transform.gameObject.GetComponent<Rigidbody>())
             {
+                hasCube = true;
                 rb = hit.transform.gameObject.GetComponent<Rigidbody>();
                 rb.useGravity = false;
                 rb.drag = 8;
@@ -58,7 +61,8 @@ public class HoldController : MonoBehaviour
 
     public void drop()
     {
-        if (rb != null)
+        hasCube = false;
+        if (hold != null)
         {
             //drop
             rb.useGravity = true;

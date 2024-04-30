@@ -44,7 +44,6 @@ public class playerController : MonoBehaviour, IDamage
     bool wallLeft;
     bool wallRight;
     private GameObject platform;
-    private Vector3 targetLocation;
     private float platformSpeed;
 
 
@@ -52,8 +51,11 @@ public class playerController : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        currentHP = maxHP;
-        SpawnPlayer();
+        if (!GameManager.Instance.isPaused)
+        {
+            currentHP = maxHP;
+            SpawnPlayer();
+        }
     }
 
     // Update is called once per frame
@@ -171,6 +173,7 @@ public class playerController : MonoBehaviour, IDamage
         if (currentHP <= 0) 
         {
             GameManager.Instance.LoseGame();
+            GameManager.Instance.holdController.drop();
         }
     }
 

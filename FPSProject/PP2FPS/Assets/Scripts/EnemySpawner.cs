@@ -15,6 +15,10 @@ public class Spawner : MonoBehaviour
     bool isSpawning;
     bool startSpawning;
 
+    private void Start()
+    {
+        GameManager.Instance.UpdateEnemyCounter(numToSpawn);
+    }
     // Update is called once per frame
     void Update()
     {
