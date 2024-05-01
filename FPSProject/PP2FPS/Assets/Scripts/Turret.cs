@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class Turret : MonoBehaviour, IDamage
 {
+    [SerializeField] AudioSource aud;
+
     [SerializeField] Renderer model;
     [SerializeField] Transform[] shootPositions;
     [SerializeField] Transform swivle;
@@ -19,6 +21,12 @@ public class Turret : MonoBehaviour, IDamage
     [SerializeField] int viewCone;
     [SerializeField] int roamWait;
 
+    [Header("Audio")]
+    [SerializeField] AudioClip[] audHurt;
+    [SerializeField, Range(0, 1f)] float audHurtVol;
+    [SerializeField] AudioClip[] audShoot;
+    [SerializeField, Range(0, 1f)] float audShootVol;
+
     private int shootingPosIndex;
     bool isShooting;
     bool inRange;
@@ -26,14 +34,12 @@ public class Turret : MonoBehaviour, IDamage
     float angleToPlayer;
     Vector3 playerDir;
 
-    
-
     // Update is called once per frame
     void Update()
     {
         playerDir = GameManager.Instance.player.transform.position - swivle.transform.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, playerDir.y + 1, playerDir.z), transform.forward);
-        Debug.Log(angleToPlayer);
+        //Debug.Log(angleToPlayer);
         Debug.DrawRay(swivle.transform.position, playerDir, Color.red);
         if (inRange)
         {
@@ -58,6 +64,19 @@ public class Turret : MonoBehaviour, IDamage
         else
         {
             StartCoroutine(roam());
+        }
+    }
+
+    public void takeDamage(int damage)
+    {
+        health -= damage;
+        StartCoroutine(redFlash());
+        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+
+        if (health <= 0)
+        {
+            GameManager.Instance.UpdateEnemyCounter(-1);
+            Destroy(gameObject);
         }
     }
 
@@ -87,7 +106,7 @@ public class Turret : MonoBehaviour, IDamage
 
     IEnumerator roam()
     {
-        if (!destinationChosen )
+       if (!destinationChosen )
         {
             destinationChosen = true;
 
@@ -107,7 +126,7 @@ public class Turret : MonoBehaviour, IDamage
                 if (Quaternion.Dot(transform.rotation.normalized, roamRotate.normalized) > .8f) 
                     elapsedTime += Time.deltaTime;              
 
-                Debug.Log($"elapsed time: {elapsedTime}, transform.rotation: {transform.rotation.normalized}, roamRotate: {roamRotate.normalized}, Dot: {Quaternion.Dot(transform.rotation.normalized, roamRotate.normalized)}");
+                //Debug.Log($"elapsed time: {elapsedTime}, transform.rotation: {transform.rotation.normalized}, roamRotate: {roamRotate.normalized}, Dot: {Quaternion.Dot(transform.rotation.normalized, roamRotate.normalized)}");
                 yield return null;
             }
 
@@ -115,22 +134,10 @@ public class Turret : MonoBehaviour, IDamage
         }
     }
 
-    public void takeDamage(int damage)
-    {
-        health -= damage;
-        StartCoroutine(redFlash());
-
-        if (health <= 0)
-        {
-            GameManager.Instance.UpdateEnemyCounter(-1);
-            Destroy(gameObject);
-        }
-    }
-
     IEnumerator redFlash()
     {
         model.material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.15f);
         model.material.color = Color.white;
     }
 
@@ -138,7 +145,7 @@ public class Turret : MonoBehaviour, IDamage
     {
         isShooting = true;
         animator.SetBool("Shoot", true);
-        
+
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
@@ -147,6 +154,7 @@ public class Turret : MonoBehaviour, IDamage
 
     public void ShootBullet()
     {
+        aud.PlayOneShot(audShoot[Random.Range(0, audShoot.Length)], audShootVol);
         if (shootPositions.Length > 1 && shootingPosIndex + 1 != shootPositions.Length)
         {
             shootingPosIndex++;

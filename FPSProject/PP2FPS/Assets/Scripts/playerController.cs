@@ -6,6 +6,7 @@ using UnityEngine;
 public class playerController : MonoBehaviour, IDamage
 {
     [SerializeField] CharacterController controller;
+    [SerializeField] AudioSource aud;
 
     [Header("Player Basics")]
     [SerializeField] int maxHP;
@@ -32,11 +33,23 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] List<GunStats> gunList = new List<GunStats>();
     [SerializeField] GameObject gunModel;
 
+    [Header("Audio")]
+    [SerializeField] AudioClip[] audJump;
+    [SerializeField, Range(0, 1f)] float audJumpVol;
+    [SerializeField] AudioClip[] audHurt;
+    [SerializeField, Range(0, 1f)] float audHurtVol;
+    [SerializeField] AudioClip[] audSteps;
+    [SerializeField, Range(0, 1f)] float audStepVol;
+    [SerializeField] AudioClip[] audShoot;
+    [SerializeField, Range(0, 1f)] float audShootVol;
+
     int selectedGun;
 
     Vector3 moveDir;
     Vector3 playerVel;
     bool isShooting;
+    bool isSprinting;
+    bool isPlayingSteps;
     int jumpedTimes;
     int wallJumpTimes;
     RaycastHit leftWallHit;
@@ -65,7 +78,7 @@ public class playerController : MonoBehaviour, IDamage
         Debug.DrawRay(Camera.main.transform.position + (Camera.main.transform.forward * .5f), Camera.main.transform.forward * shootDist, Color.blue);
 
         movement();
-        WallCheck();
+        WallCheck();       
     }
 
     void movement()
@@ -76,6 +89,18 @@ public class playerController : MonoBehaviour, IDamage
             jumpedTimes = 0;
             wallJumpTimes = 0;
             playerVel = Vector3.zero;
+        }
+
+        // check to see if player is pressing the shoot button and can shoot
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            speed += sprintSpeed;
+            isSprinting = true;
+        }
+        else if(Input.GetKeyUp(KeyCode.LeftShift)) 
+        {
+            speed -= sprintSpeed;
+            isSprinting = false;
         }
 
         // get movemetn input and multiply by there movement vectors
@@ -98,14 +123,10 @@ public class playerController : MonoBehaviour, IDamage
             moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
             controller.Move(moveDir * speed * Time.deltaTime);
         }
-        // check to see if player is pressing the shoot button and can shoot
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+
+        if (controller.isGrounded && moveDir.normalized.magnitude > 0.3f && !isPlayingSteps)
         {
-            speed += sprintSpeed;
-        }
-        else if(Input.GetKeyUp(KeyCode.LeftShift)) 
-        {
-            speed -= sprintSpeed;
+            StartCoroutine(PlaySteps());
         }
 
         if (Input.GetButton("Shoot") && !isShooting && gunList.Count > 0 && gunList[selectedGun].ammoCurrent > 0)
@@ -118,12 +139,14 @@ public class playerController : MonoBehaviour, IDamage
         if (Input.GetButtonDown("Jump") && wallJumpTimes < maxWallJumps && offTheGround() && (wallRight || wallLeft))
         {
             WallJump();
+            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
         }
         else if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps) 
         {
             controller.enabled = true;
             jumpedTimes++;
-            playerVel.y = jumpSpeed;            
+            playerVel.y = jumpSpeed;
+            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
         }
 
         // add gravity to the player so that they fall when going over and edge or jump
@@ -136,9 +159,23 @@ public class playerController : MonoBehaviour, IDamage
         
     }
 
+    IEnumerator PlaySteps()
+    {
+        isPlayingSteps = true;
+
+        aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepVol);
+
+        // this means interval equals 0.3f if sprinting, else interval = 0.5f
+        float interval = (isSprinting) ? 0.3f : 0.5f;
+        yield return new WaitForSeconds(interval);
+        isPlayingSteps = false;
+    }
+
     IEnumerator shoot()
     {
         isShooting = true;
+        aud.PlayOneShot(audShoot[Random.Range(0, audShoot.Length)], audShootVol);
+
         // create a Raycasthit to pass into physics raycast
         gunList[selectedGun].ammoCurrent--;
         GameManager.Instance.ammoCurr.text = gunList[selectedGun].ammoCurrent.ToString("F0");
@@ -166,6 +203,7 @@ public class playerController : MonoBehaviour, IDamage
 
     public void takeDamage(int amount)
     {
+        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
         currentHP -= amount;
         UpdatePlayerUI();
         StartCoroutine(FlashDamage());
