@@ -16,16 +16,24 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject reticle;
+    public GameObject checkpointMenu;
 
 
     public GameObject playerDamageScreen;
     public Image playerHPBar;
     public TMP_Text enemyCounter;
+    public TMP_Text ammoCurr;
+    public TMP_Text ammoMax;
+
     private int enemyCount;
     public GameObject goalLabel;
     public float goalMsgDisplayTime;
 
     public GameObject player;
+    public playerController playerCntrl;
+    public HoldController holdController;
+    public GameObject playerSpawnPos;
+    public GameObject cubeSpawnPos;
 
     public bool isPaused;
     public bool reticleIsShowing;
@@ -35,6 +43,10 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         player = GameObject.FindWithTag("Player");
+        playerCntrl = player.GetComponent<playerController>();
+        holdController = Camera.main.GetComponent<HoldController>();
+        playerSpawnPos = GameObject.FindWithTag("Player Spawn Position");
+        cubeSpawnPos = GameObject.FindWithTag("Cube Spwan Position");
     }
 
     private void Start()
@@ -122,13 +134,6 @@ public class GameManager : MonoBehaviour
         enemyCount += amount;
         enemyCounter.text = enemyCount.ToString("F0");
 
-        if (enemyCount <= 0)
-        {
-            statePaused();
-
-            activeMenu = winMenu;
-            activeMenu.SetActive(isPaused);
-        }
     }
 
     public void ReturnToPause()
@@ -139,6 +144,10 @@ public class GameManager : MonoBehaviour
     public void DisplayLevelSelect()
     {
         SwitchScene(levelSelectMenu);
+    }
+    public void SelectLevel(int level)
+    {
+        GetComponent<ButtonFunctions>().SelectLevel(level);
     }
 
     public void DisplaySettings()

@@ -9,8 +9,10 @@ public class HoldController : MonoBehaviour
     [SerializeField] float pickupSpeed;
 
 
-    [SerializeField] GameObject hold;
+    [HideInInspector] public GameObject hold;
     [SerializeField] Rigidbody rb;
+
+    [HideInInspector] public bool hasCube;
 
     private void Update()
     {
@@ -18,32 +20,11 @@ public class HoldController : MonoBehaviour
         {
             if (hold == null)
             {
-                RaycastHit hit;
-                // added transform.forward * .5f to fix a bug where the cube could not be picked up close to the player
-                if (Physics.Raycast(transform.position + (transform.forward * .5f), transform.TransformDirection(Vector3.forward), out hit, pickupRange))
-                {
-                    //Pickup
-                    if (hit.transform.gameObject.GetComponent<Rigidbody>())
-                    {
-                        rb = hit.transform.gameObject.GetComponent<Rigidbody>();
-                        rb.useGravity = false;
-                        rb.drag = 8;
-                        rb.constraints = RigidbodyConstraints.FreezeRotation;
-
-                        rb.transform.parent = holdPos;
-                        hold = hit.transform.gameObject;
-                    }
-                }
+                pickUp();
             }
             else
             {
-                //drop
-                rb.useGravity = true;
-                rb.drag = 1;
-                rb.constraints = RigidbodyConstraints.None;
-
-                hold.transform.parent = null;
-                hold = null;
+                drop();
             }
         }
         if (hold != null)
@@ -57,4 +38,39 @@ public class HoldController : MonoBehaviour
         }
     }
 
+    public void pickUp()
+    {
+        RaycastHit hit;
+        // added transform.forward * .5f to fix a bug where the cube could not be picked up close to the player
+        if (Physics.Raycast(transform.position + (transform.forward * .5f), transform.TransformDirection(Vector3.forward), out hit, pickupRange))
+        {
+            //Pickup
+            if (hit.transform.gameObject.GetComponent<Rigidbody>())
+            {
+                hasCube = true;
+                rb = hit.transform.gameObject.GetComponent<Rigidbody>();
+                rb.useGravity = false;
+                rb.drag = 8;
+                rb.constraints = RigidbodyConstraints.FreezeRotation;
+
+                rb.transform.parent = holdPos;
+                hold = hit.transform.gameObject;
+            }
+        }
+    }
+
+    public void drop()
+    {
+        hasCube = false;
+        if (hold != null)
+        {
+            //drop
+            rb.useGravity = true;
+            rb.drag = 1;
+            rb.constraints = RigidbodyConstraints.None;
+
+            hold.transform.parent = null;
+            hold = null;
+        }
+    }
 }

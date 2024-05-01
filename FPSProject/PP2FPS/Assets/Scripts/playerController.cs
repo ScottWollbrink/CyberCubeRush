@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage
 {
     [SerializeField] CharacterController controller;
 
+    [Header("Player Basics")]
     [SerializeField] int maxHP;
     private int currentHP;
     [SerializeField] int speed;
@@ -14,21 +16,46 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int maxJumps;
     [SerializeField] int gravity;
 
+    [Header("WallJump")]
+    [SerializeField] LayerMask wallMask;
+    [SerializeField] LayerMask groundMask;
+    [SerializeField] LayerMask movingPlatformMask;
+    [SerializeField] int maxWallJumps;
+    [SerializeField] float distanceToWallCheck;
+    [SerializeField] float distanceToGround;
+    [SerializeField] int wallJumpSpeed;
+
+    [Header("Shooting")]
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
+    [SerializeField] List<GunStats> gunList = new List<GunStats>();
+    [SerializeField] GameObject gunModel;
+
+    int selectedGun;
 
     Vector3 moveDir;
     Vector3 playerVel;
     bool isShooting;
     int jumpedTimes;
+    int wallJumpTimes;
+    RaycastHit leftWallHit;
+    RaycastHit rightWallHit;
+    bool wallLeft;
+    bool wallRight;
+    private GameObject platform;
+    private float platformSpeed;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        currentHP = maxHP;
-        UpdatePlayerUI();
+        if (!GameManager.Instance.isPaused)
+        {
+            currentHP = maxHP;
+            SpawnPlayer();
+        }
     }
 
     // Update is called once per frame
@@ -38,7 +65,7 @@ public class playerController : MonoBehaviour, IDamage
         Debug.DrawRay(Camera.main.transform.position + (Camera.main.transform.forward * .5f), Camera.main.transform.forward * shootDist, Color.blue);
 
         movement();
-
+        WallCheck();
     }
 
     void movement()
@@ -47,12 +74,30 @@ public class playerController : MonoBehaviour, IDamage
         if (controller.isGrounded)
         {
             jumpedTimes = 0;
+            wallJumpTimes = 0;
             playerVel = Vector3.zero;
         }
+
         // get movemetn input and multiply by there movement vectors
-        moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
-        // move the controler in the direction inputed
-        controller.Move(moveDir * speed * Time.deltaTime);
+        if (CheckForPlatform())
+        {
+            moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
+            if (moveDir == Vector3.zero && !Input.GetButton("Jump"))
+            {
+                controller.enabled = false;
+            }
+            else
+            {
+                controller.enabled = true;
+                controller.Move(moveDir * speed * Time.deltaTime);
+            }
+        }
+        else
+        {
+            // move the controler in the direction inputed
+            moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
+            controller.Move(moveDir * speed * Time.deltaTime);
+        }
         // check to see if player is pressing the shoot button and can shoot
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -63,27 +108,40 @@ public class playerController : MonoBehaviour, IDamage
             speed -= sprintSpeed;
         }
 
-        if (Input.GetButton("Shoot") && !isShooting)
+        if (Input.GetButton("Shoot") && !isShooting && gunList.Count > 0 && gunList[selectedGun].ammoCurrent > 0)
         {
             StartCoroutine(shoot());
         }
 
         // check to see if player is pressing the jump button and is not over the max number of concurent jumps
-        if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps)
+        
+        if (Input.GetButtonDown("Jump") && wallJumpTimes < maxWallJumps && offTheGround() && (wallRight || wallLeft))
         {
-            jumpedTimes++;
-            playerVel.y = jumpSpeed;
+            WallJump();
         }
-        // add gravity to the player so that they fall when going over and edge or jump
-        playerVel.y -= gravity * Time.deltaTime;
-        controller.Move(playerVel * Time.deltaTime);
+        else if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps) 
+        {
+            controller.enabled = true;
+            jumpedTimes++;
+            playerVel.y = jumpSpeed;            
+        }
 
+        // add gravity to the player so that they fall when going over and edge or jump
+        if (controller.enabled)
+        {
+            playerVel.y -= gravity * Time.deltaTime;
+            controller.Move(playerVel * Time.deltaTime);
+        }
+
+        
     }
 
     IEnumerator shoot()
     {
         isShooting = true;
         // create a Raycasthit to pass into physics raycast
+        gunList[selectedGun].ammoCurrent--;
+        GameManager.Instance.ammoCurr.text = gunList[selectedGun].ammoCurrent.ToString("F0");
         RaycastHit hit;
         // create a raycast and check to see if it hit something
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
@@ -95,6 +153,10 @@ public class playerController : MonoBehaviour, IDamage
             {
                 // pass damage to dmg take damage method
                 dmg.takeDamage(shootDamage);
+            }
+            else
+            {
+                Instantiate(gunList[selectedGun].hitEffect, hit.point, Quaternion.identity);
             }
         }
         // create a timer that will last for the time passed in by shootRate
@@ -111,6 +173,7 @@ public class playerController : MonoBehaviour, IDamage
         if (currentHP <= 0) 
         {
             GameManager.Instance.LoseGame();
+            GameManager.Instance.holdController.drop();
         }
     }
 
@@ -124,5 +187,118 @@ public class playerController : MonoBehaviour, IDamage
     private void UpdatePlayerUI()
     {
         GameManager.Instance.playerHPBar.fillAmount = (float)currentHP / maxHP;
+    }
+
+    private void WallJump()
+    {
+        Vector3 wallNormal;
+        Vector3 wallJumpforce;
+        if (wallRight)
+        {
+            wallNormal = rightWallHit.normal;
+            wallJumpforce = transform.up * jumpSpeed + wallNormal * wallJumpSpeed;
+            if (jumpedTimes > 0)
+            {
+                jumpedTimes--;
+            }
+            wallJumpTimes++;
+            playerVel = wallJumpforce;
+        }
+        else if (wallLeft)
+        {
+            wallNormal = leftWallHit.normal;
+            wallJumpforce = transform.up * jumpSpeed + wallNormal * wallJumpSpeed;
+            if (jumpedTimes > 0) 
+            { 
+                jumpedTimes--; 
+            }
+            wallJumpTimes++;
+            playerVel = wallJumpforce;
+        }
+        
+    }
+
+    private void WallCheck()
+    {
+        wallRight = Physics.Raycast(transform.position, transform.right, out rightWallHit, distanceToWallCheck, wallMask);
+        wallLeft = Physics.Raycast(transform.position, -transform.right, out leftWallHit, distanceToWallCheck, wallMask);
+    }
+    private bool offTheGround()
+    {
+        return !Physics.Raycast(transform.position, -transform.up, distanceToGround, groundMask);
+    }
+
+    private bool CheckForPlatform()
+    {
+        RaycastHit hit;
+        // create a raycast and check to see if it hit something        
+        if (Physics.Raycast(transform.position, -transform.up, out hit, 1.15f, movingPlatformMask))
+        {
+            platform = hit.collider.gameObject;
+            platformSpeed = platform.GetComponentInParent<MovingPlatformController>().speed;
+            controller.enabled = false;
+            transform.parent = platform.transform;
+            return true;
+        }
+        else
+        {
+            platform = null;
+            controller.enabled = true;
+            transform.parent = null;
+            return false;
+        }
+    }
+
+    public void SpawnPlayer()
+    {
+        currentHP = maxHP;
+        UpdatePlayerUI();
+
+        controller.enabled = false;
+        transform.position = GameManager.Instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
+    }
+
+    public void GetGunStats(GunStats gun)
+    {
+        gunList.Add(gun);
+        selectedGun = gunList.Count - 1;
+
+        shootDamage = gun.damage;
+        shootRate = gun.rateOfFire;
+        shootDist = gun.range;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        GameManager.Instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
+        GameManager.Instance.ammoCurr.text = gunList[selectedGun].ammoCurrent.ToString("F0");
+    }
+
+    private void SelectGun()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+        {
+            selectedGun++;
+            ChangeGun();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+        {
+            selectedGun--;
+            ChangeGun();
+        }
+    }
+
+    private void ChangeGun()
+    {
+        shootDamage = gunList[selectedGun].damage;
+        shootRate = gunList[selectedGun].rateOfFire;
+        shootDist = gunList[selectedGun].range;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        GameManager.Instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
+        GameManager.Instance.ammoCurr.text = gunList[selectedGun].ammoCurrent.ToString("F0");
     }
 }

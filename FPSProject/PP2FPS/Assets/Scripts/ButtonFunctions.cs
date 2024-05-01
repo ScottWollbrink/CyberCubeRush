@@ -36,7 +36,13 @@ public class ButtonFunctions : MonoBehaviour
 
     public void SelectLevel(int level)
     {
-        SceneManager.LoadScene($"Level{level}");
+        SceneManager.LoadScene(level);
+        GameManager.Instance.stateUnpaused();
+    }
+
+    public void Respawn()
+    {
+        GameManager.Instance.playerCntrl.SpawnPlayer();
         GameManager.Instance.stateUnpaused();
     }
 
