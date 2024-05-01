@@ -226,9 +226,9 @@ MonoBehaviour:
   animator: {fileID: 95000012794672780}
   health: 3
   shootRate: 0.8
-  playerTrackingSpeed: 2
+  playerTrackingSpeed: 0.5
   viewCone: 90
-  roamWait: 2
+  roamWait: 1
 --- !u!95 &95000012794672780
 Animator:
   serializedVersion: 5

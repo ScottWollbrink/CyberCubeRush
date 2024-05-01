@@ -33,6 +33,7 @@ public class Turret : MonoBehaviour, IDamage
     {
         playerDir = GameManager.Instance.player.transform.position - swivle.transform.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, playerDir.y + 1, playerDir.z), transform.forward);
+        Debug.Log(angleToPlayer);
         Debug.DrawRay(swivle.transform.position, playerDir, Color.red);
         if (inRange)
         {
@@ -79,9 +80,9 @@ public class Turret : MonoBehaviour, IDamage
     void faceTarget()
     {        
         Quaternion rotate = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotate, Time.deltaTime * playerTrackingSpeed); // adjust x,z rot
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotate, playerTrackingSpeed / 10); // adjust x,z rot
         rotate = Quaternion.LookRotation(playerDir);        
-        swivle.transform.rotation = Quaternion.Lerp(swivle.transform.rotation, rotate, Time.deltaTime * playerTrackingSpeed * .5f); // adjust y rot
+        swivle.transform.rotation = Quaternion.RotateTowards(swivle.transform.rotation, rotate, playerTrackingSpeed / 10); // adjust y rot
     }
 
     IEnumerator roam()
@@ -96,11 +97,17 @@ public class Turret : MonoBehaviour, IDamage
             float elapsedTime = 0f;
             while (elapsedTime < roamWait)
             {
-                Debug.Log(elapsedTime);
                 // Rotate the turret gradually
-                transform.rotation = Quaternion.Lerp(transform.rotation, roamRotate, Time.deltaTime * playerTrackingSpeed);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, roamRotate, playerTrackingSpeed / 10);
                 //swivle.rotation = Quaternion.Lerp(swivle.rotation, swivelRotate, Time.deltaTime * playerTrackingSpeed);
-                elapsedTime += Time.deltaTime;
+                
+                // only start waiting once within a threshold value from look dist
+                // Dot product returns -1 to 1, representing the vectors orientation to one another
+                // 1 means they are the same
+                if (Quaternion.Dot(transform.rotation.normalized, roamRotate.normalized) > .8f) 
+                    elapsedTime += Time.deltaTime;              
+
+                Debug.Log($"elapsed time: {elapsedTime}, transform.rotation: {transform.rotation.normalized}, roamRotate: {roamRotate.normalized}, Dot: {Quaternion.Dot(transform.rotation.normalized, roamRotate.normalized)}");
                 yield return null;
             }
 

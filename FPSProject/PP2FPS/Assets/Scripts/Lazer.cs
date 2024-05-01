@@ -21,7 +21,7 @@ public class Lazar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Physics.Raycast(transform.position, transform.right, out hit, lazerRange))
+        if(Physics.Raycast(transform.position, transform.forward, out hit, lazerRange))
         {
             lineRenderer.enabled = true;
             lineRenderer.SetPosition(0, transform.position);

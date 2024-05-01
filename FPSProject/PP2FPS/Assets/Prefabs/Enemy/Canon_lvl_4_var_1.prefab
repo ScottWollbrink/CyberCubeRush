@@ -58,9 +58,9 @@ MonoBehaviour:
   animator: {fileID: 95000013006542780}
   health: 8
   shootRate: 2
-  playerTrackingSpeed: 0.8
-  viewCone: 90
-  roamWait: 3
+  playerTrackingSpeed: 0.25
+  viewCone: 110
+  roamWait: 2
 --- !u!33 &33000011785083450
 MeshFilter:
   m_ObjectHideFlags: 0
