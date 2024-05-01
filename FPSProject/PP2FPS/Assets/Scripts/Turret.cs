@@ -96,6 +96,7 @@ public class Turret : MonoBehaviour, IDamage
             float elapsedTime = 0f;
             while (elapsedTime < roamWait)
             {
+                Debug.Log(elapsedTime);
                 // Rotate the turret gradually
                 transform.rotation = Quaternion.Lerp(transform.rotation, roamRotate, Time.deltaTime * playerTrackingSpeed);
                 //swivle.rotation = Quaternion.Lerp(swivle.rotation, swivelRotate, Time.deltaTime * playerTrackingSpeed);

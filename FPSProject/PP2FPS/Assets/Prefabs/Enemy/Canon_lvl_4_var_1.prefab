@@ -59,6 +59,8 @@ MonoBehaviour:
   health: 8
   shootRate: 2
   playerTrackingSpeed: 0.8
+  viewCone: 90
+  roamWait: 3
 --- !u!33 &33000011785083450
 MeshFilter:
   m_ObjectHideFlags: 0
