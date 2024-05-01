@@ -8,36 +8,64 @@ public class enemyAi : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
     [SerializeField] Transform shootPos;
+    [SerializeField] Transform headPos;
     [SerializeField] GameObject bullet;
 
     [SerializeField] int health;
     [SerializeField] float shootRate;
     [SerializeField] int rotateSpeed;
+    [SerializeField] int viewCone;
+    [SerializeField] int roamDistance;
+    [SerializeField] int roamPause;
 
     bool isShooting;
     bool inRange;
     Vector3 playerDir;
+    Vector3 startingPos;
+    float angleToPlayer;
+    bool destinationChosen;
 
+    void Start()
+    {
+        startingPos = transform.position;
+    }
 
     // Update is called once per frame
     void Update()
     {
+        playerDir = GameManager.Instance.player.transform.position - headPos.position;
+        angleToPlayer = Vector3.Angle(playerDir, transform.position);
+        Debug.DrawRay(headPos.position, playerDir);
         if (inRange)
         {
-            playerDir = GameManager.Instance.player.transform.position - transform.position;
-            agent.SetDestination(GameManager.Instance.player.transform.position);
-
-            if (!isShooting)
+            RaycastHit hit;
+            if (Physics.Raycast(headPos.position, playerDir, out hit))
             {
-                StartCoroutine(shoot());
-            }
-
-            if(agent.remainingDistance <= agent.stoppingDistance)
-            {
-                faceTarget();
+                if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
+                {
+                    faceTarget();
+                    if (!isShooting)
+                    {
+                        StartCoroutine(shoot());
+                    }
+                }
+                else
+                {
+                    StartCoroutine(roam());
+                }
             }
         }
+        else
+        {
+            StartCoroutine(roam());
+        }
         
+    }
+
+    bool canSeePlayer()
+    {
+        
+        return false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -73,6 +101,37 @@ public class enemyAi : MonoBehaviour, IDamage
             GameManager.Instance.UpdateEnemyCounter(-1);
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator roam()
+    {
+        if (!destinationChosen)
+        {
+            destinationChosen = true;
+
+            Quaternion roamRotate = Quaternion.Euler(0, Random.Range(-360, 360), 0); // Random rotation around Y-axis
+            //Quaternion swivelRotate = Quaternion.Euler(Random.Range(-60, 60), Random.Range(-60, 60), 0); // Random rotation for swivel
+
+            float elapsedTime = 0f;
+            while (elapsedTime < roamPause)
+            {
+                // Rotate the turret gradually
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, roamRotate, Time.deltaTime * rotateSpeed);
+                //swivle.rotation = Quaternion.Lerp(swivle.rotation, swivelRotate, Time.deltaTime * playerTrackingSpeed);
+
+                // only start waiting once within a threshold value from look dist
+                // Dot product returns -1 to 1, representing the vectors orientation to one another
+                // 1 means they are the same
+                if (Quaternion.Dot(transform.rotation.normalized, roamRotate.normalized) > .8f)
+                {
+                    elapsedTime += Time.deltaTime;
+                }
+                
+                yield return null;
+            }
+            destinationChosen = false;
+        }
+        
     }
 
     IEnumerator redFlash()
