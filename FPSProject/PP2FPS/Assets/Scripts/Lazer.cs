@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class Lazar : MonoBehaviour
 {
@@ -16,17 +17,17 @@ public class Lazar : MonoBehaviour
     void Start()
     {
         candamage = true;
+        lineRenderer.enabled = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Physics.Raycast(transform.position, transform.forward, out hit, lazerRange))
-        {
-            lineRenderer.enabled = true;
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, hit.point);
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, transform.forward * lazerRange);
 
+        if (Physics.Raycast(transform.position, transform.forward, out hit, lazerRange))
+        {
             IDamage dmg = hit.collider.GetComponent<IDamage>();
             if (hit.transform != transform && dmg != null && candamage)
             {

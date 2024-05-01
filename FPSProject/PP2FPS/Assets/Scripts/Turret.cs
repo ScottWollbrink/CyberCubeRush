@@ -80,9 +80,9 @@ public class Turret : MonoBehaviour, IDamage
     void faceTarget()
     {        
         Quaternion rotate = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotate, playerTrackingSpeed / 10); // adjust x,z rot
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotate, playerTrackingSpeed * Time.deltaTime); // adjust x,z rot
         rotate = Quaternion.LookRotation(playerDir);        
-        swivle.transform.rotation = Quaternion.RotateTowards(swivle.transform.rotation, rotate, playerTrackingSpeed / 10); // adjust y rot
+        swivle.transform.rotation = Quaternion.RotateTowards(swivle.transform.rotation, rotate, playerTrackingSpeed * Time.deltaTime); // adjust y rot
     }
 
     IEnumerator roam()
@@ -98,7 +98,7 @@ public class Turret : MonoBehaviour, IDamage
             while (elapsedTime < roamWait)
             {
                 // Rotate the turret gradually
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, roamRotate, playerTrackingSpeed / 10);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, roamRotate, playerTrackingSpeed * Time.deltaTime);
                 //swivle.rotation = Quaternion.Lerp(swivle.rotation, swivelRotate, Time.deltaTime * playerTrackingSpeed);
                 
                 // only start waiting once within a threshold value from look dist
