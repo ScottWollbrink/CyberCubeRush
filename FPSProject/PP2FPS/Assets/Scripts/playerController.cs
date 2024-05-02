@@ -64,11 +64,10 @@ public class playerController : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        if (!GameManager.Instance.isPaused)
-        {
+        
             currentHP = maxHP;
             SpawnPlayer();
-        }
+        
     }
 
     // Update is called once per frame
@@ -77,8 +76,13 @@ public class playerController : MonoBehaviour, IDamage
         //draw debug ray to see how far player can shoot
         Debug.DrawRay(Camera.main.transform.position + (Camera.main.transform.forward * .5f), Camera.main.transform.forward * shootDist, Color.blue);
 
-        movement();
-        WallCheck();       
+        if (!GameManager.Instance.isPaused)
+        {
+            SelectGun();
+            movement();
+            WallCheck();
+        }
+        sprint();
     }
 
     void movement()
@@ -90,18 +94,7 @@ public class playerController : MonoBehaviour, IDamage
             wallJumpTimes = 0;
             playerVel = Vector3.zero;
         }
-
-        // check to see if player is pressing the shoot button and can shoot
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            speed += sprintSpeed;
-            isSprinting = true;
-        }
-        else if(Input.GetKeyUp(KeyCode.LeftShift)) 
-        {
-            speed -= sprintSpeed;
-            isSprinting = false;
-        }
+        
 
         // get movemetn input and multiply by there movement vectors
         if (CheckForPlatform())
@@ -199,6 +192,20 @@ public class playerController : MonoBehaviour, IDamage
         // create a timer that will last for the time passed in by shootRate
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+    }
+
+    void sprint()
+    {
+        if (Input.GetButtonDown("Sprint"))
+        {
+            speed += sprintSpeed;
+            isSprinting = true;
+        }
+        else if (Input.GetButtonUp("Sprint"))
+        {
+            speed -= sprintSpeed;
+            isSprinting = false;
+        }
     }
 
     public void takeDamage(int amount)

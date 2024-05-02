@@ -109,7 +109,6 @@
 -define:ENABLE_UNITY_COLLECTIONS_CHECKS
 -define:ENABLE_BURST_AOT
 -define:UNITY_TEAM_LICENSE
--define:UNITY_PRO_LICENSE
 -define:ENABLE_CUSTOM_RENDER_TEXTURE
 -define:ENABLE_DIRECTOR
 -define:ENABLE_LOCALIZATION
@@ -375,8 +374,8 @@
 "Assets/Scripts/MovingPlatformController.cs"
 "Assets/Scripts/playerController.cs"
 "Assets/Scripts/Turret.cs"
-"Assets/Scripts/winCube.cs"
-"Assets/Scripts/winPosition.cs"
+"Assets/Scripts/WinCube.cs"
+"Assets/Scripts/WinPosition.cs"
 -langversion:9.0
 
 /deterministic

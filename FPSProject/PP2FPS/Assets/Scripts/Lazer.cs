@@ -35,6 +35,7 @@ public class Lazar : MonoBehaviour
                 dmg.takeDamage(lazerDamage);
                 StartCoroutine(damageTimer());
             }
+            lineRenderer.SetPosition(1, hit.point);
         }
     }
 
