@@ -61,7 +61,8 @@ MonoBehaviour:
   animator: {fileID: 95000013006542780}
   health: 6
   shootRate: 0.2
-  playerTrackingSpeed: 5
+  playerTrackingSpeed: 10
+  roamSpeed: 10
   viewCone: 100
   roamWait: 3
   audHurt:

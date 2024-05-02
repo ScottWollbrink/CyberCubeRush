@@ -18,6 +18,7 @@ public class Turret : MonoBehaviour, IDamage
     [SerializeField] int health;
     [SerializeField] float shootRate;
     [SerializeField] float playerTrackingSpeed;
+    [SerializeField] float roamSpeed;
     [SerializeField] int viewCone;
     [SerializeField] int roamWait;
 
@@ -117,8 +118,7 @@ public class Turret : MonoBehaviour, IDamage
             while (elapsedTime < roamWait)
             {
                 // Rotate the turret gradually
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, roamRotate, playerTrackingSpeed * Time.deltaTime);
-                //swivle.rotation = Quaternion.Lerp(swivle.rotation, swivelRotate, Time.deltaTime * playerTrackingSpeed);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, roamRotate, roamSpeed * Time.deltaTime);
                 
                 // only start waiting once within a threshold value from look dist
                 // Dot product returns -1 to 1, representing the vectors orientation to one another
