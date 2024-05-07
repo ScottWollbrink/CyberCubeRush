@@ -13,7 +13,7 @@ public class LevelSelection : MonoBehaviour
     {
         numberOfScenes = SceneManager.sceneCountInBuildSettings;
 
-        for (int i = 0; i < numberOfScenes; i++)
+        for (int i = 1; i < numberOfScenes; i++)
         {
             CreateButton(i);
         }
@@ -22,9 +22,8 @@ public class LevelSelection : MonoBehaviour
     private void CreateButton(int index)
     {
         GameObject btn = Instantiate(button);
-        int i = index + 1;
-        btn.name = $"btn_{i}";
-        btn.GetComponentInChildren<TextMeshProUGUI>().text = i.ToString();
+        btn.name = $"btn_{index}";
+        btn.GetComponentInChildren<TextMeshProUGUI>().text = index.ToString();
         btn.transform.SetParent(transform);
 
         btn.GetComponent<Button>().onClick.AddListener(() => GameManager.Instance.SelectLevel(index));

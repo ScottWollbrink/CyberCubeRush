@@ -3,6 +3,7 @@ using System.Collections;
 using System.Xml.Serialization;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     GameObject activeMenu;
+    [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject levelSelectMenu;
     [SerializeField] GameObject winMenu;
@@ -51,11 +53,33 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        CheckReticle();
-        StartCoroutine(ToggleGoalLabel(goalMsgDisplayTime));
-
+        // main menu
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            ShowHUDInMenu(false);
+        }
+        else
+        {
+            CheckReticle();
+            StartCoroutine(ToggleGoalLabel(goalMsgDisplayTime));
+        }
     }
 
+    private void ShowHUDInMenu(bool val)
+    {
+        activeMenu = mainMenu;
+        activeMenu.SetActive(true);
+
+        playerCntrl.enabled = val;
+        player.GetComponentInChildren<cameraController>().enabled = val;
+        playerHPBar.transform.parent.gameObject.SetActive(val);
+
+        ammoMax.gameObject.SetActive(val);
+        Cursor.visible = !val;
+        Cursor.lockState = CursorLockMode.Confined;
+        reticle.SetActive(val);
+
+    }
 
     void Update()
     {        
@@ -64,7 +88,7 @@ public class GameManager : MonoBehaviour
 
     private void HandlePause()
     {
-        if (Input.GetButtonDown("Cancel")) // button input
+        if (Input.GetButtonDown("Cancel") && activeMenu != mainMenu) // button input
         {
             if (!isPaused) // Not paused
             {
@@ -147,6 +171,12 @@ public class GameManager : MonoBehaviour
     }
     public void SelectLevel(int level)
     {
+        if (activeMenu == mainMenu)
+        {
+            mainMenu.SetActive(false);
+            ShowHUDInMenu(true);
+        }
+
         GetComponent<ButtonFunctions>().SelectLevel(level);
     }
 
@@ -156,7 +186,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void SwitchScene(GameObject scene)
-    {
+    {     
         activeMenu.SetActive(false);
         activeMenu = scene;
         activeMenu.SetActive(true);
