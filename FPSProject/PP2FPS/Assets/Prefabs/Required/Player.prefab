@@ -304,7 +304,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   maxWallJumps: 2
-  distanceToWallCheck: 1
+  distanceToWallCheck: 0.75
   distanceToGround: 2
   wallJumpSpeed: 6
   timeToTurnOffHorizontalMovement: 1

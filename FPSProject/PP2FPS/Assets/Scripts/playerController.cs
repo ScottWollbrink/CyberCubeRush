@@ -104,9 +104,9 @@ public class playerController : MonoBehaviour, IDamage
         {
             horizontalInput = HorizontalInputEnabled ? Input.GetAxis("Horizontal") : 0f;
             float verticalInput = Input.GetAxis("Vertical");
-            if (horizontalInput != 0)
+            if (horizontalInput != 0 && playerVel.z != 0)
             {
-                playerVel.z = 0;
+                playerVel.z -= .25f;
             }
             moveDir = horizontalInput * transform.right + verticalInput * transform.forward;
             if (moveDir == Vector3.zero && !Input.GetButton("Jump"))
@@ -124,9 +124,9 @@ public class playerController : MonoBehaviour, IDamage
             // move the controler in the direction inputed
             horizontalInput = HorizontalInputEnabled ? Input.GetAxis("Horizontal") : 0f;
             float verticalInput = Input.GetAxis("Vertical");
-            if (horizontalInput != 0)
+            if (horizontalInput != 0 && playerVel.z != 0)
             {
-                playerVel.z = 0;
+                playerVel.z -= .01f;
             }
             moveDir = horizontalInput * transform.right + verticalInput * transform.forward;
             controller.Move(moveDir * speed * Time.deltaTime);
