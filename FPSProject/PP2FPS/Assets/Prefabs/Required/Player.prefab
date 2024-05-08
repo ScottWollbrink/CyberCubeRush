@@ -306,7 +306,8 @@ MonoBehaviour:
   maxWallJumps: 2
   distanceToWallCheck: 1
   distanceToGround: 2
-  wallJumpSpeed: 3
+  wallJumpSpeed: 6
+  timeToTurnOffHorizontalMovement: 1
   shootDamage: 0
   shootRate: 0
   shootDist: 0

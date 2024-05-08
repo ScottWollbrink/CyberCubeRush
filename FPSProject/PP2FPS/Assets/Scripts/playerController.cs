@@ -24,6 +24,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float distanceToWallCheck;
     [SerializeField] float distanceToGround;
     [SerializeField] int wallJumpSpeed;
+    [SerializeField] float timeToTurnOffHorizontalMovement;
 
     [Header("Shooting")]
     [SerializeField] int shootDamage;
@@ -51,19 +52,21 @@ public class playerController : MonoBehaviour, IDamage
     bool isPlayingSteps;
     int jumpedTimes;
     int wallJumpTimes;
+    bool HorizontalInputEnabled;
     RaycastHit leftWallHit;
     RaycastHit rightWallHit;
     bool wallLeft;
     bool wallRight;
     private GameObject platform;
     private float platformSpeed;
+    float horizontalInput;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+            HorizontalInputEnabled = true;
             currentHP = maxHP;
             SpawnPlayer();
         
@@ -92,13 +95,20 @@ public class playerController : MonoBehaviour, IDamage
             jumpedTimes = 0;
             wallJumpTimes = 0;
             playerVel = Vector3.zero;
+            HorizontalInputEnabled = true;
         }
         
 
         // get movemetn input and multiply by there movement vectors
         if (CheckForPlatform())
         {
-            moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
+            horizontalInput = HorizontalInputEnabled ? Input.GetAxis("Horizontal") : 0f;
+            float verticalInput = Input.GetAxis("Vertical");
+            if (horizontalInput != 0)
+            {
+                playerVel.z = 0;
+            }
+            moveDir = horizontalInput * transform.right + verticalInput * transform.forward;
             if (moveDir == Vector3.zero && !Input.GetButton("Jump"))
             {
                 controller.enabled = false;
@@ -112,7 +122,13 @@ public class playerController : MonoBehaviour, IDamage
         else
         {
             // move the controler in the direction inputed
-            moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
+            horizontalInput = HorizontalInputEnabled ? Input.GetAxis("Horizontal") : 0f;
+            float verticalInput = Input.GetAxis("Vertical");
+            if (horizontalInput != 0)
+            {
+                playerVel.z = 0;
+            }
+            moveDir = horizontalInput * transform.right + verticalInput * transform.forward;
             controller.Move(moveDir * speed * Time.deltaTime);
         }
 
@@ -193,6 +209,18 @@ public class playerController : MonoBehaviour, IDamage
         isShooting = false;
     }
 
+    IEnumerator disableLeftandRight()
+    {
+        setHorizontalInputActivity(false);
+        yield return new WaitForSeconds(timeToTurnOffHorizontalMovement);
+        setHorizontalInputActivity(true);
+    }
+
+    public void setHorizontalInputActivity(bool activity)
+    {
+        HorizontalInputEnabled = activity;
+    }
+
     void sprint()
     {
         if (Input.GetButtonDown("Sprint"))
@@ -241,10 +269,7 @@ public class playerController : MonoBehaviour, IDamage
         {
             wallNormal = rightWallHit.normal;
             wallJumpforce = transform.up * jumpSpeed + wallNormal * wallJumpSpeed;
-            if (jumpedTimes > 0)
-            {
-                jumpedTimes--;
-            }
+           
             wallJumpTimes++;
             playerVel = wallJumpforce;
         }
@@ -252,14 +277,11 @@ public class playerController : MonoBehaviour, IDamage
         {
             wallNormal = leftWallHit.normal;
             wallJumpforce = transform.up * jumpSpeed + wallNormal * wallJumpSpeed;
-            if (jumpedTimes > 0) 
-            { 
-                jumpedTimes--; 
-            }
+           
             wallJumpTimes++;
             playerVel = wallJumpforce;
         }
-        
+        StartCoroutine(disableLeftandRight());
     }
 
     private void WallCheck()
