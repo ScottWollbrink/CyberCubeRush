@@ -9,12 +9,16 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    private TimeManager timeManager;
 
     GameObject activeMenu;
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject levelSelectMenu;
     [SerializeField] GameObject winMenu;
+    [SerializeField] TMP_Text clearedTime;
+    [SerializeField] TMP_Text goalTime;
+    [SerializeField] GameObject PRNotification;
     [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject reticle;
@@ -26,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     public TMP_Text usedTime;
     public TMP_Text levelTime;
+    public TMP_Text levelPR;
 
     public TMP_Text ammoCurr;
     public TMP_Text ammoMax;
@@ -46,6 +51,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        timeManager = TimeManager.Instance;
         player = GameObject.FindWithTag("Player");
         playerCntrl = player.GetComponent<playerController>();
         holdController = Camera.main.GetComponent<HoldController>();
@@ -70,9 +76,18 @@ public class GameManager : MonoBehaviour
 
     private void SetLevelTimer()
     {
-        // Assign the time stamp string to TMP_Text field
-        levelTime.text = TimeManager.Instance.GetLevelTime(SceneManager.GetActiveScene().buildIndex);
-        TimeManager.Instance.ToggleTimer();
+        // Assign the time stamp string to TMP_Text field              
+        if (timeManager.IsPlayerPRSet(SceneManager.GetActiveScene().buildIndex))
+        {
+            levelPR.gameObject.SetActive(true);
+            levelTime.text = timeManager.GetPlayerLevelPR(SceneManager.GetActiveScene().buildIndex);
+        }
+        else
+        {
+            levelPR.gameObject.SetActive(false);
+            levelTime.text = timeManager.GetLevelTime(SceneManager.GetActiveScene().buildIndex);
+        }
+        TimeManager.Instance.ToggleTimer(true);
     }
 
     private void ShowHUDInMenu(bool val)
@@ -146,7 +161,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         reticle.SetActive(false);
-        TimeManager.Instance.ToggleTimer();
+        TimeManager.Instance.ToggleTimer(false);
     }
 
     public void stateUnpaused()
@@ -161,7 +176,7 @@ public class GameManager : MonoBehaviour
         {
             reticle.SetActive(true);
         }
-        TimeManager.Instance.ToggleTimer();
+        TimeManager.Instance.ToggleTimer(true);
     }
 
     IEnumerator ToggleGoalLabel(float time)
@@ -242,14 +257,28 @@ public class GameManager : MonoBehaviour
         statePaused();
 
         activeMenu = winMenu;
+        PRNotification.SetActive(false);
+        clearedTime.text = TimeManager.Instance.GetCurrentTime();        
+        goalTime.text = timeManager.GetLevelTime(SceneManager.GetActiveScene().buildIndex);
+
         activeMenu.SetActive(isPaused);
     }
 
     public void LoseGame()
     {
         statePaused();
+
         activeMenu = loseMenu;
         activeMenu.SetActive(isPaused);
+    }
+    public void HighScoreWinGame()
+    {
+        statePaused();
 
+        activeMenu = winMenu;
+        PRNotification.SetActive(true);
+        clearedTime.text = TimeManager.Instance.GetCurrentTime();
+        goalTime.text = timeManager.GetPlayerLevelPR(SceneManager.GetActiveScene().buildIndex);
+        activeMenu.SetActive(isPaused);
     }
 }

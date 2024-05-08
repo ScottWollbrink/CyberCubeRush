@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d5d819d47172f94681447af63d2f15b, type: 3}
-  m_Name: Level2TimeInfo
+  m_Name: DefaultLevelValues
   m_EditorClassIdentifier: 
-  levelBuildIndex: 2
+  levelBuildIndex: 1
   timeToBeat: 60
-  playerPR: 3.402823e+38
+  playerPR: 3.4028235e+38
