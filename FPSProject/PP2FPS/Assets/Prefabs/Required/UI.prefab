@@ -1102,7 +1102,7 @@ GameObject:
   - component: {fileID: 7948751548804512089}
   - component: {fileID: 2965717595760992283}
   m_Layer: 5
-  m_Name: EnemyCount
+  m_Name: UsedTimeLbl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1124,7 +1124,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 365, y: -25}
+  m_AnchoredPosition: {x: 124.75, y: -75}
   m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7948751548804512089
@@ -1155,7 +1155,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00
+  m_text: 00:00:00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1389,6 +1389,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 717116015088454307}
   - {fileID: 2699168660128536943}
   - {fileID: 7410375255408352834}
   - {fileID: 8144345358881958292}
@@ -2411,12 +2412,12 @@ GameObject:
   - component: {fileID: 5456372025142089261}
   - component: {fileID: 1076872465878354218}
   m_Layer: 5
-  m_Name: EnemyCountLbl
+  m_Name: LevelTimerLbl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9190199265132863318
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2465,7 +2466,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Enemy Count:'
+  m_text: '00:00:00
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2941,6 +2944,8 @@ MonoBehaviour:
   playerDamageScreen: {fileID: 3966206237269345484}
   playerHPBar: {fileID: 5108320403218568359}
   enemyCounter: {fileID: 2965717595760992283}
+  usedTime: {fileID: 2965717595760992283}
+  levelTime: {fileID: 1076872465878354218}
   ammoCurr: {fileID: 8347280093354984736}
   ammoMax: {fileID: 2593405605987750432}
   goalLabel: {fileID: 2567269730194258247}
@@ -4117,6 +4122,59 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &4139855980071816885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 717116015088454307}
+  - component: {fileID: 6684242286368639848}
+  m_Layer: 5
+  m_Name: TimesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &717116015088454307
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4139855980071816885}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3225409833760793719}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6684242286368639848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4139855980071816885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0da02b752b03847b5a1328cca42af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelTimes:
+  - {fileID: 11400000, guid: 9eb637a43515a964fb12c09320396710, type: 2}
+  - {fileID: 11400000, guid: ae5967f2945924f45bff712962f01ded, type: 2}
+  - {fileID: 11400000, guid: 686652054dec05a4b94c94191d7a43ce, type: 2}
+  isCounting: 0
 --- !u!1 &4222159454001435751
 GameObject:
   m_ObjectHideFlags: 0
