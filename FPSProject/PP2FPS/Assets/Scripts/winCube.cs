@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class winCube : MonoBehaviour, IWinCube, IDamage
 {
@@ -27,7 +28,13 @@ public class winCube : MonoBehaviour, IWinCube, IDamage
     {
         yield return new WaitForSeconds(.25f);
 
-        GameManager.Instance.WinGame();
+        TimeManager.Instance.SetPlayerPR(SceneManager.GetActiveScene().buildIndex);
+        if (TimeManager.Instance.IsPlayerPRSet(SceneManager.GetActiveScene().buildIndex))
+        {
+            GameManager.Instance.HighScoreWinGame();
+        }
+        else 
+            GameManager.Instance.WinGame();
     }
 
     public void cubeSpawn()
