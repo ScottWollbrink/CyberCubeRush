@@ -10,8 +10,9 @@ public class playerController : MonoBehaviour, IDamage
     [Header("Player Basics")]
     [SerializeField] int maxHP;
     private int currentHP;
-    [SerializeField] int speed;
-    [SerializeField] int sprintSpeed;
+    [SerializeField] public int speed;
+    [SerializeField] public int holdSpeed;
+    //[SerializeField] int sprintSpeed; 
     [SerializeField] int jumpSpeed;
     [SerializeField] int maxJumps;
     [SerializeField] int gravity;
@@ -86,7 +87,7 @@ public class playerController : MonoBehaviour, IDamage
             movement();
             WallCheck();
         }
-        sprint();
+        //sprint();
     }
 
     void movement()
@@ -223,19 +224,19 @@ public class playerController : MonoBehaviour, IDamage
         HorizontalInputEnabled = activity;
     }
 
-    void sprint()
-    {
-        if (Input.GetButtonDown("Sprint"))
-        {
-            speed += sprintSpeed;
-            isSprinting = true;
-        }
-        else if (Input.GetButtonUp("Sprint"))
-        {
-            speed -= sprintSpeed;
-            isSprinting = false;
-        }
-    }
+    //void sprint()
+    //{
+    //    if (Input.GetButtonDown("Sprint"))
+    //    {
+    //        speed += sprintSpeed;
+    //        isSprinting = true;
+    //    }
+    //    else if (Input.GetButtonUp("Sprint"))
+    //    {
+    //        speed -= sprintSpeed;
+    //        isSprinting = false;
+    //    }
+    //}
 
     public void takeDamage(int amount)
     {

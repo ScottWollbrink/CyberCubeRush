@@ -21,10 +21,12 @@ public class HoldController : MonoBehaviour
             if (hold == null)
             {
                 pickUp();
+                GameManager.Instance.playerCntrl.speed -= GameManager.Instance.playerCntrl.holdSpeed;
             }
             else
             {
                 drop();
+                GameManager.Instance.playerCntrl.speed += GameManager.Instance.playerCntrl.holdSpeed;
             }
         }
         if (hold != null)

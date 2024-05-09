@@ -289,8 +289,8 @@ MonoBehaviour:
   controller: {fileID: 7525867157758389353}
   aud: {fileID: -4391461388008492422}
   maxHP: 5
-  speed: 6
-  sprintSpeed: 3
+  speed: 8
+  holdSpeed: 3
   jumpSpeed: 12
   maxJumps: 2
   gravity: 25
