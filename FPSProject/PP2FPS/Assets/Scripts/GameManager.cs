@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        timeManager = TimeManager.Instance;
         player = GameObject.FindWithTag("Player");
         playerCntrl = player.GetComponent<playerController>();
         holdController = Camera.main.GetComponent<HoldController>();
@@ -61,6 +60,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        timeManager = TimeManager.Instance;
         // main menu
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
