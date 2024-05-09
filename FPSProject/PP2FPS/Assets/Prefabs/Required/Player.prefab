@@ -289,7 +289,7 @@ MonoBehaviour:
   controller: {fileID: 7525867157758389353}
   aud: {fileID: -4391461388008492422}
   maxHP: 5
-  speed: 8
+  speed: 7
   holdSpeed: 3
   jumpSpeed: 12
   maxJumps: 2
@@ -303,11 +303,15 @@ MonoBehaviour:
   movingPlatformMask:
     serializedVersion: 2
     m_Bits: 256
-  maxWallJumps: 2
-  distanceToWallCheck: 0.75
+  maxWallJumps: 4
+  distanceToWallCheck: 1
   distanceToGround: 2
-  wallJumpSpeed: 6
+  wallJumpSpeed: 13
+  wallJumpVertSpeed: 7
   timeToTurnOffHorizontalMovement: 1
+  dashSpeed: 12
+  dashDurationWhileGrounded: 0.25
+  dashCooldown: 1
   shootDamage: 0
   shootRate: 0
   shootDist: 0

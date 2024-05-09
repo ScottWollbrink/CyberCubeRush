@@ -12,7 +12,6 @@ public class playerController : MonoBehaviour, IDamage
     private int currentHP;
     [SerializeField] public int speed;
     [SerializeField] public int holdSpeed;
-    //[SerializeField] int sprintSpeed; 
     [SerializeField] int jumpSpeed;
     [SerializeField] int maxJumps;
     [SerializeField] int gravity;
@@ -25,7 +24,14 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float distanceToWallCheck;
     [SerializeField] float distanceToGround;
     [SerializeField] int wallJumpSpeed;
+    [SerializeField] int wallJumpVertSpeed;
     [SerializeField] float timeToTurnOffHorizontalMovement;
+
+    [Header("Dash")]
+    [SerializeField] float dashSpeed;
+    [SerializeField] float dashDurationWhileGrounded;
+    [SerializeField] float dashCooldown;
+
 
     [Header("Shooting")]
     [SerializeField] int shootDamage;
@@ -46,6 +52,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] AudioClip audDeath;
     [SerializeField, Range(0, 1f)] float audDeathVol;
 
+    
     int selectedGun;
 
     Vector3 moveDir;
@@ -63,6 +70,8 @@ public class playerController : MonoBehaviour, IDamage
     private GameObject platform;
     private float platformSpeed;
     float horizontalInput;
+    bool canDash = true;
+    bool isDashing;
 
 
 
@@ -97,7 +106,10 @@ public class playerController : MonoBehaviour, IDamage
         {
             jumpedTimes = 0;
             wallJumpTimes = 0;
-            playerVel = Vector3.zero;
+            if (!isDashing)
+            {
+                playerVel = Vector3.zero;
+            }
             HorizontalInputEnabled = true;
         }
         
@@ -143,6 +155,11 @@ public class playerController : MonoBehaviour, IDamage
         if (Input.GetButton("Shoot") && !isShooting && gunList.Count > 0 && gunList[selectedGun].ammoCurrent > 0)
         {
             StartCoroutine(shoot());
+        }
+
+        if (Input.GetButtonDown("Dash") && canDash)
+        {
+            Dash();
         }
 
         // check to see if player is pressing the jump button and is not over the max number of concurent jumps
@@ -224,20 +241,6 @@ public class playerController : MonoBehaviour, IDamage
         HorizontalInputEnabled = activity;
     }
 
-    //void sprint()
-    //{
-    //    if (Input.GetButtonDown("Sprint"))
-    //    {
-    //        speed += sprintSpeed;
-    //        isSprinting = true;
-    //    }
-    //    else if (Input.GetButtonUp("Sprint"))
-    //    {
-    //        speed -= sprintSpeed;
-    //        isSprinting = false;
-    //    }
-    //}
-
     public void takeDamage(int amount)
     {
         aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
@@ -272,7 +275,7 @@ public class playerController : MonoBehaviour, IDamage
         if (wallRight)
         {
             wallNormal = rightWallHit.normal;
-            wallJumpforce = transform.up * jumpSpeed + wallNormal * wallJumpSpeed;
+            wallJumpforce = transform.up * wallJumpVertSpeed + wallNormal * wallJumpSpeed;
            
             wallJumpTimes++;
             playerVel = wallJumpforce;
@@ -280,7 +283,7 @@ public class playerController : MonoBehaviour, IDamage
         else if (wallLeft)
         {
             wallNormal = leftWallHit.normal;
-            wallJumpforce = transform.up * jumpSpeed + wallNormal * wallJumpSpeed;
+            wallJumpforce = transform.up * wallJumpVertSpeed + wallNormal * wallJumpSpeed;
            
             wallJumpTimes++;
             playerVel = wallJumpforce;
@@ -296,6 +299,30 @@ public class playerController : MonoBehaviour, IDamage
     private bool offTheGround()
     {
         return !Physics.Raycast(transform.position, -transform.up, distanceToGround, groundMask);
+    }
+
+    private void Dash()
+    {
+        Vector3 dashDirection = Camera.main.transform.forward.normalized;
+
+        playerVel = dashDirection * dashSpeed;
+        StartCoroutine(DashLengthWhileGrounded());
+        StartCoroutine(DashCooldown());
+    }
+
+    IEnumerator DashLengthWhileGrounded()
+    {
+        Debug.Log("dash on ground");
+        isDashing = true;
+        yield return new WaitForSeconds(dashDurationWhileGrounded);
+        isDashing = false;
+    }
+
+    IEnumerator DashCooldown() 
+    {
+        canDash = false;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 
     private bool CheckForPlatform()
