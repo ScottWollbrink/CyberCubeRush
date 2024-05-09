@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using System.Xml.Serialization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,31 +9,24 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    private TimeManager timeManager;
 
     GameObject activeMenu;
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject levelSelectMenu;
     [SerializeField] GameObject winMenu;
-    [SerializeField] TMP_Text clearedTime;
-    [SerializeField] TMP_Text goalTime;
-    [SerializeField] GameObject PRNotification;
     [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject reticle;
     public GameObject checkpointMenu;
 
+
     public GameObject playerDamageScreen;
     public Image playerHPBar;
     public TMP_Text enemyCounter;
-
-    public TMP_Text usedTime;
-    public TMP_Text levelTime;
-    public TMP_Text levelPR;
-
     public TMP_Text ammoCurr;
     public TMP_Text ammoMax;
+
     private int enemyCount;
     public GameObject goalLabel;
     public float goalMsgDisplayTime;
@@ -51,7 +44,6 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        timeManager = TimeManager.Instance;
         player = GameObject.FindWithTag("Player");
         playerCntrl = player.GetComponent<playerController>();
         holdController = Camera.main.GetComponent<HoldController>();
@@ -70,24 +62,7 @@ public class GameManager : MonoBehaviour
         {
             CheckReticle();
             StartCoroutine(ToggleGoalLabel(goalMsgDisplayTime));
-            SetLevelTimer();
         }
-    }
-
-    private void SetLevelTimer()
-    {
-        // Assign the time stamp string to TMP_Text field              
-        if (timeManager.IsPlayerPRSet(SceneManager.GetActiveScene().buildIndex))
-        {
-            levelPR.gameObject.SetActive(true);
-            levelTime.text = timeManager.GetPlayerLevelPR(SceneManager.GetActiveScene().buildIndex);
-        }
-        else
-        {
-            levelPR.gameObject.SetActive(false);
-            levelTime.text = timeManager.GetLevelTime(SceneManager.GetActiveScene().buildIndex);
-        }
-        TimeManager.Instance.ToggleTimer(true);
     }
 
     private void ShowHUDInMenu(bool val)
@@ -99,9 +74,7 @@ public class GameManager : MonoBehaviour
         player.GetComponentInChildren<cameraController>().enabled = val;
         playerHPBar.transform.parent.gameObject.SetActive(val);
 
-        levelTime.gameObject.SetActive(val);
         ammoMax.gameObject.SetActive(val);
-
         Cursor.visible = !val;
         Cursor.lockState = CursorLockMode.Confined;
         reticle.SetActive(val);
@@ -111,10 +84,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {        
         HandlePause(); // escape = pause
-        if (TimeManager.Instance.isCounting)
-        {
-            usedTime.text = TimeManager.Instance.GetCurrentTime();
-        }
     }
 
     private void HandlePause()
@@ -161,7 +130,6 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         reticle.SetActive(false);
-        TimeManager.Instance.ToggleTimer(false);
     }
 
     public void stateUnpaused()
@@ -176,7 +144,6 @@ public class GameManager : MonoBehaviour
         {
             reticle.SetActive(true);
         }
-        TimeManager.Instance.ToggleTimer(true);
     }
 
     IEnumerator ToggleGoalLabel(float time)
@@ -193,16 +160,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void UpdateLevelTimer(float time)
-    {       
-        levelTime.text = time.ToString("F0");
-    }
-
-    public void UpdateUsedTime(float time)
-    {
-        usedTime.text = time.ToString("F0");
-    }
-
     public void ReturnToPause()
     {
         SwitchScene(pauseMenu);
@@ -212,7 +169,6 @@ public class GameManager : MonoBehaviour
     {
         SwitchScene(levelSelectMenu);
     }
-
     public void SelectLevel(int level)
     {
         if (activeMenu == mainMenu)
@@ -257,28 +213,14 @@ public class GameManager : MonoBehaviour
         statePaused();
 
         activeMenu = winMenu;
-        PRNotification.SetActive(false);
-        clearedTime.text = TimeManager.Instance.GetCurrentTime();        
-        goalTime.text = timeManager.GetLevelTime(SceneManager.GetActiveScene().buildIndex);
-
         activeMenu.SetActive(isPaused);
     }
 
     public void LoseGame()
     {
         statePaused();
-
         activeMenu = loseMenu;
         activeMenu.SetActive(isPaused);
-    }
-    public void HighScoreWinGame()
-    {
-        statePaused();
 
-        activeMenu = winMenu;
-        PRNotification.SetActive(true);
-        clearedTime.text = TimeManager.Instance.GetCurrentTime();
-        goalTime.text = timeManager.GetPlayerLevelPR(SceneManager.GetActiveScene().buildIndex);
-        activeMenu.SetActive(isPaused);
     }
 }

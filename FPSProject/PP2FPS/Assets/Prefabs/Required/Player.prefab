@@ -340,8 +340,6 @@ MonoBehaviour:
   audShoot:
   - {fileID: 8300000, guid: 0e408de57c16c7a458355ac5bb022c13, type: 3}
   audShootVol: 0.5
-  audDeath: {fileID: 8300000, guid: 4b75067146c836648982bf167cb3bfe9, type: 3}
-  audDeathVol: 0.5
 --- !u!82 &-4391461388008492422
 AudioSource:
   m_ObjectHideFlags: 0
