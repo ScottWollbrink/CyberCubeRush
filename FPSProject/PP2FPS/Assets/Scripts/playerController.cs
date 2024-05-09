@@ -42,6 +42,8 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField, Range(0, 1f)] float audStepVol;
     [SerializeField] AudioClip[] audShoot;
     [SerializeField, Range(0, 1f)] float audShootVol;
+    [SerializeField] AudioClip audDeath;
+    [SerializeField, Range(0, 1f)] float audDeathVol;
 
     int selectedGun;
 
@@ -246,6 +248,7 @@ public class playerController : MonoBehaviour, IDamage
         {
             GameManager.Instance.LoseGame();
             GameManager.Instance.holdController.drop();
+            aud.PlayOneShot(audDeath, audDeathVol);
         }
     }
 
