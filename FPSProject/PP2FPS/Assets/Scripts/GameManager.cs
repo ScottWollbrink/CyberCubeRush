@@ -14,12 +14,20 @@ public class GameManager : MonoBehaviour
     GameObject activeMenu;
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] TMP_Text clearedTimePM;
+    [SerializeField] TMP_Text goalTimePM;
+
     [SerializeField] GameObject levelSelectMenu;
+
     [SerializeField] GameObject winMenu;
-    [SerializeField] TMP_Text clearedTime;
-    [SerializeField] TMP_Text goalTime;
-    [SerializeField] GameObject PRNotification;
+    [SerializeField] TMP_Text clearedTimeWM;
+    [SerializeField] TMP_Text goalTimeWM;
+    [SerializeField] GameObject PRNotificationWM;
+
     [SerializeField] GameObject loseMenu;
+    [SerializeField] TMP_Text clearedTimeLM;
+    [SerializeField] TMP_Text goalTimeLM;
+
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject reticle;
     public GameObject checkpointMenu;
@@ -130,6 +138,10 @@ public class GameManager : MonoBehaviour
                 }
 
                 statePaused();
+                clearedTimePM.text = TimeManager.Instance.GetCurrentTime();
+                goalTimePM.text = timeManager.GetLevelTime(SceneManager.GetActiveScene().buildIndex);
+                usedTime.enabled = false;
+                levelTime.enabled = false;
                 activeMenu = pauseMenu;
                 activeMenu.SetActive(isPaused);
             }
@@ -176,6 +188,8 @@ public class GameManager : MonoBehaviour
         {
             reticle.SetActive(true);
         }
+        usedTime.enabled = true;
+        levelTime.enabled = true;
         TimeManager.Instance.ToggleTimer(true);
     }
 
@@ -257,10 +271,11 @@ public class GameManager : MonoBehaviour
         statePaused();
 
         activeMenu = winMenu;
-        PRNotification.SetActive(false);
-        clearedTime.text = TimeManager.Instance.GetCurrentTime();        
-        goalTime.text = timeManager.GetLevelTime(SceneManager.GetActiveScene().buildIndex);
-
+        PRNotificationWM.SetActive(false);
+        clearedTimeWM.text = TimeManager.Instance.GetCurrentTime();        
+        goalTimeWM.text = timeManager.GetLevelTime(SceneManager.GetActiveScene().buildIndex);
+        usedTime.enabled = false;
+        levelTime.enabled = false;
         activeMenu.SetActive(isPaused);
     }
 
@@ -269,6 +284,10 @@ public class GameManager : MonoBehaviour
         statePaused();
 
         activeMenu = loseMenu;
+        clearedTimeLM.text = TimeManager.Instance.GetCurrentTime();
+        goalTimeLM.text = timeManager.GetLevelTime(SceneManager.GetActiveScene().buildIndex);
+        usedTime.enabled = false;
+        levelTime.enabled = false;
         activeMenu.SetActive(isPaused);
     }
     public void HighScoreWinGame()
@@ -276,9 +295,11 @@ public class GameManager : MonoBehaviour
         statePaused();
 
         activeMenu = winMenu;
-        PRNotification.SetActive(true);
-        clearedTime.text = TimeManager.Instance.GetCurrentTime();
-        goalTime.text = timeManager.GetPlayerLevelPR(SceneManager.GetActiveScene().buildIndex);
+        PRNotificationWM.SetActive(true);
+        clearedTimeWM.text = TimeManager.Instance.GetCurrentTime();
+        goalTimeWM.text = timeManager.GetPlayerLevelPR(SceneManager.GetActiveScene().buildIndex);
+        usedTime.enabled = false;
+        levelTime.enabled = false;
         activeMenu.SetActive(isPaused);
     }
 }
