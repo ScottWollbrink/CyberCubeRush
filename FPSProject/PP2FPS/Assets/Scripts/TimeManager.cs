@@ -33,7 +33,7 @@ public class TimeManager : MonoBehaviour
         {
             if (levelTimes[i].levelBuildIndex == index)
             {
-                if (levelTimes[i].playerPR > levelTimes[i].timeToBeat)
+                if (levelTimes[i].playerPR > levelTimes[i].timeToBeat || levelTimes[i].playerPR == 0)
                     return false;
                 else
                     return true;
@@ -49,7 +49,7 @@ public class TimeManager : MonoBehaviour
             if (levelTimes[i].levelBuildIndex == index)
             {
                 float time = levelTimes[i].playerPR;
-                if (time == float.MaxValue)
+                if (time == 0)
                     break;
 
                 int minutes = (int)(time / 60);

@@ -28,9 +28,12 @@ public class LevelSelection : MonoBehaviour
         btn.GetComponentInChildren<TextMeshProUGUI>().text = index.ToString();
         btn.transform.SetParent(transform);
 
-        if (TimeManager.Instance.GetLevelUnlocked(index))
-            btn.GetComponent<Button>().onClick.AddListener(() => GameManager.Instance.SelectLevel(index));
-        else 
+        if (TimeManager.Instance.GetLevelUnlocked(index))        
+            btn.GetComponent<Button>().onClick.AddListener(() => GameManager.Instance.SelectLevel(index));                               
+        else        
             btn.GetComponent<Image>().color = Color.grey;
+
+        btn.transform.Find("prTime").GetComponent<TMP_Text>().text = TimeManager.Instance.GetPlayerLevelPR(index);
+        btn.transform.Find("goalTime").GetComponent<TMP_Text>().text = TimeManager.Instance.GetLevelTime(index); 
     }
 }
