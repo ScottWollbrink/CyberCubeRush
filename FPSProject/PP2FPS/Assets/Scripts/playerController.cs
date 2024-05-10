@@ -14,9 +14,9 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] public int holdSpeed;
     [SerializeField] int jumpSpeed;
     [SerializeField] int maxJumps;
-    [SerializeField] int gravity;
+    [SerializeField] float gravity;
 
-    [Header("WallJump")]
+    [Header("Wall Jump")]
     [SerializeField] LayerMask wallMask;
     [SerializeField] LayerMask groundMask;
     [SerializeField] LayerMask movingPlatformMask;
@@ -26,6 +26,11 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int wallJumpSpeed;
     [SerializeField] int wallJumpVertSpeed;
     [SerializeField] float timeToTurnOffHorizontalMovement;
+
+    [Header("Wall Run")]
+    [SerializeField] float wallRunGravity;
+    [SerializeField] int wallRunSpeed;
+    [SerializeField] float wallRunDuration;
 
     [Header("Dash")]
     [SerializeField] float dashSpeed;
@@ -57,6 +62,8 @@ public class playerController : MonoBehaviour, IDamage
 
     Vector3 moveDir;
     Vector3 playerVel;
+    float gravityOriginal;
+    int speedOriginal;
     bool isShooting;
     bool isSprinting;
     bool isPlayingSteps;
@@ -72,6 +79,7 @@ public class playerController : MonoBehaviour, IDamage
     float horizontalInput;
     bool canDash = true;
     bool isDashing;
+    bool isWallRunning = false;
 
 
 
@@ -80,6 +88,8 @@ public class playerController : MonoBehaviour, IDamage
     {
             HorizontalInputEnabled = true;
             currentHP = maxHP;
+            gravityOriginal = gravity;
+            speedOriginal = speed;
             SpawnPlayer();
         
     }
@@ -160,6 +170,15 @@ public class playerController : MonoBehaviour, IDamage
         if (Input.GetButtonDown("Dash") && canDash)
         {
             Dash();
+        }
+
+        if((wallLeft || wallRight) && offTheGround() && !isWallRunning)
+        {
+            WallRunStart();
+        }
+        else if (((!wallLeft && !wallRight) || !offTheGround()) && isWallRunning) 
+        {
+            WallRunStop();
         }
 
         // check to see if player is pressing the jump button and is not over the max number of concurent jumps
@@ -323,6 +342,28 @@ public class playerController : MonoBehaviour, IDamage
         canDash = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    private void WallRunStart()
+    {
+        speed += wallRunSpeed;
+
+        gravity = wallRunGravity;
+        StartCoroutine(WallRunDuration());
+    }
+
+    private void WallRunStop()
+    {
+        speed = speedOriginal;
+        isWallRunning = false;
+        gravity = gravityOriginal;
+    }
+
+    IEnumerator WallRunDuration()
+    {
+        isWallRunning = true;
+        yield return new WaitForSeconds(wallRunDuration);
+        WallRunStop();
     }
 
     private bool CheckForPlatform()
