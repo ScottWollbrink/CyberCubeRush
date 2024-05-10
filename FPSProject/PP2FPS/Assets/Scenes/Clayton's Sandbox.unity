@@ -350,18 +350,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1992021602920003920, guid: 237cbb00f811fdc4eb36814ab86857d7, type: 3}
-      propertyPath: m_Height
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1992021602920003920, guid: 237cbb00f811fdc4eb36814ab86857d7, type: 3}
-      propertyPath: m_Radius
-      value: 0.34
-      objectReference: {fileID: 0}
-    - target: {fileID: 1992021602920003920, guid: 237cbb00f811fdc4eb36814ab86857d7, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7569527440201401396, guid: 237cbb00f811fdc4eb36814ab86857d7, type: 3}
       propertyPath: m_Name
       value: Moving Spike
