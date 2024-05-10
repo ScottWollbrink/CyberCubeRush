@@ -309,6 +309,9 @@ MonoBehaviour:
   wallJumpSpeed: 13
   wallJumpVertSpeed: 7
   timeToTurnOffHorizontalMovement: 1
+  wallRunGravity: 0
+  wallRunSpeed: 0
+  wallRunDuration: 0
   dashSpeed: 12
   dashDurationWhileGrounded: 0.25
   dashCooldown: 1

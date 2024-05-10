@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using System;
+using Unity.VisualScripting;
 
 public class LevelSelection : MonoBehaviour
 {
@@ -26,6 +28,9 @@ public class LevelSelection : MonoBehaviour
         btn.GetComponentInChildren<TextMeshProUGUI>().text = index.ToString();
         btn.transform.SetParent(transform);
 
-        btn.GetComponent<Button>().onClick.AddListener(() => GameManager.Instance.SelectLevel(index));
+        if (TimeManager.Instance.GetLevelUnlocked(index))
+            btn.GetComponent<Button>().onClick.AddListener(() => GameManager.Instance.SelectLevel(index));
+        else 
+            btn.GetComponent<Image>().color = Color.grey;
     }
 }

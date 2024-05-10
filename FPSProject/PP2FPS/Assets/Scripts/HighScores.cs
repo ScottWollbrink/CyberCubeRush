@@ -8,9 +8,12 @@ public class HighScores : ScriptableObject
     public int levelBuildIndex = 1;
     public float timeToBeat = 60f;
     public float playerPR = float.MaxValue;
+    public bool levelIsUnlocked = false;
 
     public void SetPr(float time)
     {
         playerPR = time;
     }
+
+    public void UnlockLevel() { levelIsUnlocked = true; }
 }

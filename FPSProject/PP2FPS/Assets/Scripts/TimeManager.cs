@@ -97,6 +97,29 @@ public class TimeManager : MonoBehaviour
         return timeStamp;
     }
 
+    public bool GetLevelUnlocked(int index)
+    {
+        for (int i = 0; i < levelTimes.Length; i++)
+        {
+            if (levelTimes[i].levelBuildIndex == index)
+            {
+                return levelTimes[i].levelIsUnlocked;
+            }
+        }
+        return false;
+    }
+
+    public void UnlockLevel(int index)
+    {
+        for (int i = 0; i < levelTimes.Length; i++)
+        {
+            if (levelTimes[i].levelBuildIndex == index)
+            {
+                levelTimes[i].UnlockLevel();
+            }
+        }
+    }
+
     public void ToggleTimer(bool val)
     {
         isCounting = val;

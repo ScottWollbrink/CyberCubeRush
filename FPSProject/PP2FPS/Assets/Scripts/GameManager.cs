@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel") && activeMenu != mainMenu) // button input
         {
-            if (!isPaused) // Not paused
+            if (!isPaused && SceneManager.GetActiveScene().buildIndex != 0) // Not paused
             {
                 if (activeMenu != null) // if active menu close menu
                 {
@@ -144,6 +144,12 @@ public class GameManager : MonoBehaviour
                 levelTime.enabled = false;
                 activeMenu = pauseMenu;
                 activeMenu.SetActive(isPaused);
+            }
+            else if (activeMenu == levelSelectMenu)
+            {
+                activeMenu.SetActive(false);
+                activeMenu = mainMenu;
+                activeMenu.SetActive(true);
             }
             else // paused
             {
@@ -174,6 +180,9 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         reticle.SetActive(false);
         TimeManager.Instance.ToggleTimer(false);
+
+        if (goalLabel.activeSelf)
+            goalLabel.SetActive(false);
     }
 
     public void stateUnpaused()
@@ -219,7 +228,14 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToPause()
     {
-        SwitchScene(pauseMenu);
+        if (!isPaused)
+        {
+            activeMenu.SetActive(false);
+            activeMenu = mainMenu;
+            activeMenu.SetActive(true);
+        }
+        else
+            SwitchScene(pauseMenu);
     }
 
     public void DisplayLevelSelect()
