@@ -15,7 +15,7 @@ public class Turret : MonoBehaviour, IDamage
     [SerializeField] Animator animator;
 
 
-    [SerializeField] int health;
+    [SerializeField] float health;
     [SerializeField] float shootRate;
     [SerializeField] float playerTrackingSpeed;
     [SerializeField] float roamSpeed;
@@ -68,7 +68,7 @@ public class Turret : MonoBehaviour, IDamage
         }
     }
 
-    public void takeDamage(int damage)
+    public void takeDamage(float damage)
     {
         health -= damage;
         StartCoroutine(redFlash());

@@ -8798,30 +8798,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7098506879229053228, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
-      propertyPath: dashSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7098506879229053228, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
-      propertyPath: wallRunSpeed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7098506879229053228, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
-      propertyPath: wallRunGravity
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 7098506879229053228, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
-      propertyPath: wallRunDuration
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7098506879229053228, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
-      propertyPath: distanceToWallCheck
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 7098506879229053228, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
-      propertyPath: wallRunGravityScale
-      value: 0.9
-      objectReference: {fileID: 0}
     - target: {fileID: 7387438162693466731, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
       propertyPath: m_Name
       value: Player

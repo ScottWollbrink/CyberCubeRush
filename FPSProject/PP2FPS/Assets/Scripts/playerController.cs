@@ -8,8 +8,8 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] AudioSource aud;
 
     [Header("Player Basics")]
-    [SerializeField] int maxHP;
-    private int currentHP;
+    [SerializeField] float maxHP;
+    private float currentHP;
     [SerializeField] public int speed;
     [SerializeField] public int holdSpeed;
     [SerializeField] int jumpSpeed;
@@ -260,7 +260,7 @@ public class playerController : MonoBehaviour, IDamage
         HorizontalInputEnabled = activity;
     }
 
-    public void takeDamage(int amount)
+    public void takeDamage(float amount)
     {
         aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
         currentHP -= amount;
@@ -415,12 +415,12 @@ public class playerController : MonoBehaviour, IDamage
 
     private void SelectGun()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+        if ((Input.GetAxis("Mouse ScrollWheel") > 0 || Input.GetKey(KeyCode.Alpha1)) && selectedGun < gunList.Count - 1)
         {
             selectedGun++;
             ChangeGun();
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+        else if ((Input.GetAxis("Mouse ScrollWheel") < 0 || Input.GetKey(KeyCode.Alpha2)) && selectedGun > 0)
         {
             selectedGun--;
             ChangeGun();

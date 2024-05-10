@@ -5,5 +5,5 @@ using UnityEngine;
 public interface IDamage
 {
     // create the take damage function for interface
-    void takeDamage(int amount);
+    void takeDamage(float amount);
 }

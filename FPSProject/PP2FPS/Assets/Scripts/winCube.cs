@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class winCube : MonoBehaviour, IWinCube, IDamage
 {
-    [SerializeField] int HP;
+    [SerializeField] float HP;
     [SerializeField] Renderer model;
 
-    int currentHP;
-    int maxHP;
+    float currentHP;
+    float maxHP;
 
 
     // Start is called before the first frame update
@@ -44,7 +44,7 @@ public class winCube : MonoBehaviour, IWinCube, IDamage
         GameManager.Instance.holdController.drop();
     }
 
-    public void takeDamage(int amount)
+    public void takeDamage(float amount)
     {
         currentHP -= amount;
         StartCoroutine(redFlash());
