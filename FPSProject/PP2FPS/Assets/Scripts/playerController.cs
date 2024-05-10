@@ -10,7 +10,7 @@ public class playerController : MonoBehaviour, IDamage
     [Header("Player Basics")]
     [SerializeField] float maxHP;
     private float currentHP;
-    [SerializeField] public int speed;
+    [SerializeField] public int runSpeed;
     [SerializeField] public int holdSpeed;
     [SerializeField] int jumpSpeed;
     [SerializeField] int maxJumps;
@@ -89,7 +89,7 @@ public class playerController : MonoBehaviour, IDamage
             HorizontalInputEnabled = true;
             currentHP = maxHP;
             gravityOriginal = gravity;
-            speedOriginal = speed;
+            speedOriginal = runSpeed;
             SpawnPlayer();
         
     }
@@ -141,7 +141,7 @@ public class playerController : MonoBehaviour, IDamage
             else
             {
                 controller.enabled = true;
-                controller.Move(moveDir * speed * Time.deltaTime);
+                controller.Move(moveDir * runSpeed * Time.deltaTime);
             }
         }
         else
@@ -154,7 +154,7 @@ public class playerController : MonoBehaviour, IDamage
                 playerVel.z -= .01f;
             }
             moveDir = horizontalInput * transform.right + verticalInput * transform.forward;
-            controller.Move(moveDir * speed * Time.deltaTime);
+            controller.Move(moveDir * runSpeed * Time.deltaTime);
         }
 
         if (controller.isGrounded && moveDir.normalized.magnitude > 0.3f && !isPlayingSteps)
@@ -346,7 +346,7 @@ public class playerController : MonoBehaviour, IDamage
 
     private void WallRunStart()
     {
-        speed += wallRunSpeed;
+        runSpeed += wallRunSpeed;
 
         gravity = wallRunGravity;
         StartCoroutine(WallRunDuration());
@@ -354,7 +354,7 @@ public class playerController : MonoBehaviour, IDamage
 
     private void WallRunStop()
     {
-        speed = speedOriginal;
+        runSpeed = speedOriginal;
         isWallRunning = false;
         gravity = gravityOriginal;
     }
