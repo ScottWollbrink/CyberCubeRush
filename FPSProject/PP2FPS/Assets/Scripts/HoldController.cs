@@ -21,12 +21,10 @@ public class HoldController : MonoBehaviour
             if (hold == null)
             {
                 pickUp();
-                GameManager.Instance.playerCntrl.speed -= GameManager.Instance.playerCntrl.holdSpeed;
             }
             else
             {
                 drop();
-                GameManager.Instance.playerCntrl.speed += GameManager.Instance.playerCntrl.holdSpeed;
             }
         }
         if (hold != null)
@@ -57,6 +55,8 @@ public class HoldController : MonoBehaviour
 
                 rb.transform.parent = holdPos;
                 hold = hit.transform.gameObject;
+
+                GameManager.Instance.playerCntrl.speed -= GameManager.Instance.playerCntrl.holdSpeed;
             }
         }
     }
@@ -73,6 +73,8 @@ public class HoldController : MonoBehaviour
 
             hold.transform.parent = null;
             hold = null;
+
+            GameManager.Instance.playerCntrl.speed += GameManager.Instance.playerCntrl.holdSpeed;
         }
     }
 }
