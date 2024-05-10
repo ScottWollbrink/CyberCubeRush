@@ -26,9 +26,10 @@ public class winCube : MonoBehaviour, IWinCube, IDamage
 
     IEnumerator waitWin()
     {
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(.1f);
 
         TimeManager.Instance.SetPlayerPR(SceneManager.GetActiveScene().buildIndex);
+        TimeManager.Instance.UnlockLevel(SceneManager.GetActiveScene().buildIndex + 1);
         if (TimeManager.Instance.IsPlayerPRSet(SceneManager.GetActiveScene().buildIndex))
         {
             GameManager.Instance.HighScoreWinGame();

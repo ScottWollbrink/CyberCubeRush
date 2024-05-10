@@ -9,6 +9,7 @@ public class Spike : MonoBehaviour
     [SerializeField] Transform startPoint;
     [SerializeField] Transform endPoint;
     [SerializeField] int damage;
+    [SerializeField] int damMult;
     [SerializeField] public float outspeed;
     [SerializeField] public float inspeed;
     [SerializeField] public float goingspeed;
@@ -96,7 +97,7 @@ public class Spike : MonoBehaviour
             if (movingToEndPoint)
                 dmg.takeDamage(damage);
             else
-                dmg.takeDamage(damage*2);
+                dmg.takeDamage(damage*damMult);
         }
     }
 }
