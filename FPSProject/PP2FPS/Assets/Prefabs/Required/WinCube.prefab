@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 6
   model: {fileID: 3898563801634242271}
+  rb: {fileID: 4804313056850291657}
 --- !u!33 &5922991847515524898
 MeshFilter:
   m_ObjectHideFlags: 0

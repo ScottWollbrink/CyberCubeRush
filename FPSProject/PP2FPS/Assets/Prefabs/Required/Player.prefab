@@ -68,6 +68,7 @@ MonoBehaviour:
   holdPos: {fileID: 125533315486275626}
   pickupRange: 5
   pickupSpeed: 10
+  launchStrength: 10
   hold: {fileID: 0}
   rb: {fileID: 0}
   hasCube: 0
@@ -289,7 +290,7 @@ MonoBehaviour:
   controller: {fileID: 7525867157758389353}
   aud: {fileID: -4391461388008492422}
   maxHP: 5
-  speed: 7
+  runSpeed: 8
   holdSpeed: 3
   jumpSpeed: 12
   maxJumps: 2

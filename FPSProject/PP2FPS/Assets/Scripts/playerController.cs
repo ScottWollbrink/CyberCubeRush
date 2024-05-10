@@ -439,4 +439,9 @@ public class playerController : MonoBehaviour, IDamage
         GameManager.Instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
         GameManager.Instance.ammoCurr.text = gunList[selectedGun].ammoCurrent.ToString("F0");
     }
+
+    public Vector3 GetVelocity()
+    {
+        return controller.velocity;
+    }
 }

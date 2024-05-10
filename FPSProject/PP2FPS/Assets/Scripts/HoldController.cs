@@ -1,12 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.WSA;
 
 public class HoldController : MonoBehaviour
 {
     [SerializeField] Transform holdPos;
     [SerializeField] float pickupRange;
     [SerializeField] float pickupSpeed;
+    [SerializeField] float launchStrength;
 
 
     [HideInInspector] public GameObject hold;
@@ -24,16 +27,24 @@ public class HoldController : MonoBehaviour
             }
             else
             {
+                winCube cube = hold.GetComponent<winCube>();
                 drop();
+                cube.ApplyVelocity(GameManager.Instance.playerCntrl.GetVelocity());
             }
         }
         if (hold != null)
-        {   
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                winCube cube = hold.GetComponent<winCube>();
+                drop();
+                cube.ApplyVelocity((Camera.main.transform.forward * launchStrength) + GameManager.Instance.playerCntrl.GetVelocity());
+            }
             //if the pickup object is not close enough to the player move the object to the hold location
-            if (Vector3.Distance(hold.transform.position, holdPos.position) > 0.1f)
+            else if(Vector3.Distance(hold.transform.position, holdPos.position) > 0.1f)
             {
                 Vector3 moveDirection = holdPos.position - hold.transform.position;
-                rb.AddForce(moveDirection * pickupSpeed );
+                rb.AddForce(moveDirection * pickupSpeed);
             }
         }
     }
@@ -68,7 +79,7 @@ public class HoldController : MonoBehaviour
         {
             //drop
             rb.useGravity = true;
-            rb.drag = 1;
+            rb.drag = .3f;
             rb.constraints = RigidbodyConstraints.None;
 
             hold.transform.parent = null;

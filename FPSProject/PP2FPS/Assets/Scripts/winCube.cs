@@ -7,6 +7,7 @@ public class winCube : MonoBehaviour, IWinCube, IDamage
 {
     [SerializeField] float HP;
     [SerializeField] Renderer model;
+    [SerializeField] Rigidbody rb;
 
     float currentHP;
     float maxHP;
@@ -60,5 +61,10 @@ public class winCube : MonoBehaviour, IWinCube, IDamage
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.3f);
         model.material.color = Color.white;
+    }
+
+    public void ApplyVelocity(Vector3 velocity)
+    {
+        rb.velocity += velocity;
     }
 }
