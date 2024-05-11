@@ -8,44 +8,60 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("---------- Managers ----------")]
     public static GameManager Instance;
     private TimeManager timeManager;
 
     GameObject activeMenu;
-    [SerializeField] GameObject mainMenu;
-    [SerializeField] GameObject pauseMenu;
-    [SerializeField] TMP_Text clearedTimePM;
-    [SerializeField] TMP_Text goalTimePM;
 
+    [Header("---------- Main ----------")]
+    [SerializeField] GameObject mainMenu;
+
+    [Header("---------- Pause ----------")]
+    [SerializeField] GameObject pauseMenu;
+
+    [Header("---------- Level Select ----------")]
     [SerializeField] GameObject levelSelectMenu;
 
+    [Header("---------- Win ----------")]
     [SerializeField] GameObject winMenu;
     [SerializeField] TMP_Text clearedTimeWM;
     [SerializeField] TMP_Text goalTimeWM;
     [SerializeField] GameObject PRNotificationWM;
 
+    [Header("---------- Loss ----------")]
     [SerializeField] GameObject loseMenu;
     [SerializeField] TMP_Text clearedTimeLM;
     [SerializeField] TMP_Text goalTimeLM;
+    [SerializeField] TMP_Text lossHeader;
+    [SerializeField] TMP_Text typeTime;
+    [SerializeField] Button respawnLM;
 
+    [Header("---------- Settings ----------")]
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject reticle;
     public GameObject checkpointMenu;
 
+    [Header("---------- PlayerHud ----------")]
     public GameObject playerDamageScreen;
     public Image playerHPBar;
     public TMP_Text enemyCounter;
 
+    [Header("---------- Timers ----------")]
+    [SerializeField] TMP_Text clearedTimePM;
+    [SerializeField] TMP_Text goalTimePM;
     public TMP_Text usedTime;
     public TMP_Text levelTime;
     public TMP_Text levelPR;
 
+    [Header("---------- ammo/enemy ----------")]
     public TMP_Text ammoCurr;
     public TMP_Text ammoMax;
     private int enemyCount;
     public GameObject goalLabel;
     public float goalMsgDisplayTime;
 
+    [Header("---------- controllers ----------")]
     public GameObject player;
     public playerController playerCntrl;
     public HoldController holdController;
@@ -282,9 +298,14 @@ public class GameManager : MonoBehaviour
         reticle.SetActive(reticleIsShowing);
     }
 
+    public void HandleEnding()
+    {
+        TimeManager.Instance.HandleFinish(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void WinGame()
     {
-        statePaused();
+        statePaused();        
 
         activeMenu = winMenu;
         PRNotificationWM.SetActive(false);
@@ -295,11 +316,22 @@ public class GameManager : MonoBehaviour
         activeMenu.SetActive(isPaused);
     }
 
-    public void LoseGame()
+    public void LoseGame(bool failedByTime)
     {
         statePaused();
 
         activeMenu = loseMenu;
+
+        if (failedByTime)
+        {
+            lossHeader.text = "Too Slow, Go Faster!";
+            respawnLM.gameObject.SetActive(false);       
+        }
+        else
+        {
+            lossHeader.text = "Current Time";
+        }
+
         clearedTimeLM.text = TimeManager.Instance.GetCurrentTime();
         goalTimeLM.text = timeManager.GetLevelTime(SceneManager.GetActiveScene().buildIndex);
         usedTime.enabled = false;

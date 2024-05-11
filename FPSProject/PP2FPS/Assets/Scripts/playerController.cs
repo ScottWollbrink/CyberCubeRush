@@ -269,7 +269,7 @@ public class playerController : MonoBehaviour, IDamage
 
         if (currentHP <= 0) 
         {
-            GameManager.Instance.LoseGame();
+            GameManager.Instance.LoseGame(false);
             GameManager.Instance.holdController.drop();
             aud.PlayOneShot(audDeath, audDeathVol);
         }

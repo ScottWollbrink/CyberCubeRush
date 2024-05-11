@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TimeManager : MonoBehaviour
 {
@@ -16,15 +17,48 @@ public class TimeManager : MonoBehaviour
         Instance = this;
     }
 
-    public void SetPlayerPR(int index)
+    public void HandleFinish(int index)
+    {
+        bool setPR = SetPlayerPR(index);
+        
+        if (levelTimes[index].levelIsUnlocked == false)
+            UnlockLevel(index + 1);
+
+        if (setPR)
+            GameManager.Instance.HighScoreWinGame();
+        else if (currentTime > levelTimes[index].timeToBeat)
+            GameManager.Instance.LoseGame(true);
+        else
+            GameManager.Instance.WinGame();
+    }
+
+    public bool SetPlayerPR(int index)
     {
         for (int i = 0; i < levelTimes.Length; i++)
         {
             if (levelTimes[i].levelBuildIndex == index)
             {
-                levelTimes[i].SetPr(currentTime);
+                if (levelTimes[i].playerPR == 0)
+                {
+                    if (currentTime < levelTimes[i].timeToBeat)
+                    {
+                        levelTimes[i].SetPr(currentTime);
+                        return true;
+                    }
+                }
+                else
+                {
+                    if (currentTime < levelTimes[i].playerPR)
+                    {
+                        levelTimes[i].SetPr(currentTime);
+                        return true;
+                    }
+
+                }
+
             }
         }
+        return false;
     }
 
     public bool IsPlayerPRSet(int index)
@@ -115,7 +149,8 @@ public class TimeManager : MonoBehaviour
         {
             if (levelTimes[i].levelBuildIndex == index)
             {
-                levelTimes[i].UnlockLevel();
+                if (currentTime < levelTimes[i].timeToBeat)
+                    levelTimes[i].UnlockLevel();
             }
         }
     }

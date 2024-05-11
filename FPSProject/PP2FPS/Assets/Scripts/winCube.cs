@@ -22,21 +22,15 @@ public class winCube : MonoBehaviour, IWinCube, IDamage
 
     public void win()
     {
-        StartCoroutine(waitWin());
+        GameManager.Instance.HandleEnding();
+        //StartCoroutine(waitWin());
     }
 
     IEnumerator waitWin()
     {
         yield return new WaitForSeconds(.1f);
 
-        TimeManager.Instance.SetPlayerPR(SceneManager.GetActiveScene().buildIndex);
-        TimeManager.Instance.UnlockLevel(SceneManager.GetActiveScene().buildIndex + 1);
-        if (TimeManager.Instance.IsPlayerPRSet(SceneManager.GetActiveScene().buildIndex))
-        {
-            GameManager.Instance.HighScoreWinGame();
-        }
-        else 
-            GameManager.Instance.WinGame();
+        GameManager.Instance.WinGame();
     }
 
     public void cubeSpawn()
