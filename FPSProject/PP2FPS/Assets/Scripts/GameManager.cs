@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     [Header("---------- Main ----------")]
     [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject crossfade;
 
     [Header("---------- Pause ----------")]
     [SerializeField] GameObject pauseMenu;
@@ -96,6 +97,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(ToggleGoalLabel(goalMsgDisplayTime));
             SetLevelTimer();
         }
+        StartCoroutine(CrossFade());
     }
 
     private void SetLevelTimer()
@@ -139,6 +141,15 @@ public class GameManager : MonoBehaviour
         {
             usedTime.text = TimeManager.Instance.GetCurrentTime();
         }
+    }
+
+    IEnumerator CrossFade()
+    {
+        crossfade.SetActive(true);
+        crossfade.GetComponent<Image>().CrossFadeColor(Color.clear, 1f, true, true);
+        yield return new WaitForSeconds(.25f);
+        crossfade.SetActive(false);
+        crossfade.GetComponent<Image>().color = Color.black;
     }
 
     private void HandlePause()
