@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     private TimeManager timeManager;
 
-    GameObject activeMenu;
+    GameObject activeMenu; 
+    
 
     [Header("---------- Main ----------")]
     [SerializeField] GameObject mainMenu;
