@@ -1,61 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 public class DisappearingPlatform : MonoBehaviour
 {
     [SerializeField] GameObject platformD;
-    [SerializeField] Material making;
+    [SerializeField] Renderer making;
     public float currentTime = 0;
     bool isDisappearing;
     bool isAppearing;
+    public float alpha;//debugging field
     private void OnTriggerStay(Collider other)
     {
+        alpha = making.material.color.a;
         if (other.isTrigger)
         {
             return;
         }
         IDamage dmg = other.GetComponent<playerController>();
 
-        if (dmg != null)
+        if (dmg != null && !isDisappearing)
         {
-
-
-            Debug.Log("Standing on Disapearing platform");
-            if (making.color.a <= 0)
-            {
-                platformD.SetActive(false);
-            }
-            else
-            {
-                StartCoroutine(Vanishing());
-            }
+            StartCoroutine(Vanishing());
+        }
+        if (making.material.color.a <= 0 && isDisappearing)
+        { 
+            platformD.SetActive(false);
+            isDisappearing = false;
         }
     }
     private void OnTriggerExit(Collider other)
     {
         
-        StartCoroutine(Appearing());
     }
     IEnumerator Vanishing()
     {
         isDisappearing = true;
-        isAppearing = false;
-        yield return new WaitForSeconds(2);
+        
+        yield return new WaitForSeconds(1);
+        making.material.color = new Color(making.material.color.r, making.material.color.g, making.material.color.b, making.material.color.a - .25f);
         isDisappearing = false;
+        if(making.material.color.a <= 0) 
+            StartCoroutine(Appearing());
     }
-    IEnumerator Appearing()
+    IEnumerator Appearing()//method to be futher to incorporate fading in done if returning the platform is desired
     {
-        isAppearing = true;
-        yield return new WaitForSeconds(2);
-        if (making.color.a >= 255 && isAppearing)
-        {
-            isAppearing = false;
-        }
-        else
-        { 
-            
-            StartCoroutine(Appearing()); 
-        }
+        alpha = making.material.color.a;
+        yield return new WaitForSeconds(5);
+        platformD.SetActive(true);
+        making.material.color = new Color(making.material.color.r, making.material.color.g, making.material.color.b, 1);
+        alpha = making.material.color.a;
     }
 }
