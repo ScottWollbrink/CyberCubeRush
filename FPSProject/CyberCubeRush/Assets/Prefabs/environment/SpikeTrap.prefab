@@ -148,7 +148,7 @@ MonoBehaviour:
   spike: {fileID: 990919372907583199}
   startPoint: {fileID: 3410229776194261863}
   endPoint: {fileID: 7890933305379179287}
-  parent: {fileID: 0}
+  parent: {fileID: 1040005287837293962}
   outspeed: 10
   inspeed: 1
   goingspeed: 0
@@ -468,7 +468,7 @@ MonoBehaviour:
   spike: {fileID: 634506967805483921}
   startPoint: {fileID: 1826375604423290172}
   endPoint: {fileID: 3988248632282402767}
-  parent: {fileID: 0}
+  parent: {fileID: 1040005287837293962}
   outspeed: 10
   inspeed: 1
   goingspeed: 0
@@ -919,7 +919,7 @@ MonoBehaviour:
   spike: {fileID: 8224132762823831865}
   startPoint: {fileID: 5168590187031925933}
   endPoint: {fileID: 1884084822740523222}
-  parent: {fileID: 0}
+  parent: {fileID: 1040005287837293962}
   outspeed: 10
   inspeed: 1
   goingspeed: 0
@@ -1464,7 +1464,7 @@ MonoBehaviour:
   spike: {fileID: 1025995291701808748}
   startPoint: {fileID: 7854066175028739829}
   endPoint: {fileID: 1856326577686201436}
-  parent: {fileID: 0}
+  parent: {fileID: 1040005287837293962}
   outspeed: 10
   inspeed: 1
   goingspeed: 0
@@ -1978,7 +1978,7 @@ MonoBehaviour:
   spike: {fileID: 4641753935951023325}
   startPoint: {fileID: 6827512103055309510}
   endPoint: {fileID: 5445246436826166606}
-  parent: {fileID: 0}
+  parent: {fileID: 1040005287837293962}
   outspeed: 10
   inspeed: 1
   goingspeed: 0
@@ -2167,7 +2167,7 @@ MonoBehaviour:
   spike: {fileID: 1521260736274822383}
   startPoint: {fileID: 1604313017926611233}
   endPoint: {fileID: 3397257281186688591}
-  parent: {fileID: 0}
+  parent: {fileID: 1040005287837293962}
   outspeed: 10
   inspeed: 1
   goingspeed: 0
@@ -2325,7 +2325,7 @@ MonoBehaviour:
   spike: {fileID: 550484988337255442}
   startPoint: {fileID: 3810035682173436161}
   endPoint: {fileID: 6717488920110661678}
-  parent: {fileID: 0}
+  parent: {fileID: 1040005287837293962}
   outspeed: 10
   inspeed: 1
   goingspeed: 0
@@ -2669,7 +2669,7 @@ MonoBehaviour:
   spike: {fileID: 1145147948203318370}
   startPoint: {fileID: 4035607865725526354}
   endPoint: {fileID: 1394430669749353168}
-  parent: {fileID: 0}
+  parent: {fileID: 1040005287837293962}
   outspeed: 10
   inspeed: 1
   goingspeed: 0
@@ -3906,6 +3906,7 @@ GameObject:
   - component: {fileID: 4066696377087966219}
   - component: {fileID: 2546777193211133150}
   - component: {fileID: 7329001233102142739}
+  - component: {fileID: 1040005287837293962}
   m_Layer: 0
   m_Name: SpikeTrap
   m_TagString: Untagged
@@ -4008,6 +4009,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4, y: 0.15838647, z: 4}
   m_Center: {x: -0.00000011920929, y: 0.079193085, z: 0.00000047683716}
+--- !u!114 &1040005287837293962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8483291644597822796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815707ad7fef83a48b7e7e84b563856d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  damMult: 1
+  damdiv: 2
+  isDaming: 0
 --- !u!1 &8569324952500680467
 GameObject:
   m_ObjectHideFlags: 0
@@ -4420,7 +4437,7 @@ MonoBehaviour:
   spike: {fileID: 6193600594475797680}
   startPoint: {fileID: 456174336327285649}
   endPoint: {fileID: 5333505166712208969}
-  parent: {fileID: 0}
+  parent: {fileID: 1040005287837293962}
   outspeed: 10
   inspeed: 1
   goingspeed: 0
