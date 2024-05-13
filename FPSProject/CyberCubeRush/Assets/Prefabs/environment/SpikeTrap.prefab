@@ -150,7 +150,7 @@ MonoBehaviour:
   endPoint: {fileID: 7890933305379179287}
   parent: {fileID: 1040005287837293962}
   outspeed: 10
-  inspeed: 1
+  inspeed: 3
   goingspeed: 0
   waitTime: 2
   audOut: {fileID: 8300000, guid: ed206aa6ea39c7741a7fe6b150fb5d81, type: 3}
@@ -470,7 +470,7 @@ MonoBehaviour:
   endPoint: {fileID: 3988248632282402767}
   parent: {fileID: 1040005287837293962}
   outspeed: 10
-  inspeed: 1
+  inspeed: 3
   goingspeed: 0
   waitTime: 2
   audOut: {fileID: 8300000, guid: ed206aa6ea39c7741a7fe6b150fb5d81, type: 3}
@@ -921,7 +921,7 @@ MonoBehaviour:
   endPoint: {fileID: 1884084822740523222}
   parent: {fileID: 1040005287837293962}
   outspeed: 10
-  inspeed: 1
+  inspeed: 3
   goingspeed: 0
   waitTime: 2
   audOut: {fileID: 8300000, guid: ed206aa6ea39c7741a7fe6b150fb5d81, type: 3}
@@ -1466,7 +1466,7 @@ MonoBehaviour:
   endPoint: {fileID: 1856326577686201436}
   parent: {fileID: 1040005287837293962}
   outspeed: 10
-  inspeed: 1
+  inspeed: 3
   goingspeed: 0
   waitTime: 2
   audOut: {fileID: 8300000, guid: ed206aa6ea39c7741a7fe6b150fb5d81, type: 3}
@@ -1980,7 +1980,7 @@ MonoBehaviour:
   endPoint: {fileID: 5445246436826166606}
   parent: {fileID: 1040005287837293962}
   outspeed: 10
-  inspeed: 1
+  inspeed: 3
   goingspeed: 0
   waitTime: 2
   audOut: {fileID: 8300000, guid: ed206aa6ea39c7741a7fe6b150fb5d81, type: 3}
@@ -2169,7 +2169,7 @@ MonoBehaviour:
   endPoint: {fileID: 3397257281186688591}
   parent: {fileID: 1040005287837293962}
   outspeed: 10
-  inspeed: 1
+  inspeed: 3
   goingspeed: 0
   waitTime: 2
   audOut: {fileID: 8300000, guid: ed206aa6ea39c7741a7fe6b150fb5d81, type: 3}
@@ -2327,7 +2327,7 @@ MonoBehaviour:
   endPoint: {fileID: 6717488920110661678}
   parent: {fileID: 1040005287837293962}
   outspeed: 10
-  inspeed: 1
+  inspeed: 3
   goingspeed: 0
   waitTime: 2
   audOut: {fileID: 8300000, guid: ed206aa6ea39c7741a7fe6b150fb5d81, type: 3}
@@ -2671,7 +2671,7 @@ MonoBehaviour:
   endPoint: {fileID: 1394430669749353168}
   parent: {fileID: 1040005287837293962}
   outspeed: 10
-  inspeed: 1
+  inspeed: 3
   goingspeed: 0
   waitTime: 2
   audOut: {fileID: 8300000, guid: ed206aa6ea39c7741a7fe6b150fb5d81, type: 3}
@@ -4439,7 +4439,7 @@ MonoBehaviour:
   endPoint: {fileID: 5333505166712208969}
   parent: {fileID: 1040005287837293962}
   outspeed: 10
-  inspeed: 1
+  inspeed: 3
   goingspeed: 0
   waitTime: 2
   audOut: {fileID: 8300000, guid: ed206aa6ea39c7741a7fe6b150fb5d81, type: 3}
