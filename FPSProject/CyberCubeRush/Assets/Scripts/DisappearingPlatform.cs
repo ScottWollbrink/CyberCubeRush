@@ -32,7 +32,7 @@ public class DisappearingPlatform : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        
+        StartCoroutine(Appearing());
     }
     IEnumerator Vanishing()
     {
@@ -43,6 +43,8 @@ public class DisappearingPlatform : MonoBehaviour
         isDisappearing = false;
         if(making.material.color.a <= 0) 
             StartCoroutine(Appearing());
+        
+
     }
     IEnumerator Appearing()//method to be futher to incorporate fading in done if returning the platform is desired
     {
