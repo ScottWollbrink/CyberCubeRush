@@ -400,7 +400,10 @@ public class playerController : MonoBehaviour, IDamage
         if (Physics.Raycast(transform.position, -transform.up, out hit, 1.15f, movingPlatformMask))
         {
             platform = hit.collider.gameObject;
-            platformSpeed = platform.GetComponentInParent<MovingPlatformController>().speed;
+            if(platform.GetComponentInParent<MovingPlatformController>() != null)
+                platformSpeed = platform.GetComponentInParent<MovingPlatformController>().speed;
+            else if(platform.GetComponentInParent<LoopingPlatform>() != null)
+                platformSpeed = platform.GetComponentInParent<LoopingPlatform>().speed;
             controller.enabled = false;
             transform.parent = platform.transform;
             return true;

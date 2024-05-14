@@ -7,7 +7,7 @@ public class LoopingPlatform : MonoBehaviour
 {
     [SerializeField] Transform[] points;
     [SerializeField] Transform platform;
-    [SerializeField] float speed;
+    [SerializeField] public float speed;
     int nextPoint;
     [Header("Circular moving")]
     [SerializeField] Transform center;
