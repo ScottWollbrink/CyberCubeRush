@@ -16,6 +16,10 @@ public class Checkpoint : MonoBehaviour
                 GameManager.Instance.cubeSpawnPos.transform.position = transform.position;
             }
         }
+        else if (other.CompareTag("Cube"))
+        {
+            GameManager.Instance.cubeSpawnPos.transform.position = transform.position + new Vector3(0, 1, 0);
+        }
     }
 
     IEnumerator DisplayCheckpointPopup()
