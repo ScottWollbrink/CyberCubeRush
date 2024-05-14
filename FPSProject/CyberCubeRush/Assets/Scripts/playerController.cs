@@ -13,6 +13,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] public int runSpeed;
     [SerializeField] public int holdSpeed;
     [SerializeField] int jumpSpeed;
+    [SerializeField] float jumpDamping;
     [SerializeField] int maxJumps;
     [SerializeField] float gravity;
 
@@ -30,7 +31,9 @@ public class playerController : MonoBehaviour, IDamage
     [Header("Wall Run")]
     [SerializeField] float wallRunGravity;
     [SerializeField] int wallRunSpeed;
+    [SerializeField] int wallRunUpForce;
     [SerializeField] float wallRunDuration;
+    [SerializeField] float wallRunCooldown;
 
     [Header("Dash")]
     [SerializeField] float dashSpeed;
@@ -80,6 +83,9 @@ public class playerController : MonoBehaviour, IDamage
     bool canDash = true;
     bool isDashing;
     bool isWallRunning = false;
+    bool canWallRun = true;
+    bool isRegularJump = false;
+
 
 
 
@@ -172,12 +178,14 @@ public class playerController : MonoBehaviour, IDamage
             Dash();
         }
 
-        if((wallLeft || wallRight) && offTheGround() && !isWallRunning)
+        if(moveDir.x != 0 && (wallLeft || wallRight) && offTheGround() && !isWallRunning && canWallRun)
         {
             WallRunStart();
         }
-        else if (((!wallLeft && !wallRight) || !offTheGround()) && isWallRunning) 
+        else if ( isWallRunning && (moveDir.x == 0  || ((!wallLeft && !wallRight) || !offTheGround())))
         {
+            Debug.Log(isWallRunning);
+
             WallRunStop();
         }
 
@@ -190,10 +198,20 @@ public class playerController : MonoBehaviour, IDamage
         }
         else if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps) 
         {
+            isRegularJump = true;
             controller.enabled = true;
             jumpedTimes++;
             playerVel.y = jumpSpeed;
             aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
+        }
+
+        if (Input.GetButtonUp("Jump") && playerVel.y > 0 && isRegularJump && !isWallRunning)
+        {
+            while (playerVel.y > 0)
+            {
+                playerVel.y -= jumpDamping;
+            }
+            if (playerVel.y < 0) playerVel.y = 0;
         }
 
         // add gravity to the player so that they fall when going over and edge or jump
@@ -347,7 +365,7 @@ public class playerController : MonoBehaviour, IDamage
     private void WallRunStart()
     {
         runSpeed += wallRunSpeed;
-
+        playerVel.y = wallRunUpForce;
         gravity = wallRunGravity;
         StartCoroutine(WallRunDuration());
     }
@@ -355,8 +373,10 @@ public class playerController : MonoBehaviour, IDamage
     private void WallRunStop()
     {
         runSpeed = speedOriginal;
+        playerVel.y = 0;
         isWallRunning = false;
         gravity = gravityOriginal;
+        StartCoroutine(WallRunCooldown());
     }
 
     IEnumerator WallRunDuration()
@@ -364,6 +384,13 @@ public class playerController : MonoBehaviour, IDamage
         isWallRunning = true;
         yield return new WaitForSeconds(wallRunDuration);
         WallRunStop();
+    }
+    
+    IEnumerator WallRunCooldown()
+    {
+        canWallRun = false;
+        yield return new WaitForSeconds(wallRunCooldown);
+        canWallRun = true;
     }
 
     private bool CheckForPlatform()
