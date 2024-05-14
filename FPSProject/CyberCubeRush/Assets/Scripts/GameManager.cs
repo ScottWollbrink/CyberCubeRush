@@ -107,16 +107,17 @@ public class GameManager : MonoBehaviour
         Camera.main.GetComponent<cameraController>().SetInvert(userSettings.invertMouse);
 
         // mouse sense
-        mouseSense.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.mouseSense * 100).ToString("F0");
+        mouseSense.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.mouseSense).ToString("F2");
         mouseSense.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.mouseSense;
         Camera.main.GetComponent<cameraController>().SetSettingsSense(userSettings.mouseSense);
 
         // music
-        musicVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.musicVolume * 100).ToString("F0");
+        musicVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.musicVolume).ToString("F2");
         musicVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.musicVolume;
+        GetComponent<AudioSource>().volume = userSettings.musicVolume;
 
         //sfx
-        sfxVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.sfxVolume * 100).ToString("F0");
+        sfxVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.sfxVolume).ToString("F2");
         sfxVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.sfxVolume;
 
     }
@@ -137,6 +138,7 @@ public class GameManager : MonoBehaviour
 
         // music
         userSettings.musicVolume = musicVol.transform.Find("Slider").GetComponentInChildren<Slider>().value;
+        GetComponent<AudioSource>().volume = userSettings.musicVolume;
 
         //sfx
         userSettings.sfxVolume = sfxVol.transform.Find("Slider").GetComponentInChildren<Slider>().value;
@@ -149,13 +151,14 @@ public class GameManager : MonoBehaviour
         userSettings.invertMouse = defaultSettings.invertMouse;
         invertMouse.transform.Find("toggle").GetComponent<Toggle>().isOn = userSettings.invertMouse;
         userSettings.mouseSense = defaultSettings.mouseSense;
-        mouseSense.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.mouseSense * 100).ToString("F0");
+        mouseSense.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.mouseSense).ToString("F2");
         mouseSense.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.mouseSense;
         userSettings.musicVolume = defaultSettings.musicVolume;
-        musicVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.musicVolume * 100).ToString("F0");
+        musicVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.musicVolume).ToString("F2");
         musicVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.musicVolume;
+        GetComponent<AudioSource>().volume = userSettings.musicVolume;
         userSettings.sfxVolume = defaultSettings.sfxVolume;
-        sfxVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.sfxVolume * 100).ToString("F0");
+        sfxVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.sfxVolume).ToString("F2");
         sfxVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.sfxVolume;
     }
 

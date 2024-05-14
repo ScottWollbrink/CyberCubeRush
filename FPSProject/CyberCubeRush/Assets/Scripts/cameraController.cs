@@ -8,7 +8,7 @@ public class cameraController : MonoBehaviour
     [SerializeField] int lockVertMin, lockVertMax;
     [SerializeField] bool invertY = false;
 
-    private float settingsSensitivity = 100f;
+    private float settingsSensitivity = .5f;
 
     float rotX;
     // Start is called before the first frame update
