@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,7 +22,7 @@ public class TimeManager : MonoBehaviour
     {
         bool setPR = SetPlayerPR(index);
         
-        if (levelTimes[index].levelIsUnlocked == false)
+        if (levelTimes[index].levelIsUnlocked == false && index != levelTimes.Length - 1)
             UnlockLevel(index + 1);
 
         if (setPR)

@@ -40,10 +40,20 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.Instance.ReturnToPause();
     }
 
+    public void ReturnToSettings()
+    {
+        GameManager.Instance.ReturnToSettings();
+    }
+
     public void SelectLevel(int level)
     {
         SceneManager.LoadScene(level);
         GameManager.Instance.stateUnpaused();
+    }
+
+    public void ShowCreditrs()
+    {
+        GameManager.Instance.ShowCredits();
     }
 
     public void Respawn()

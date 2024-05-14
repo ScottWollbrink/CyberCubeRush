@@ -49,6 +49,9 @@ public class GameManager : MonoBehaviour
     public Image playerHPBar;
     public TMP_Text enemyCounter;
 
+    [Header("---------- Credit Menu ----------")]
+    [SerializeField] GameObject creditMenu;
+
     [Header("---------- Timers ----------")]
     [SerializeField] TMP_Text clearedTimePM;
     [SerializeField] TMP_Text goalTimePM;
@@ -287,6 +290,16 @@ public class GameManager : MonoBehaviour
         SwitchScene(settingsMenu);
     }
 
+    public void ShowCredits()
+    {
+        SwitchScene(creditMenu);
+    }
+
+    public void ReturnToSettings()
+    {
+        SwitchScene(settingsMenu);
+    }
+
     private void SwitchScene(GameObject scene)
     {     
         activeMenu.SetActive(false);
@@ -312,7 +325,7 @@ public class GameManager : MonoBehaviour
 
     public void HandleEnding()
     {
-        TimeManager.Instance.HandleFinish(SceneManager.GetActiveScene().buildIndex);
+        TimeManager.Instance.HandleFinish(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     public void WinGame()
