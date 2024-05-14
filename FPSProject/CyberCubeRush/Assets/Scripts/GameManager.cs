@@ -40,8 +40,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] Button respawnLM;
 
     [Header("---------- Settings ----------")]
+    [SerializeField] SettingsSO defaultSettings;
+    [SerializeField] SettingsSO userSettings;
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject reticle;
+    [SerializeField] GameObject reticleSetting;
+    [SerializeField] GameObject invertMouse;
+    [SerializeField] GameObject mouseSense;
+    [SerializeField] GameObject musicVol;
+    [SerializeField] GameObject sfxVol;
     public GameObject checkpointMenu;
 
     [Header("---------- PlayerHud ----------")]
@@ -85,6 +92,71 @@ public class GameManager : MonoBehaviour
         holdController = Camera.main.GetComponent<HoldController>();
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Position");
         cubeSpawnPos = GameObject.FindWithTag("Cube Spwan Position");
+
+        GetSettings();
+    }
+
+    private void GetSettings()
+    {
+        // reticle
+        reticleIsShowing = userSettings.showReticle;
+        reticleSetting.transform.Find("toggle").GetComponent<Toggle>().isOn = reticleIsShowing;
+
+        // invert mouse
+        invertMouse.transform.Find("toggle").GetComponent<Toggle>().isOn = userSettings.invertMouse;
+        Camera.main.GetComponent<cameraController>().SetInvert(userSettings.invertMouse);
+
+        // mouse sense
+        mouseSense.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.mouseSense * 100).ToString("F0");
+        mouseSense.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.mouseSense;
+        Camera.main.GetComponent<cameraController>().SetSettingsSense(userSettings.mouseSense);
+
+        // music
+        musicVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.musicVolume * 100).ToString("F0");
+        musicVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.musicVolume;
+
+        //sfx
+        sfxVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.sfxVolume * 100).ToString("F0");
+        sfxVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.sfxVolume;
+
+    }
+
+    private void SetSettings()
+    {
+        // reticle
+        reticleIsShowing = reticleSetting.transform.Find("toggle").GetComponent<Toggle>().isOn;
+        userSettings.showReticle = reticleIsShowing;
+
+        // invert mouse
+        userSettings.invertMouse = invertMouse.transform.Find("toggle").GetComponent<Toggle>().isOn;
+        Camera.main.GetComponent<cameraController>().SetInvert(userSettings.invertMouse);
+
+        // mouse sense
+        userSettings.mouseSense = mouseSense.transform.Find("Slider").GetComponentInChildren<Slider>().value;
+        Camera.main.GetComponent<cameraController>().SetSettingsSense(userSettings.mouseSense);
+
+        // music
+        userSettings.musicVolume = musicVol.transform.Find("Slider").GetComponentInChildren<Slider>().value;
+
+        //sfx
+        userSettings.sfxVolume = sfxVol.transform.Find("Slider").GetComponentInChildren<Slider>().value;
+    }
+
+    public void ResetSettings()
+    {
+        userSettings.showReticle = defaultSettings.showReticle;
+        reticleSetting.transform.Find("toggle").GetComponent<Toggle>().isOn = reticleIsShowing;
+        userSettings.invertMouse = defaultSettings.invertMouse;
+        invertMouse.transform.Find("toggle").GetComponent<Toggle>().isOn = userSettings.invertMouse;
+        userSettings.mouseSense = defaultSettings.mouseSense;
+        mouseSense.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.mouseSense * 100).ToString("F0");
+        mouseSense.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.mouseSense;
+        userSettings.musicVolume = defaultSettings.musicVolume;
+        musicVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.musicVolume * 100).ToString("F0");
+        musicVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.musicVolume;
+        userSettings.sfxVolume = defaultSettings.sfxVolume;
+        sfxVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.sfxVolume * 100).ToString("F0");
+        sfxVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.sfxVolume;
     }
 
     private void Start()
@@ -135,7 +207,6 @@ public class GameManager : MonoBehaviour
         Cursor.visible = !val;
         Cursor.lockState = CursorLockMode.Confined;
         reticle.SetActive(val);
-
     }
 
     void Update()
@@ -259,6 +330,11 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToPause()
     {
+        if (activeMenu == settingsMenu)
+        {
+            SetSettings();
+        }
+
         if (!isPaused)
         {
             activeMenu.SetActive(false);
@@ -287,6 +363,7 @@ public class GameManager : MonoBehaviour
 
     public void DisplaySettings()
     {
+        GetSettings();
         SwitchScene(settingsMenu);
     }
 
@@ -315,6 +392,15 @@ public class GameManager : MonoBehaviour
     public void SetReticle()
     {
         reticleIsShowing = !reticleIsShowing;
+    }
+
+    public void SetMouseInvert()
+    {
+        Camera.main.GetComponent<cameraController>().ToggleInvert();
+    }
+    public void SetMouseSense(float sensitivity)
+    {
+        Camera.main.GetComponent<cameraController>().SetSettingsSense(sensitivity);
     }
 
     private void ToggleReticle()
