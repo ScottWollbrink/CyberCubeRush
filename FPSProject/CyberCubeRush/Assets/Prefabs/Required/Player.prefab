@@ -309,8 +309,8 @@ MonoBehaviour:
   maxWallJumps: 4
   distanceToWallCheck: 0.75
   distanceToGround: 1.5
-  wallJumpSpeed: 13
-  wallJumpVertSpeed: 7
+  wallJumpSpeed: 14
+  wallJumpVertSpeed: 10
   timeToTurnOffHorizontalMovement: 1
   wallRunGravity: 8
   wallRunSpeed: 6
@@ -574,7 +574,7 @@ Transform:
   m_GameObject: {fileID: 7823520532392031277}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.24699998, z: 1.6817416}
+  m_LocalPosition: {x: 0, y: -0.747, z: 1.6817416}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -85,6 +85,8 @@ public class playerController : MonoBehaviour, IDamage
     bool isWallRunning = false;
     bool canWallRun = true;
     bool isRegularJump = false;
+    bool canWallRunRight = true;
+    bool canWallRunLeft = true;
 
 
 
@@ -127,6 +129,8 @@ public class playerController : MonoBehaviour, IDamage
                 playerVel = Vector3.zero;
             }
             HorizontalInputEnabled = true;
+            canWallRunRight = true;
+            canWallRunLeft = true;
         }
         
 
@@ -178,9 +182,21 @@ public class playerController : MonoBehaviour, IDamage
             Dash();
         }
 
-        if(moveDir.x != 0 && (wallLeft || wallRight) && offTheGround() && !isWallRunning && canWallRun)
+        if(moveDir.x != 0  && offTheGround() && !isWallRunning && canWallRun)
         {
-            WallRunStart();
+            
+            if (wallRight && canWallRunRight)
+            {
+                WallRunStart();
+                canWallRunRight = false;
+                canWallRunLeft = true;
+            }
+            else if (wallLeft && canWallRunLeft)
+            {
+                WallRunStart();
+                canWallRunLeft = false;
+                canWallRunRight= true;
+            }
         }
         else if ( isWallRunning && (moveDir.x == 0  || ((!wallLeft && !wallRight) || !offTheGround())))
         {

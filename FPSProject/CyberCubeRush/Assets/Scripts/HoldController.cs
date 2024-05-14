@@ -114,7 +114,7 @@ public class HoldController : MonoBehaviour
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.red, rangeToCube);
         if (hits.Length > 0) 
         {
-            heldObj.transform.position = transform.position + new Vector3(0f, -0.5f, 0f);
+            heldObj.transform.position = transform.position + new Vector3(0f, 1f, 0f);
         }
     }
 }

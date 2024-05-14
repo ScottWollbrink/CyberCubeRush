@@ -12,10 +12,18 @@ public class winPosition : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         IWinCube cube = other.GetComponent<IWinCube>();
-
+        
         if (cube != null)
         {
             cube.win();
+        }
+        else if (GameManager.Instance.holdController.hasCube)
+        {
+            IWinCube winCube = GameManager.Instance.holdController.heldObj.GetComponent<IWinCube>();
+            if (winCube != null)
+            {
+                winCube.win();
+            }
         }
     }
 }
