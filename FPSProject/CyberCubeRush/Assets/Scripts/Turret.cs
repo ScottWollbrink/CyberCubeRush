@@ -110,8 +110,7 @@ public class Turret : MonoBehaviour, IDamage
         {
             destinationChosen = true;
 
-            Vector3 currentEulerAngles = transform.rotation.eulerAngles;
-            Quaternion roamRotate = Quaternion.Euler(currentEulerAngles.x, Random.Range(-360, 360), currentEulerAngles.y); // Random rotation around Y-axis
+            Quaternion roamRotate = Quaternion.Euler(0, Random.Range(-360, 360), 0); // Random rotation around Y-axis
             //Quaternion swivelRotate = Quaternion.Euler(Random.Range(-60, 60), Random.Range(-60, 60), 0); // Random rotation for swivel
             
 
