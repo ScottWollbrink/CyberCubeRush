@@ -224,7 +224,7 @@ public class GameManager : MonoBehaviour
     IEnumerator CrossFade()
     {
         crossfade.SetActive(true);
-        crossfade.GetComponent<Image>().CrossFadeColor(Color.clear, 1f, true, true);
+        crossfade.GetComponent<Image>().CrossFadeAlpha(0, 1f, true);
         yield return new WaitForSeconds(.25f);
         crossfade.SetActive(false);
         crossfade.GetComponent<Image>().color = Color.black;
