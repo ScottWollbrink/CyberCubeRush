@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d5d819d47172f94681447af63d2f15b, type: 3}
-  m_Name: Level5TimeInfo
+  m_Script: {fileID: 11500000, guid: 888086b9a66fb3541816740b2cb38fb6, type: 3}
+  m_Name: User Settings
   m_EditorClassIdentifier: 
-  levelBuildIndex: 5
-  timeToBeat: 60
-  playerPR: 0
-  levelIsUnlocked: 1
+  showReticle: 1
+  invertMouse: 0
+  mouseSense: 0.25
+  musicVolume: 0.25
+  sfxVolume: 0.5

@@ -365,7 +365,7 @@ public class playerController : MonoBehaviour, IDamage
 
     IEnumerator DashLengthWhileGrounded()
     {
-        Debug.Log("dash on ground");
+        //Debug.Log("dash on ground");
         isDashing = true;
         yield return new WaitForSeconds(dashDurationWhileGrounded);
         isDashing = false;

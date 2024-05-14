@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class cameraController : MonoBehaviour
 {
-    [SerializeField] int sensitivity;
+    [SerializeField] int sensitivityFactor;
     [SerializeField] int lockVertMin, lockVertMax;
-    [SerializeField] bool invertY;
+    [SerializeField] bool invertY = false;
+
+    private float settingsSensitivity = .5f;
 
     float rotX;
     // Start is called before the first frame update
@@ -21,8 +23,8 @@ public class cameraController : MonoBehaviour
     {
         //get input
 
-        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensitivity;
-        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensitivityFactor * settingsSensitivity;
+        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensitivityFactor * settingsSensitivity;
 
         //invert Y-axis
         if (invertY)
@@ -38,5 +40,18 @@ public class cameraController : MonoBehaviour
 
         //rotate the player on the y-axis
         transform.parent.Rotate(Vector3.up * mouseX);
+    }
+
+    public void SetSettingsSense(float sensitivity)
+    {
+        settingsSensitivity = sensitivity * 100f;
+    }
+    public void ToggleInvert()
+    {
+        invertY = !invertY;
+    }
+    public void SetInvert(bool val)
+    {
+        invertY = val;
     }
 }

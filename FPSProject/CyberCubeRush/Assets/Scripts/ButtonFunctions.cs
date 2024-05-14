@@ -35,15 +35,35 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.Instance.SetReticle();
     }
 
+    public void ToggleMouseInvert()
+    {
+        GameManager.Instance.SetMouseInvert();
+    }
+
+    public void ResetSettings()
+    {
+        GameManager.Instance.ResetSettings();
+    }
+
     public void Return()
     {
         GameManager.Instance.ReturnToPause();
+    }
+
+    public void ReturnToSettings()
+    {
+        GameManager.Instance.ReturnToSettings();
     }
 
     public void SelectLevel(int level)
     {
         SceneManager.LoadScene(level);
         GameManager.Instance.stateUnpaused();
+    }
+
+    public void ShowCreditrs()
+    {
+        GameManager.Instance.ShowCredits();
     }
 
     public void Respawn()
