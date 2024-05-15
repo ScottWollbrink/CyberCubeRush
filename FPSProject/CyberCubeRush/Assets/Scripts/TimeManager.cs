@@ -18,19 +18,25 @@ public class TimeManager : MonoBehaviour
         Instance = this;
     }
 
-    public void HandleFinish(int index)
+    public void HandleFinish(int buildIndex)
     {
-        bool setPR = SetPlayerPR(index);
-        
-        if (levelTimes[index].levelIsUnlocked == false && index != levelTimes.Length - 1)
-            UnlockLevel(index + 1);
+        bool setPR = SetPlayerPR(buildIndex);
 
-        if (setPR)
-            GameManager.Instance.HighScoreWinGame();
-        else if (currentTime > levelTimes[index].timeToBeat)
-            GameManager.Instance.LoseGame(true);
-        else
-            GameManager.Instance.WinGame();
+        for (int i = 0; i < levelTimes.Length; i++)
+        {
+            if (levelTimes[i].levelBuildIndex == buildIndex)
+            {
+                if (currentTime < levelTimes[i].timeToBeat && buildIndex != levelTimes.Length)
+                    UnlockLevel(buildIndex + 1);
+
+                if (currentTime > levelTimes[i].timeToBeat)
+                    GameManager.Instance.LoseGame(true);
+                else if (setPR)
+                    GameManager.Instance.HighScoreWinGame();
+                else
+                    GameManager.Instance.WinGame();
+            }
+        }
     }
 
     public bool SetPlayerPR(int index)

@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text clearedTimeWM;
     [SerializeField] TMP_Text goalTimeWM;
     [SerializeField] GameObject PRNotificationWM;
+    [SerializeField] TMP_Text PRTimeWM;
+    [SerializeField] GameObject PRTextWM;
 
     [Header("---------- Loss ----------")]
     [SerializeField] GameObject loseMenu;
@@ -38,6 +40,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text lossHeader;
     [SerializeField] TMP_Text typeTime;
     [SerializeField] Button respawnLM;
+    [SerializeField] TMP_Text currentTimeLM;
 
     [Header("---------- Settings ----------")]
     [SerializeField] SettingsSO defaultSettings;
@@ -425,6 +428,9 @@ public class GameManager : MonoBehaviour
         PRNotificationWM.SetActive(false);
         clearedTimeWM.text = TimeManager.Instance.GetCurrentTime();        
         goalTimeWM.text = timeManager.GetLevelTime(SceneManager.GetActiveScene().buildIndex);
+        PRTimeWM.text = timeManager.GetPlayerLevelPR(SceneManager.GetActiveScene().buildIndex);
+        PRTimeWM.gameObject.SetActive(true);
+        PRTextWM.gameObject.SetActive(true);
         usedTime.enabled = false;
         levelTime.enabled = false;
         activeMenu.SetActive(isPaused);
@@ -439,11 +445,13 @@ public class GameManager : MonoBehaviour
         if (failedByTime)
         {
             lossHeader.text = "Too Slow, Go Faster!";
+            currentTimeLM.text = "Cleared In:";
             respawnLM.gameObject.SetActive(false);       
         }
         else
         {
-            lossHeader.text = "Current Time";
+            lossHeader.text = "You Died, Respawn?";
+            currentTimeLM.text = "Current Time:";
         }
 
         clearedTimeLM.text = TimeManager.Instance.GetCurrentTime();
@@ -458,8 +466,11 @@ public class GameManager : MonoBehaviour
 
         activeMenu = winMenu;
         PRNotificationWM.SetActive(true);
+        PRTimeWM.gameObject.SetActive(false);
+        PRTextWM.gameObject.SetActive(false);
+
         clearedTimeWM.text = TimeManager.Instance.GetCurrentTime();
-        goalTimeWM.text = timeManager.GetPlayerLevelPR(SceneManager.GetActiveScene().buildIndex);
+        goalTimeWM.text = timeManager.GetLevelTime(SceneManager.GetActiveScene().buildIndex);
         usedTime.enabled = false;
         levelTime.enabled = false;
         activeMenu.SetActive(isPaused);
