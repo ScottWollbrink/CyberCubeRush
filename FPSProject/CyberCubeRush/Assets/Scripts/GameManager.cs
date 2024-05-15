@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     private TimeManager timeManager;
 
-    GameObject activeMenu; 
+    public GameObject activeMenu; 
     
 
     [Header("---------- Main ----------")]

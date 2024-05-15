@@ -4,11 +4,15 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     [SerializeField] Renderer Model;
+    [SerializeField] bool heals = true;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && GameManager.Instance.playerSpawnPos.transform.position != transform.position)
         {
+            if (heals)
+                other.gameObject.GetComponent<playerController>().Heal();
+
             GameManager.Instance.playerSpawnPos.transform.position = transform.position;
             StartCoroutine(DisplayCheckpointPopup());
             if (GameManager.Instance.holdController.hasCube)

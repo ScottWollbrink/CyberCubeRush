@@ -14,7 +14,7 @@ public class MovingPlatformController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        platform.position = startPoint.position;
+        //platform.position = startPoint.position;
     }
 
     // Update is called once per frame

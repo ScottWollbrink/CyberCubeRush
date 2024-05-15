@@ -108,6 +108,12 @@ public class playerController : MonoBehaviour, IDamage
             SpawnPlayer();
     }
 
+    public void Heal()
+    {
+        currentHP = maxHP;
+        UpdatePlayerUI();
+    }
+
     // Update is called once per frame
     void Update()
     {

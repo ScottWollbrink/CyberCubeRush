@@ -31,7 +31,7 @@ public class HoldController : MonoBehaviour
             {
                 pickUp();
             }
-            else
+            else 
             {
                 winCube cube = heldObj.GetComponent<winCube>();
                 doNotDropThroughObj();
@@ -41,7 +41,7 @@ public class HoldController : MonoBehaviour
         }
         if (heldObj != null)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && GameManager.Instance.activeMenu == null)
             {
                 winCube cube = heldObj.GetComponent<winCube>();
                 doNotDropThroughObj();
