@@ -70,6 +70,7 @@ public class playerController : MonoBehaviour, IDamage
     float gravityOriginal;
     int speedOriginal;
     bool isShooting;
+    bool canShoot;
     bool isSprinting;
     bool isPlayingSteps;
     int jumpedTimes;
@@ -106,7 +107,6 @@ public class playerController : MonoBehaviour, IDamage
             gravityOriginal = gravity;
             speedOriginal = runSpeed;
             SpawnPlayer();
-        
     }
 
     // Update is called once per frame
@@ -120,8 +120,18 @@ public class playerController : MonoBehaviour, IDamage
             SelectGun();
             movement();
             WallCheck();
+            if (GameManager.Instance.holdController.hasCube)
+            {
+                Camera.main.GetComponentInChildren<Renderer>().enabled = false;
+                canShoot = false;
+            }
+            else if(!canShoot)
+            {
+                Camera.main.GetComponentInChildren<Renderer>().enabled = true;
+                StartCoroutine(pullOutGun());
+            }
         }
-        //sprint();
+        
     }
 
     void movement()
@@ -180,7 +190,7 @@ public class playerController : MonoBehaviour, IDamage
             StartCoroutine(PlaySteps());
         }
 
-        if (Input.GetButton("Shoot") && !isShooting && gunList.Count > 0 && gunList[selectedGun].ammoCurrent > 0)
+        if (Input.GetButton("Shoot") && canShoot && !isShooting && gunList.Count > 0 && gunList[selectedGun].ammoCurrent > 0)
         {
             StartCoroutine(shoot());
         }
@@ -287,6 +297,12 @@ public class playerController : MonoBehaviour, IDamage
         // create a timer that will last for the time passed in by shootRate
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+    }
+
+    IEnumerator pullOutGun()
+    {
+        yield return new WaitForSeconds(.5f);
+        canShoot = true;
     }
 
     IEnumerator JumpDampen()

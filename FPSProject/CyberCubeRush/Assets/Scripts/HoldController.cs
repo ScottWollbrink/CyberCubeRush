@@ -15,7 +15,7 @@ public class HoldController : MonoBehaviour
     [HideInInspector] public GameObject heldObj;
     [SerializeField] Rigidbody rb;
 
-    [HideInInspector] public bool hasCube;
+    [HideInInspector] public bool hasCube = false;
 
     private int layerToShow;
 
@@ -58,6 +58,7 @@ public class HoldController : MonoBehaviour
         if (hasCube && Vector3.Distance(rb.position, holdPos.position) < 0.1f)
         {
             rb.transform.position = holdPos.position;
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
             rb.isKinematic = true;
         }
     }
@@ -78,7 +79,6 @@ public class HoldController : MonoBehaviour
                 rb = hit.transform.gameObject.GetComponent<Rigidbody>();
                 rb.useGravity = false;
                 rb.drag = 8;
-                rb.constraints = RigidbodyConstraints.FreezeRotation;
 
                 rb.transform.parent = holdPos;
 
