@@ -4680,10 +4680,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 620856854692892006, guid: 6f6971a81a4cdfb4baa356d24c7d60b4, type: 3}
       propertyPath: m_text
-      value: 'PRESS SHIFT
+      value: 'PRESS SHIFT TO DASH
 
 
-        before to DASH before jumping to get a boost'
+        DASHING before jumping to get a boost'
       objectReference: {fileID: 0}
     - target: {fileID: 620856854692892006, guid: 6f6971a81a4cdfb4baa356d24c7d60b4, type: 3}
       propertyPath: m_fontSizeBase
