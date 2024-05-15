@@ -414,7 +414,7 @@ public class GameManager : MonoBehaviour
 
     public void HandleEnding()
     {
-        TimeManager.Instance.HandleFinish(SceneManager.GetActiveScene().buildIndex - 1);
+        TimeManager.Instance.HandleFinish(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void WinGame()
