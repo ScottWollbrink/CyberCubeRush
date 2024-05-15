@@ -22,7 +22,7 @@ public class Checkpoint : MonoBehaviour
         }
         else if (other.CompareTag("Cube"))
         {
-            GameManager.Instance.cubeSpawnPos.transform.position = transform.position + new Vector3(0, 1, 0);
+            GameManager.Instance.cubeSpawnPos.transform.position = transform.position + new Vector3(0, 1, 2);
         }
     }
 
