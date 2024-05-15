@@ -12,7 +12,7 @@ public class LoopingPlatform : MonoBehaviour
     [Header("Circular moving")]
     [SerializeField] Transform center;
     [SerializeField] float rotationRadius;
-    float posX, posY, posZ, angle = 0f;
+    //float posX, posY, posZ, angle = 0f;
     // Start is called before the first frame update
     void Start()
     {
