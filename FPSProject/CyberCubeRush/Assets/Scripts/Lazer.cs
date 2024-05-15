@@ -6,7 +6,7 @@ using UnityEngine.SocialPlatforms;
 public class Lazar : MonoBehaviour
 {
     [SerializeField] LineRenderer lineRenderer;
-    [SerializeField] int lazerDamage;
+    [SerializeField] float lazerDamage;
     [SerializeField] int lazerRange;
     [SerializeField] float damageWait;
 

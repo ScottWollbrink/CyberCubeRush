@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 4052261315659595426}
-  lazerDamage: 1
+  lazerDamage: 1.5
   lazerRange: 1000
   damageWait: 1
 --- !u!33 &2496772495211178215
