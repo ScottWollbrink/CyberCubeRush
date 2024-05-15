@@ -3693,15 +3693,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443490662666963197, guid: 5f584bea00c32d444a64c40521011bc5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -46.77
+      value: -49.55
       objectReference: {fileID: 0}
     - target: {fileID: 8443490662666963197, guid: 5f584bea00c32d444a64c40521011bc5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.02
+      value: 23.5
       objectReference: {fileID: 0}
     - target: {fileID: 8443490662666963197, guid: 5f584bea00c32d444a64c40521011bc5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 65.64
+      value: 63.31
       objectReference: {fileID: 0}
     - target: {fileID: 8443490662666963197, guid: 5f584bea00c32d444a64c40521011bc5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4682,8 +4682,8 @@ PrefabInstance:
       propertyPath: m_text
       value: 'PRESS SHIFT
 
-        while running or in the air to DASH in the direction
-        you are looking'
+
+        before to DASH before jumping to get a boost'
       objectReference: {fileID: 0}
     - target: {fileID: 620856854692892006, guid: 6f6971a81a4cdfb4baa356d24c7d60b4, type: 3}
       propertyPath: m_fontSizeBase

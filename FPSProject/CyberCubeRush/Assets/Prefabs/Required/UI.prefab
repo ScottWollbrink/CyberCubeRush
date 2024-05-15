@@ -2869,6 +2869,7 @@ RectTransform:
   - {fileID: 1379073247957728635}
   - {fileID: 8144345358881958292}
   - {fileID: 6009718539476398376}
+  - {fileID: 9066017197890790014}
   - {fileID: 2291269711645131562}
   - {fileID: 4576199494043775382}
   - {fileID: 3951351655948316364}
@@ -2879,7 +2880,6 @@ RectTransform:
   - {fileID: 7410673010399631514}
   - {fileID: 9190199265132863318}
   - {fileID: 9126956966888872521}
-  - {fileID: 9066017197890790014}
   - {fileID: 1344357577017081736}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5107,6 +5107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5986e7cd08b8e4bb51cf24b3e0da9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeMenu: {fileID: 0}
   mainMenu: {fileID: 394655087988966846}
   crossfade: {fileID: 3333722567090488697}
   pauseMenu: {fileID: 2326405921780519159}
@@ -11412,7 +11413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 275, y: -25}
+  m_AnchoredPosition: {x: 302, y: -25}
   m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1742554937591980356

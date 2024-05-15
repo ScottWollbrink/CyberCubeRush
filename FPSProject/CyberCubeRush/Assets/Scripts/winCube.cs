@@ -35,6 +35,7 @@ public class winCube : MonoBehaviour, IWinCube, IDamage
 
     public void cubeSpawn()
     {
+        rb.velocity = Vector3.zero;
         currentHP = maxHP;
         transform.position = GameManager.Instance.cubeSpawnPos.transform.position;
         GameManager.Instance.holdController.drop();
