@@ -13,7 +13,7 @@ public class Checkpoint : MonoBehaviour
             StartCoroutine(DisplayCheckpointPopup());
             if (GameManager.Instance.holdController.hasCube)
             {
-                GameManager.Instance.cubeSpawnPos.transform.position = transform.position;
+                GameManager.Instance.cubeSpawnPos.transform.position = transform.position + new Vector3(0, 1, 0);
             }
         }
         else if (other.CompareTag("Cube"))

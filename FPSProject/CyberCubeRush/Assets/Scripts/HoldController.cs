@@ -59,7 +59,8 @@ public class HoldController : MonoBehaviour
         {
             rb.transform.position = holdPos.position;
             rb.constraints = RigidbodyConstraints.FreezeRotation;
-            rb.isKinematic = true;
+            //rb.isKinematic = true;
+            heldObj.GetComponent<Collider>().isTrigger = true;
         }
     }
 
@@ -75,7 +76,7 @@ public class HoldController : MonoBehaviour
                 hasCube = true;
                 heldObj = hit.transform.gameObject;
                 heldObj.layer = layerToShow;
-                heldObj.GetComponent<Collider>().enabled = false;
+                //heldObj.GetComponent<Collider>().enabled = false;
                 rb = hit.transform.gameObject.GetComponent<Rigidbody>();
                 rb.useGravity = false;
                 rb.drag = 8;
@@ -94,11 +95,12 @@ public class HoldController : MonoBehaviour
         {
             //drop
             heldObj.layer = 0;
-            heldObj.GetComponent<Collider>().enabled = true;
+            //heldObj.GetComponent<Collider>().enabled = true;
+            heldObj.GetComponent<Collider>().isTrigger = false;
             rb.useGravity = true;
             rb.drag = .3f;
             rb.constraints = RigidbodyConstraints.None;
-            rb.isKinematic = false;
+            //rb.isKinematic = false;
             heldObj.transform.parent = null;
             heldObj = null;
 

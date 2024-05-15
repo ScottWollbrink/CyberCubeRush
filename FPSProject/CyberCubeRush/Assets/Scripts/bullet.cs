@@ -20,7 +20,7 @@ public class bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.isTrigger)
+        if (other.isTrigger && other.tag != "Cube")
         {
             return;
         }
