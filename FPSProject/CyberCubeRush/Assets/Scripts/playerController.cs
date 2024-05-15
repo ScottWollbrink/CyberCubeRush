@@ -86,7 +86,6 @@ public class playerController : MonoBehaviour, IDamage
     bool wallRunLeft;
     bool wallRunRight;
     private GameObject platform;
-    private float platformSpeed;
     float horizontalInput;
     bool canDash = true;
     bool isDashing;
@@ -112,8 +111,6 @@ public class playerController : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        //draw debug ray to see how far player can shoot
-        Debug.DrawRay(Camera.main.transform.position + (Camera.main.transform.forward * .5f), Camera.main.transform.forward * shootDist, Color.blue);
 
         if (!GameManager.Instance.isPaused)
         {
@@ -465,10 +462,6 @@ public class playerController : MonoBehaviour, IDamage
         if (Physics.Raycast(transform.position, -transform.up, out hit, 1.15f, movingPlatformMask))
         {
             platform = hit.collider.gameObject;
-            if(platform.GetComponentInParent<MovingPlatformController>() != null)
-                platformSpeed = platform.GetComponentInParent<MovingPlatformController>().speed;
-            else if(platform.GetComponentInParent<LoopingPlatform>() != null)
-                platformSpeed = platform.GetComponentInParent<LoopingPlatform>().speed;
             controller.enabled = false;
             transform.parent = platform.transform;
             return true;
