@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3663765833112642247}
   - component: {fileID: 8164704548891721587}
-  - component: {fileID: 3233857072037579486}
+  - component: {fileID: 6475688269137656350}
   m_Layer: 0
   m_Name: WinPosition
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1765102518414273968}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.04859352, y: 1.2939965, z: 0.017294258}
+  m_LocalPosition: {x: 0.04859352, y: 0.97, z: 0.017294258}
   m_LocalScale: {x: 1.2863264, y: 0.125, z: 1.2863264}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5cf9da4f170c34b89f8f4c4def3446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &3233857072037579486
-BoxCollider:
+--- !u!135 &6475688269137656350
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -64,7 +64,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 5, z: 1.5}
+  m_Radius: 1.25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2718380415811367225
 GameObject:

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d5d819d47172f94681447af63d2f15b, type: 3}
-  m_Name: Level2TimeInfo
+  m_Name: Ben1TimeInfo
   m_EditorClassIdentifier: 
-  levelBuildIndex: 2
-  timeToBeat: 30
+  levelBuildIndex: 1
+  timeToBeat: 300
   playerPR: 0
-  levelIsUnlocked: 0
+  levelIsUnlocked: 1
