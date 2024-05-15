@@ -218,7 +218,7 @@ public class playerController : MonoBehaviour, IDamage
         }
         else if ( isWallRunning && (moveDir.x == 0  || ((!wallRunLeft && !wallRunRight) || !offTheGround())))
         {
-            Debug.Log(isWallRunning);
+            //Debug.Log(isWallRunning);
 
             WallRunStop();
         }
