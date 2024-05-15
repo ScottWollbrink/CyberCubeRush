@@ -112,7 +112,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 1527
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -294,7 +294,8 @@ MonoBehaviour:
   runSpeed: 8
   holdSpeed: 3
   jumpSpeed: 14
-  jumpDamping: 0.01
+  JumpDampenTime: 0.1
+  jumpDamping: 0.15
   maxJumps: 2
   gravity: 25
   wallMask:
@@ -312,13 +313,16 @@ MonoBehaviour:
   wallJumpSpeed: 14
   wallJumpVertSpeed: 10
   timeToTurnOffHorizontalMovement: 1
+  wallRunMask:
+    serializedVersion: 2
+    m_Bits: 1024
   wallRunGravity: 8
   wallRunSpeed: 6
   wallRunUpForce: 6
   wallRunDuration: 3
   wallRunCooldown: 0.25
-  dashSpeed: 10
-  dashDurationWhileGrounded: 0.25
+  dashSpeed: 15
+  dashDurationWhileGrounded: 0.5
   dashCooldown: 1
   shootDamage: 0
   shootRate: 0

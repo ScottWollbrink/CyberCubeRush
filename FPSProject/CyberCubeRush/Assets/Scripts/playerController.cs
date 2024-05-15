@@ -13,6 +13,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] public int runSpeed;
     [SerializeField] public int holdSpeed;
     [SerializeField] int jumpSpeed;
+    [SerializeField] float JumpDampenTime;
     [SerializeField] float jumpDamping;
     [SerializeField] int maxJumps;
     [SerializeField] float gravity;
@@ -29,6 +30,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float timeToTurnOffHorizontalMovement;
 
     [Header("Wall Run")]
+    [SerializeField] LayerMask wallRunMask;
     [SerializeField] float wallRunGravity;
     [SerializeField] int wallRunSpeed;
     [SerializeField] int wallRunUpForce;
@@ -71,12 +73,17 @@ public class playerController : MonoBehaviour, IDamage
     bool isSprinting;
     bool isPlayingSteps;
     int jumpedTimes;
+    bool isWallJumping = false;
     int wallJumpTimes;
     bool HorizontalInputEnabled;
     RaycastHit leftWallHit;
     RaycastHit rightWallHit;
+    RaycastHit leftWallRunHit;
+    RaycastHit rightWallRunHit;
     bool wallLeft;
     bool wallRight;
+    bool wallRunLeft;
+    bool wallRunRight;
     private GameObject platform;
     private float platformSpeed;
     float horizontalInput;
@@ -131,6 +138,7 @@ public class playerController : MonoBehaviour, IDamage
             HorizontalInputEnabled = true;
             canWallRunRight = true;
             canWallRunLeft = true;
+            isWallJumping = false;
         }
         
 
@@ -185,20 +193,20 @@ public class playerController : MonoBehaviour, IDamage
         if(moveDir.x != 0  && offTheGround() && !isWallRunning && canWallRun)
         {
             
-            if (wallRight && canWallRunRight)
+            if (wallRunRight && canWallRunRight)
             {
                 WallRunStart();
                 canWallRunRight = false;
                 canWallRunLeft = true;
             }
-            else if (wallLeft && canWallRunLeft)
+            else if (wallRunLeft && canWallRunLeft)
             {
                 WallRunStart();
                 canWallRunLeft = false;
                 canWallRunRight= true;
             }
         }
-        else if ( isWallRunning && (moveDir.x == 0  || ((!wallLeft && !wallRight) || !offTheGround())))
+        else if ( isWallRunning && (moveDir.x == 0  || ((!wallRunLeft && !wallRunRight) || !offTheGround())))
         {
             Debug.Log(isWallRunning);
 
@@ -207,7 +215,7 @@ public class playerController : MonoBehaviour, IDamage
 
         // check to see if player is pressing the jump button and is not over the max number of concurent jumps
         
-        if (Input.GetButtonDown("Jump") && wallJumpTimes < maxWallJumps && offTheGround() && (wallRight || wallLeft))
+        if (Input.GetButtonDown("Jump") && wallJumpTimes < maxWallJumps && offTheGround() && ((wallRight || wallLeft) || (wallRunRight || wallRunLeft)))
         {
             WallJump();
             aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
@@ -225,9 +233,8 @@ public class playerController : MonoBehaviour, IDamage
         {
             while (playerVel.y > 0)
             {
-                playerVel.y -= jumpDamping;
+                StartCoroutine(JumpDampen());
             }
-            if (playerVel.y < 0) playerVel.y = 0;
         }
 
         // add gravity to the player so that they fall when going over and edge or jump
@@ -282,6 +289,13 @@ public class playerController : MonoBehaviour, IDamage
         isShooting = false;
     }
 
+    IEnumerator JumpDampen()
+    {
+        playerVel.y -= jumpDamping;
+        if (playerVel.y < 0) playerVel.y = 0;
+        yield return new WaitForSeconds(JumpDampenTime);
+    }
+
     IEnumerator disableLeftandRight()
     {
         setHorizontalInputActivity(false);
@@ -325,19 +339,33 @@ public class playerController : MonoBehaviour, IDamage
     {
         Vector3 wallNormal;
         Vector3 wallJumpforce;
-        if (wallRight)
+        if (wallRight || wallRunRight)
         {
-            wallNormal = rightWallHit.normal;
+            if (!isWallRunning)
+            {
+                wallNormal = rightWallHit.normal;
+            }
+            else
+            {
+                wallNormal = rightWallRunHit.normal;
+            }
             wallJumpforce = transform.up * wallJumpVertSpeed + wallNormal * wallJumpSpeed;
-           
+            isWallJumping = true;
             wallJumpTimes++;
             playerVel = wallJumpforce;
         }
-        else if (wallLeft)
+        else if (wallLeft || wallRunLeft)
         {
-            wallNormal = leftWallHit.normal;
+            if (!isWallRunning)
+            {
+                wallNormal = leftWallHit.normal;
+            }
+            else
+            {
+                wallNormal = leftWallRunHit.normal;
+            }
             wallJumpforce = transform.up * wallJumpVertSpeed + wallNormal * wallJumpSpeed;
-           
+            isWallJumping = true;
             wallJumpTimes++;
             playerVel = wallJumpforce;
         }
@@ -348,6 +376,8 @@ public class playerController : MonoBehaviour, IDamage
     {
         wallRight = Physics.Raycast(transform.position, transform.right, out rightWallHit, distanceToWallCheck, wallMask);
         wallLeft = Physics.Raycast(transform.position, -transform.right, out leftWallHit, distanceToWallCheck, wallMask);
+        wallRunRight = Physics.Raycast(transform.position, transform.right, out rightWallRunHit, distanceToWallCheck, wallRunMask);
+        wallRunLeft = Physics.Raycast(transform.position, -transform.right, out leftWallRunHit, distanceToWallCheck, wallRunMask);
     }
     private bool offTheGround()
     {
@@ -389,7 +419,10 @@ public class playerController : MonoBehaviour, IDamage
     private void WallRunStop()
     {
         runSpeed = speedOriginal;
-        playerVel.y = 0;
+        if (!isWallJumping)
+        {
+            playerVel.y = 0;
+        }
         isWallRunning = false;
         gravity = gravityOriginal;
         StartCoroutine(WallRunCooldown());
