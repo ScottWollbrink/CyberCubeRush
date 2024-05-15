@@ -57,6 +57,7 @@ public class HoldController : MonoBehaviour
         }
         if (hasCube && Vector3.Distance(rb.position, holdPos.position) < 0.1f)
         {
+            rb.transform.position = holdPos.position;
             rb.isKinematic = true;
         }
     }
@@ -80,7 +81,6 @@ public class HoldController : MonoBehaviour
                 rb.constraints = RigidbodyConstraints.FreezeRotation;
 
                 rb.transform.parent = holdPos;
-                heldObj = hit.transform.gameObject;
 
                 GameManager.Instance.playerCntrl.runSpeed -= GameManager.Instance.playerCntrl.holdSpeed;
             }
