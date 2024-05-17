@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     [Header("---------- Pause ----------")]
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject settingsBtn; // getting an error where the settings button is not appearing in pause: adding a direct call to allong when pause menu is called
 
     [Header("---------- Level Select ----------")]
     [SerializeField] GameObject levelSelectMenu;
@@ -88,6 +89,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerSpawnPos;
     public GameObject cubeSpawnPos;
     [SerializeField] public SaveAndLoad saveAndLoad;
+    [SerializeField] AudioManager audioManager;
 
     public bool isPaused;
     public bool reticleIsShowing;
@@ -123,12 +125,12 @@ public class GameManager : MonoBehaviour
         // music
         musicVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.musicVolume).ToString("F2");
         musicVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.musicVolume;
-        GetComponent<AudioSource>().volume = userSettings.musicVolume;
-
+        //GetComponent<AudioSource>().volume = userSettings.musicVolume;
+        audioManager.musVol = userSettings.musicVolume;
         //sfx
         sfxVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.sfxVolume).ToString("F2");
         sfxVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.sfxVolume;
-
+        audioManager.sfxVolSet(userSettings.sfxVolume);
     }
 
     private void SetSettings()
@@ -147,7 +149,7 @@ public class GameManager : MonoBehaviour
 
         // music
         userSettings.musicVolume = musicVol.transform.Find("Slider").GetComponentInChildren<Slider>().value;
-        GetComponent<AudioSource>().volume = userSettings.musicVolume;
+        //GetComponent<AudioSource>().volume = userSettings.musicVolume;
 
         //sfx
         userSettings.sfxVolume = sfxVol.transform.Find("Slider").GetComponentInChildren<Slider>().value;
@@ -259,6 +261,7 @@ public class GameManager : MonoBehaviour
                 levelTime.enabled = false;
                 activeMenu = pauseMenu;
                 activeMenu.SetActive(isPaused);
+                settingsBtn.SetActive(isPaused);
             }
             else if (activeMenu == levelSelectMenu)
             {
@@ -273,6 +276,7 @@ public class GameManager : MonoBehaviour
                     activeMenu.SetActive(!isPaused);
                     activeMenu = pauseMenu;
                     activeMenu.SetActive(isPaused);
+                    settingsBtn.SetActive(isPaused);
 
                 }
                 else if (activeMenu == loseMenu)
