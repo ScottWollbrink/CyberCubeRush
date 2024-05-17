@@ -69,6 +69,11 @@ public class GameManager : MonoBehaviour
     public TMP_Text levelTime;
     public TMP_Text levelPR;
 
+    [Header("----------- Level Start Timer --------------")]
+    [SerializeField] GameObject countDownMenu;
+    [SerializeField] TMP_Text countDownText;
+    [SerializeField] int howLongToCountDown;
+
     [Header("---------- ammo/enemy ----------")]
     public TMP_Text ammoCurr;
     public TMP_Text ammoMax;
@@ -176,6 +181,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            StartCoroutine(CountDown());
             CheckReticle();
             StartCoroutine(ToggleGoalLabel(goalMsgDisplayTime));
             SetLevelTimer();
@@ -476,5 +482,19 @@ public class GameManager : MonoBehaviour
         usedTime.enabled = false;
         levelTime.enabled = false;
         activeMenu.SetActive(isPaused);
+    }
+
+    IEnumerator CountDown()
+    {
+        statePaused();
+        activeMenu = countDownMenu;
+        activeMenu.SetActive(isPaused);
+        while (howLongToCountDown >= 0)
+        {
+            countDownText.text = howLongToCountDown.ToString();
+            yield return new WaitForSecondsRealtime(1);
+            howLongToCountDown -= 1;
+        }
+        stateUnpaused();
     }
 }
