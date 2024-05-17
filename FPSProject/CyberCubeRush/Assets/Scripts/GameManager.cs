@@ -236,7 +236,7 @@ public class GameManager : MonoBehaviour
 
     private void HandlePause()
     {
-        if (Input.GetButtonDown("Cancel") && activeMenu != mainMenu) // button input
+        if (Input.GetButtonDown("Cancel") && activeMenu != mainMenu && activeMenu != winMenu) // button input
         {
             if (!isPaused && SceneManager.GetActiveScene().buildIndex != 0) // Not paused
             {
