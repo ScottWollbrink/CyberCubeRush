@@ -72,8 +72,14 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.Instance.stateUnpaused();
     }
 
+    public void DeleteSave()
+    {
+        GameManager.Instance.saveAndLoad.DeleteSave();
+    }
+
     public void Quit()
     {
+        GameManager.Instance.saveAndLoad.Save();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
     public HoldController holdController;
     public GameObject playerSpawnPos;
     public GameObject cubeSpawnPos;
+    [SerializeField] public SaveAndLoad saveAndLoad;
 
     public bool isPaused;
     public bool reticleIsShowing;
@@ -95,7 +96,7 @@ public class GameManager : MonoBehaviour
         holdController = Camera.main.GetComponent<HoldController>();
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Position");
         cubeSpawnPos = GameObject.FindWithTag("Cube Spwan Position");
-
+        saveAndLoad.Load();
         GetSettings();
     }
 
@@ -339,6 +340,7 @@ public class GameManager : MonoBehaviour
         if (activeMenu == settingsMenu)
         {
             SetSettings();
+            Instance.saveAndLoad.Save();
         }
 
         if (!isPaused)

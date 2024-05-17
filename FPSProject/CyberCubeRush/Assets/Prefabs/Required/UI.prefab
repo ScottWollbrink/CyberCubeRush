@@ -5067,6 +5067,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2699168660128536943}
   - component: {fileID: 4542295038799969454}
+  - component: {fileID: 1341066894555629361}
   - component: {fileID: 231648680283641175}
   - component: {fileID: 8181907135062515828}
   m_Layer: 5
@@ -5153,8 +5154,34 @@ MonoBehaviour:
   holdController: {fileID: 0}
   playerSpawnPos: {fileID: 0}
   cubeSpawnPos: {fileID: 0}
+  saveAndLoad: {fileID: 1341066894555629361}
   isPaused: 0
   reticleIsShowing: 0
+--- !u!114 &1341066894555629361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3282177636877375618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98fcb24af281fb9468d1db326c8fa120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playersSettings: {fileID: 11400000, guid: 922fee70a77df6c47b1c0e710dc994aa, type: 2}
+  defaultStettings: {fileID: 11400000, guid: 8deeb25bc0c970e4aa8ed364915be367, type: 2}
+  ben1SaveState: {fileID: 11400000, guid: b154f08c2fdcd1d479b7bb6457eff6ed, type: 2}
+  ben2SaveState: {fileID: 11400000, guid: 686652054dec05a4b94c94191d7a43ce, type: 2}
+  ben3SaveState: {fileID: 0}
+  scott1SaveState: {fileID: 11400000, guid: 9eb637a43515a964fb12c09320396710, type: 2}
+  scott2SaveState: {fileID: 11400000, guid: ae5967f2945924f45bff712962f01ded, type: 2}
+  scott3SaveState: {fileID: 0}
+  clayton1SaveState: {fileID: 11400000, guid: ed232d7544183454899e2f730bb4aad5, type: 2}
+  clayton2SaveState: {fileID: 11400000, guid: 004afe6cae1369c4380066f47545610a, type: 2}
+  clayton3SaveState: {fileID: 0}
+  clayton4SaveState: {fileID: 0}
+  clayton5SaveState: {fileID: 0}
 --- !u!114 &231648680283641175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14180,7 +14207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1344357577017081736
 RectTransform:
   m_ObjectHideFlags: 0
