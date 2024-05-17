@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
 
     [Header("---------- Pause ----------")]
     [SerializeField] GameObject pauseMenu;
-    [SerializeField] GameObject settingsBtn; // getting an error where the settings button is not appearing in pause: adding a direct call to allong when pause menu is called
 
     [Header("---------- Level Select ----------")]
     [SerializeField] GameObject levelSelectMenu;
@@ -261,7 +260,6 @@ public class GameManager : MonoBehaviour
                 levelTime.enabled = false;
                 activeMenu = pauseMenu;
                 activeMenu.SetActive(isPaused);
-                settingsBtn.SetActive(isPaused);
             }
             else if (activeMenu == levelSelectMenu)
             {
@@ -276,7 +274,6 @@ public class GameManager : MonoBehaviour
                     activeMenu.SetActive(!isPaused);
                     activeMenu = pauseMenu;
                     activeMenu.SetActive(isPaused);
-                    settingsBtn.SetActive(isPaused);
 
                 }
                 else if (activeMenu == loseMenu)
