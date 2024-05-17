@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
         userSettings.musicVolume = defaultSettings.musicVolume;
         musicVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.musicVolume).ToString("F2");
         musicVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.musicVolume;
-        GetComponent<AudioSource>().volume = userSettings.musicVolume;
+        audioManager.GetComponent<AudioSource>().volume = userSettings.musicVolume;
         userSettings.sfxVolume = defaultSettings.sfxVolume;
         sfxVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.sfxVolume).ToString("F2");
         sfxVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.sfxVolume;
