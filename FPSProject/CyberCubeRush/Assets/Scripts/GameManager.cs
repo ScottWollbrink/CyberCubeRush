@@ -54,6 +54,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject sfxVol;
     public GameObject checkpointMenu;
 
+    [Header("----------- Delete Save -------------")]
+    [SerializeField] GameObject DeleteSaveMenu;
+
     [Header("---------- PlayerHud ----------")]
     public GameObject playerDamageScreen;
     public Image playerHPBar;
@@ -243,7 +246,7 @@ public class GameManager : MonoBehaviour
 
     private void HandlePause()
     {
-        if (Input.GetButtonDown("Cancel") && activeMenu != mainMenu && activeMenu != winMenu) // button input
+        if (Input.GetButtonDown("Cancel") && activeMenu != mainMenu && activeMenu != winMenu && activeMenu != countDownMenu) // button input
         {
             if (!isPaused && SceneManager.GetActiveScene().buildIndex != 0) // Not paused
             {
@@ -381,7 +384,11 @@ public class GameManager : MonoBehaviour
         GetSettings();
         SwitchScene(settingsMenu);
     }
-
+    
+    public void DisplayDeleteSave()
+    {
+        SwitchScene(DeleteSaveMenu);
+    }
     public void ShowCredits()
     {
         SwitchScene(creditMenu);
@@ -490,6 +497,7 @@ public class GameManager : MonoBehaviour
         statePaused();
         activeMenu = countDownMenu;
         activeMenu.SetActive(isPaused);
+        Cursor.visible = false;
         while (howLongToCountDown >= 0)
         {
             countDownText.text = howLongToCountDown.ToString();
