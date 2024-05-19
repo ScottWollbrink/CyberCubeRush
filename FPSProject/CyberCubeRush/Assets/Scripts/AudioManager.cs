@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Slider = UnityEngine.UI.Slider;
 
 public class AudioManager : MonoBehaviour
 {
@@ -17,6 +20,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public float musVol;
     [SerializeField] public float sfxVol;
     [SerializeField] public float UIVol;
+    [SerializeField] public Slider[] sliders;
 
     [Header("---------- UI Sounds ----------")]
     [SerializeField] AudioClip buttonHover;
@@ -38,7 +42,13 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        for(int x = 0;x < sliders.Length;x++) 
+        {
+            GetComponent<Slider>().onValueChanged.AddListener(delegate
+            {
+                SliderValueChanged(sliders[x].gameObject, sliders[x].value);
+            });
+        }
     }
 
     // Update is called once per frame
@@ -54,4 +64,9 @@ public class AudioManager : MonoBehaviour
             sfxSources[x].volume = sfxVol;
         }
     }
+    public void SliderValueChanged(GameObject slider, float value)
+    {
+        Debug.Log(slider.name + " value changed to: " + value);
+    }
+    
 }
