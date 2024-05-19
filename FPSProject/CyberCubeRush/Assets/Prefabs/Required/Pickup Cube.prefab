@@ -52,6 +52,10 @@ MonoBehaviour:
   HP: 1
   model: {fileID: 1821053813743945054}
   rb: {fileID: 5031228349315895447}
+  aud: {fileID: 5886709910573829619}
+  audImpact:
+  - {fileID: 8300000, guid: 2a1123978548ea4488cf10dfe9303f79, type: 3}
+  audImpactVol: 0.5
 --- !u!33 &1401849328097630366
 MeshFilter:
   m_ObjectHideFlags: 0
