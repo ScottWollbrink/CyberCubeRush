@@ -10,6 +10,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void Continue()
     {
+        GameManager.Instance.saveAndLoad.Save();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         GameManager.Instance.stateUnpaused();
     }
@@ -74,7 +75,18 @@ public class ButtonFunctions : MonoBehaviour
 
     public void DeleteSave()
     {
+        GameManager.Instance.DisplayDeleteSave();
+    }
+
+    public void YesDelete()
+    {
         GameManager.Instance.saveAndLoad.DeleteSave();
+        GameManager.Instance.ReturnToPause();
+    }
+
+    public void NoDelete()
+    {
+        GameManager.Instance.ReturnToPause();
     }
 
     public void Quit()

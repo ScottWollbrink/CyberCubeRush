@@ -11,6 +11,10 @@ public class winCube : MonoBehaviour, IWinCube, IDamage
 
     float currentHP;
     float maxHP;
+    [Header("Audio")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] audImpact;
+    [SerializeField, Range(0, 1f)] float audImpactVol;
 
 
     // Start is called before the first frame update
