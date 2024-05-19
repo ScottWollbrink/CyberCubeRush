@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -32,6 +33,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject PRNotificationWM;
     [SerializeField] TMP_Text PRTimeWM;
     [SerializeField] GameObject PRTextWM;
+    [SerializeField] GameObject winMainMenuBtn;
+    [SerializeField] GameObject winContinueBtn;
 
     [Header("---------- Loss ----------")]
     [SerializeField] GameObject loseMenu;
@@ -64,6 +67,10 @@ public class GameManager : MonoBehaviour
 
     [Header("---------- Credit Menu ----------")]
     [SerializeField] GameObject creditMenu;
+    [SerializeField] GameObject creditTxt;
+    [SerializeField] GameObject MainMenuBtn;
+    [SerializeField] GameObject ReturnBtn;
+    Vector3 creditTxtStartPos;
 
     [Header("---------- Timers ----------")]
     [SerializeField] TMP_Text clearedTimePM;
@@ -105,6 +112,7 @@ public class GameManager : MonoBehaviour
         holdController = Camera.main.GetComponent<HoldController>();
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Position");
         cubeSpawnPos = GameObject.FindWithTag("Cube Spwan Position");
+        creditTxtStartPos = creditTxt.transform.position;
         saveAndLoad.Load();
         GetSettings();
     }
@@ -392,6 +400,20 @@ public class GameManager : MonoBehaviour
     public void ShowCredits()
     {
         SwitchScene(creditMenu);
+        creditTxt.transform.position = creditTxtStartPos;
+        playerHPBar.gameObject.SetActive(false);
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            MainMenuBtn.SetActive(false);
+            ReturnBtn.SetActive(true);
+        }
+        else
+        {
+            ReturnBtn.SetActive(false);
+            MainMenuBtn.SetActive(true);
+        }
+
+        StartCoroutine(MoveCreditText());
     }
 
     public void ReturnToSettings()
@@ -447,6 +469,16 @@ public class GameManager : MonoBehaviour
         PRTimeWM.text = timeManager.GetPlayerLevelPR(SceneManager.GetActiveScene().buildIndex);
         PRTimeWM.gameObject.SetActive(true);
         PRTextWM.gameObject.SetActive(true);
+        if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)
+        {
+            winMainMenuBtn.SetActive(true);
+            winContinueBtn.SetActive(false);
+        }
+        else
+        { 
+            winMainMenuBtn.SetActive(false);
+            winContinueBtn.SetActive(true);
+        }
         usedTime.enabled = false;
         levelTime.enabled = false;
         activeMenu.SetActive(isPaused);
@@ -505,5 +537,15 @@ public class GameManager : MonoBehaviour
             howLongToCountDown -= 1;
         }
         stateUnpaused();
+    }
+
+    IEnumerator MoveCreditText()
+    {
+        while (creditTxt.transform.position.y < 2000)
+        {
+            
+                creditTxt.transform.position = Vector3.MoveTowards(creditTxt.transform.position, new Vector3(960, 2000, 0), 55 * Time.unscaledDeltaTime);
+            yield return null;
+        }
     }
 }

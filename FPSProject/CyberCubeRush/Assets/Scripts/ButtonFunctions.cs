@@ -89,6 +89,11 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.Instance.ReturnToPause();
     }
 
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     public void Quit()
     {
         GameManager.Instance.saveAndLoad.Save();

@@ -32,9 +32,17 @@ public class TimeManager : MonoBehaviour
                 if (currentTime > levelTimes[i].timeToBeat)
                     GameManager.Instance.LoseGame(true);
                 else if (setPR)
+                {
                     GameManager.Instance.HighScoreWinGame();
+                    if (buildIndex == SceneManager.sceneCountInBuildSettings - 1)
+                        StartCoroutine(TimeToShowCredits());
+                }
                 else
+                {
                     GameManager.Instance.WinGame();
+                    if(buildIndex == SceneManager.sceneCountInBuildSettings - 1)
+                        StartCoroutine(TimeToShowCredits());
+                }
             }
         }
     }
@@ -165,5 +173,11 @@ public class TimeManager : MonoBehaviour
     public void ToggleTimer(bool val)
     {
         isCounting = val;
+    }
+
+    IEnumerator TimeToShowCredits()
+    {
+        yield return new WaitForSecondsRealtime(3);
+        GameManager.Instance.ShowCredits();
     }
 }
