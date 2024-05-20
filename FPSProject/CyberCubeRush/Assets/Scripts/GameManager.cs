@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerSpawnPos;
     public GameObject cubeSpawnPos;
     [SerializeField] public SaveAndLoad saveAndLoad;
-    [SerializeField] AudioManager audioManager;
+    [SerializeField] public AudioManager audioManager;
 
     public bool isPaused;
     public bool reticleIsShowing;
