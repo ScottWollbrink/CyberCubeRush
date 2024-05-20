@@ -10,4 +10,5 @@ public class SettingsSO : ScriptableObject
     public float mouseSense = .25f;
     public float musicVolume = .25f;
     public float sfxVolume = .5f;
+    public float UIVolume = .5f;
 }

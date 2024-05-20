@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Slider = UnityEngine.UI.Slider;
+using Button = UnityEngine.UI.Button;
 
 public class AudioManager : MonoBehaviour
 {
@@ -27,28 +29,42 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip buttonClick;
     [SerializeField] AudioClip readyBeeps;
     [SerializeField] AudioClip goBeep;
+
+    [Header("---------- Settings ----------")]
+    [SerializeField] SettingsSO defaultSettings;
+    [SerializeField] SettingsSO userSettings;
+
+    [Header("---------- Texts ----------")]
+    [SerializeField] TMP_Text musicVolText;
+    [SerializeField] TMP_Text sfxVolText;
+    [SerializeField] TMP_Text UIVolText;
+
+    [Header("---------- Buttons ----------")]
+    [SerializeField] List<Button> buttons;
     private void Awake()
     {
         sfxSources = new List<AudioSource>(AudioSource.FindObjectsOfType(typeof(AudioSource)) as AudioSource[]);
-        GameObject temp = GameObject.FindWithTag("UI");
-        sfxSources.Remove(temp.GetComponent<AudioSource>());
+        buttons = new List<Button>(Button.FindObjectsOfType(typeof(Button)) as Button[]);
+        GameObject uitemp = GameObject.FindWithTag("UI");
+        musVol = userSettings.musicVolume;
+        sfxVol = userSettings.sfxVolume;
+        UIVol = userSettings.UIVolume;
+        sfxSources.Remove(uitemp.GetComponent<AudioSource>());
+        sfxSources.Remove(musicSource.GetComponent<AudioSource>());
         musicSource.volume = musVol;
         for(int x = 0; x < sfxSources.Count; x++) 
         {
             sfxSources[x].volume = sfxVol;
         }
+        
         UISource.volume = UIVol;
+        sfxVolText.text = sfxVol.ToString("F2");
+        musicVolText.text = musVol.ToString("F2");
     }
     // Start is called before the first frame update
     void Start()
     {
-        for(int x = 0;x < sliders.Length;x++) 
-        {
-            GetComponent<Slider>().onValueChanged.AddListener(delegate
-            {
-                SliderValueChanged(sliders[x].gameObject, sliders[x].value);
-            });
-        }
+        
     }
 
     // Update is called once per frame
@@ -59,14 +75,50 @@ public class AudioManager : MonoBehaviour
     public void sfxVolSet(float value)
     {
         sfxVol = value;
+        userSettings.sfxVolume = sfxVol;
         for (int x = 0; x < sfxSources.Count; x++)
         {
             sfxSources[x].volume = sfxVol;
+            //Debug.Log(sliders[x].name + " value changed to: " + value.ToString("F2"));
+            Debug.Log("sfxvolset used");
+            Debug.Log(x);
         }
+        sfxVolText.text = sfxVol.ToString("F2");
+    }
+    public void musicVolSet(float value)
+    {
+
+        musVol = value;
+        userSettings.musicVolume = musVol;
+        musicSource.volume = musVol;
+        musicVolText.text = musVol.ToString("F2");
+    }
+    public void UIVolSet(float value)
+    {
+
+        UIVol = value;
+        userSettings.UIVolume = UIVol;
+        UISource.volume = UIVol;
+        UIVolText.text = UIVol.ToString("F2");
     }
     public void SliderValueChanged(GameObject slider, float value)
     {
-        Debug.Log(slider.name + " value changed to: " + value);
+        
     }
-    
+    public void buttonEntered()
+    {
+        UISource.PlayOneShot(buttonHover, UIVol);
+    }
+    public void countingDownBeepPlay()
+    {
+        UISource.PlayOneShot(readyBeeps, UIVol);
+    }
+    public void startBeepPlay()
+    {
+        UISource.PlayOneShot(goBeep, UIVol);
+    }
+    public void buttonSounded()
+    {
+        UISource.PlayOneShot(buttonClick, UIVol);
+    }
 }

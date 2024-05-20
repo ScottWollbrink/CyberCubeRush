@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
         //sfx
         sfxVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.sfxVolume).ToString("F2");
         sfxVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.sfxVolume;
-        audioManager.sfxVolSet(userSettings.sfxVolume);
+        //audioManager.sfxVolSet(userSettings.sfxVolume);
     }
 
     private void SetSettings()
@@ -158,11 +158,11 @@ public class GameManager : MonoBehaviour
         Camera.main.GetComponent<cameraController>().SetSettingsSense(userSettings.mouseSense);
 
         // music
-        userSettings.musicVolume = musicVol.transform.Find("Slider").GetComponentInChildren<Slider>().value;
+        //userSettings.musicVolume = musicVol.transform.Find("Slider").GetComponentInChildren<Slider>().value;
         //GetComponent<AudioSource>().volume = userSettings.musicVolume;
 
         //sfx
-        userSettings.sfxVolume = sfxVol.transform.Find("Slider").GetComponentInChildren<Slider>().value;
+        //userSettings.sfxVolume = sfxVol.transform.Find("Slider").GetComponentInChildren<Slider>().value;
     }
 
     public void ResetSettings()
@@ -175,10 +175,12 @@ public class GameManager : MonoBehaviour
         mouseSense.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.mouseSense).ToString("F2");
         mouseSense.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.mouseSense;
         userSettings.musicVolume = defaultSettings.musicVolume;
+        audioManager.musVol = defaultSettings.musicVolume;
         musicVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.musicVolume).ToString("F2");
         musicVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.musicVolume;
         audioManager.GetComponent<AudioSource>().volume = userSettings.musicVolume;
         userSettings.sfxVolume = defaultSettings.sfxVolume;
+        audioManager.sfxVol = defaultSettings.sfxVolume;
         sfxVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.sfxVolume).ToString("F2");
         sfxVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.sfxVolume;
     }
@@ -530,12 +532,16 @@ public class GameManager : MonoBehaviour
         activeMenu = countDownMenu;
         activeMenu.SetActive(isPaused);
         Cursor.visible = false;
-        while (howLongToCountDown >= 0)
+        //audioManager.countingDownBeepPlay();
+        do
         {
             countDownText.text = howLongToCountDown.ToString();
+            audioManager.countingDownBeepPlay();
             yield return new WaitForSecondsRealtime(1);
+            
             howLongToCountDown -= 1;
-        }
+        } while (howLongToCountDown >= 0);
+            audioManager.startBeepPlay();
         stateUnpaused();
     }
 
