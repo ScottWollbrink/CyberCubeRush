@@ -15,9 +15,9 @@ public class Spike : MonoBehaviour
     [SerializeField] public float goingspeed;
     [SerializeField] public float waitTime;
     [SerializeField] AudioClip audOut;
-    [SerializeField, Range(0, 1f)] float audoutVol;
+    [SerializeField] AudioClip audResting;
     [SerializeField] AudioClip audIn;
-    [SerializeField, Range(0, 1f)] float audInVol;
+    [SerializeField, Range(0, 1f)] float vol;
     public bool movingToEndPoint = true;
 
     // Start is called before the first frame update
@@ -74,26 +74,37 @@ public class Spike : MonoBehaviour
         if ((targetLocation - spike.position).magnitude <= 0.3f)
         {
             goingspeed = 0;
+            
             StartCoroutine(waiting());
-            aud.Stop();
+            
             //targetLocation = whereToMove();
         }
+    }
+    IEnumerator sparking() 
+    {
+        yield return null;
     }
     IEnumerator waiting()
     {
         movingToEndPoint = !movingToEndPoint;
-        yield return new WaitForSeconds(waitTime);
+        aud.clip = audResting;
+        aud.Stop();
+        if (movingToEndPoint)
+            aud.PlayOneShot(audResting, vol);
+
         
+        yield return new WaitForSeconds(waitTime);
+        aud.Stop();
         if (movingToEndPoint)
         {
             goingspeed = inspeed;
-            aud.PlayOneShot(audIn, audInVol);
+            aud.PlayOneShot(audIn, vol);
             
         }
         else
         {
             goingspeed = outspeed;
-            aud.PlayOneShot(audOut, audoutVol);
+            aud.PlayOneShot(audOut, vol);
 
         }
     }
