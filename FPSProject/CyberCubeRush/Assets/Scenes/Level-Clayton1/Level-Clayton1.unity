@@ -46617,14 +46617,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3743932882925207756, guid: 352fc2520a5cadd409df19f9f6a1f184, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3743932882925207756, guid: 352fc2520a5cadd409df19f9f6a1f184, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3743932882925207756, guid: 352fc2520a5cadd409df19f9f6a1f184, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -56758,6 +56750,10 @@ PrefabInstance:
     - target: {fileID: 3225409833760793719, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749242878017025495, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

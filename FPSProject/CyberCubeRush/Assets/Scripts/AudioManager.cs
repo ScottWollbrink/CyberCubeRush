@@ -100,6 +100,7 @@ public class AudioManager : MonoBehaviour
         userSettings.UIVolume = UIVol;
         UISource.volume = UIVol;
         UIVolText.text = UIVol.ToString("F2");
+        UISource.PlayOneShot(buttonHover);
     }
     public void SliderValueChanged(GameObject slider, float value)
     {
