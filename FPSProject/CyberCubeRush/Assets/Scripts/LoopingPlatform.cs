@@ -26,7 +26,20 @@ public class LoopingPlatform : MonoBehaviour
         //posY = center.position.y + Mathf.Sin(angle) * rotationRadius;
         //posZ = center.position.z + Mathf.Tan(angle) * rotationRadius;
         Vector3 targetLocation = points[nextPoint].position;
-
+        float dfromst = Vector3.Distance(platform.position, points[nextPoint].position);
+        float dfromend = Vector3.Distance(platform.position, points[(nextPoint-1 + points.Length) %points.Length].position);
+        //float movingd = Vector3.Distance(platform.position, targetLocation) / 2;
+        if (dfromst > dfromend)
+        {
+            dfromst /= 2;
+            dfromend *= 2;
+        }
+        else if (dfromst < dfromend)
+        {
+            dfromend /= 2;
+            dfromst *= 2;
+        }
+        speed = (dfromst + dfromend) / 4;
         platform.position = Vector3.MoveTowards(platform.position, targetLocation, speed * Time.deltaTime);
         //angle = angle + Time.deltaTime * speed;
 //        if (angle >= 360)

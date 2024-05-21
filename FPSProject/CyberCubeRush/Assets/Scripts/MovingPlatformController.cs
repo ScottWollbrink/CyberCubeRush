@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MovingPlatformController : MonoBehaviour
@@ -21,9 +22,22 @@ public class MovingPlatformController : MonoBehaviour
     void Update()
     {
         Vector3 targetLocation = whereToMove();
-
+        float dfromst = Vector3.Distance(platform.position, startPoint.position);
+        float dfromend = Vector3.Distance(platform.position, endPoint.position);
+        //float movingd = Vector3.Distance(platform.position, targetLocation)/2;
+        if (dfromst > dfromend)
+        {
+            dfromst /= 2;
+            dfromend *= 2;
+        }
+        else if (dfromst < dfromend)
+        { 
+            dfromend /= 2;
+            dfromst *= 2;
+        }
+        speed = (dfromst + dfromend) / 4;
         platform.position = Vector3.MoveTowards(platform.position, targetLocation, speed * Time.deltaTime);
-
+        
         if ((targetLocation - platform.position).magnitude <= 0.3f) 
         { 
             movingToEndPoint = !movingToEndPoint;
