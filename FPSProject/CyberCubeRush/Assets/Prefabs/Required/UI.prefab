@@ -5715,6 +5715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5986e7cd08b8e4bb51cf24b3e0da9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 8205339572705870989}
   activeMenu: {fileID: 0}
   mainMenu: {fileID: 394655087988966846}
   crossfade: {fileID: 3333722567090488697}
@@ -5771,7 +5772,6 @@ MonoBehaviour:
   playerSpawnPos: {fileID: 0}
   cubeSpawnPos: {fileID: 0}
   saveAndLoad: {fileID: 1341066894555629361}
-  audioManager: {fileID: 8205339572705870989}
   isPaused: 0
   reticleIsShowing: 0
 --- !u!114 &1341066894555629361
@@ -11677,6 +11677,8 @@ MonoBehaviour:
   buttonClick: {fileID: 8300000, guid: 435c0d4089d30e240b107f5b9d238e22, type: 3}
   readyBeeps: {fileID: 8300000, guid: d80749f6007e53f4aac7cbc5583d7a4c, type: 3}
   goBeep: {fileID: 8300000, guid: 5afd0e9b2eaede54fa84cf89f32500f3, type: 3}
+  victory: {fileID: 8300000, guid: 028726bcb4081f54d967e1b44a7d8b5a, type: 3}
+  checkpoint: {fileID: 8300000, guid: 91ae1b4f496808944bae0837a1885c0d, type: 3}
   defaultSettings: {fileID: 11400000, guid: 8deeb25bc0c970e4aa8ed364915be367, type: 2}
   userSettings: {fileID: 11400000, guid: 922fee70a77df6c47b1c0e710dc994aa, type: 2}
   musicVolText: {fileID: 510360278545803587}

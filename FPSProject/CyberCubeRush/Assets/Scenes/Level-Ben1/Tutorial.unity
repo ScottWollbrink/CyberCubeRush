@@ -2878,10 +2878,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 1923326719888785737, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3225409833760793719, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2962,14 +2958,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8181907135062515828, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8181907135062515828, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: fb3ff2a731d1204488bbd8b0f7a7e9df, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

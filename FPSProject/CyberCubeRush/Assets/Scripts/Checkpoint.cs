@@ -5,7 +5,12 @@ public class Checkpoint : MonoBehaviour
 {
     [SerializeField] Renderer Model;
     [SerializeField] bool heals = true;
+    [SerializeField] AudioManager audioManager;
 
+    private void Awake()
+    {
+        audioManager = FindObjectOfType<AudioManager>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && GameManager.Instance.playerSpawnPos.transform.position != transform.position)
@@ -29,6 +34,7 @@ public class Checkpoint : MonoBehaviour
     IEnumerator DisplayCheckpointPopup()
     {
         GameManager.Instance.checkpointMenu.SetActive(true);
+        audioManager.playCP();
         // model.material.color = Color.red;
         yield return new WaitForSeconds(1.5f);
         // model.material.color = baseColor;

@@ -29,6 +29,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip buttonClick;
     [SerializeField] AudioClip readyBeeps;
     [SerializeField] AudioClip goBeep;
+    [SerializeField] AudioClip victory;
+    [SerializeField] AudioClip checkpoint;
 
     [Header("---------- Settings ----------")]
     [SerializeField] SettingsSO defaultSettings;
@@ -121,5 +123,14 @@ public class AudioManager : MonoBehaviour
     public void buttonSounded()
     {
         UISource.PlayOneShot(buttonClick, UIVol);
+    }
+    public void playCP()
+    {
+        UISource.PlayOneShot(checkpoint, UIVol);
+    }
+    public void playVictory()
+    {
+        musicSource.Stop();
+        musicSource.PlayOneShot(victory, musVol);
     }
 }

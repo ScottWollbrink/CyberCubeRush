@@ -61,7 +61,10 @@ public class winCube : MonoBehaviour, IWinCube, IDamage
         yield return new WaitForSeconds(0.3f);
         model.material.color = Color.white;
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
     public void ApplyVelocity(Vector3 velocity)
     {
         rb.velocity += velocity;

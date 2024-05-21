@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [Header("---------- Managers ----------")]
     public static GameManager Instance;
     private TimeManager timeManager;
-
+    [SerializeField] public AudioManager audioManager;
     public GameObject activeMenu; 
     
 
@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerSpawnPos;
     public GameObject cubeSpawnPos;
     [SerializeField] public SaveAndLoad saveAndLoad;
-    [SerializeField] public AudioManager audioManager;
+    
 
     public bool isPaused;
     public bool reticleIsShowing;
@@ -457,6 +457,7 @@ public class GameManager : MonoBehaviour
 
     public void HandleEnding()
     {
+        audioManager.playVictory();
         TimeManager.Instance.HandleFinish(SceneManager.GetActiveScene().buildIndex);
     }
 
