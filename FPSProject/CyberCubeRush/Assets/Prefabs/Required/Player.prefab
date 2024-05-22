@@ -69,6 +69,8 @@ MonoBehaviour:
   pickupRange: 5
   pickupSpeed: 10
   launchStrength: 13
+  audThrow: {fileID: 8300000, guid: d21629d70fefdf34c9c8278f5f8cabda, type: 3}
+  audThrowVol: 0.5
   heldObj: {fileID: 0}
   rb: {fileID: 0}
   hasCube: 0
@@ -329,35 +331,23 @@ MonoBehaviour:
   shootDist: 0
   gunList: []
   gunModel: {fileID: 6643231115010910967}
-  audJump:
-  - {fileID: 8300000, guid: b86097349007254469a6056956c9a84e, type: 3}
-  - {fileID: 8300000, guid: c39e28ccbc86cc545ba05259fa11ff32, type: 3}
-  - {fileID: 8300000, guid: 8afd7bf939ec1f34eae1416f7cbb578e, type: 3}
+  audJump: {fileID: 8300000, guid: 9965af7f2f90ab34a8e8ec4a688dd1a2, type: 3}
   audJumpVol: 0.2
-  audHurt:
-  - {fileID: 8300000, guid: 310cdb8f2fed25841bfd505954de034f, type: 3}
-  - {fileID: 8300000, guid: a87fa9383845c0241984457e932d6f2a, type: 3}
-  - {fileID: 8300000, guid: e22c2e0a6a55aa04aad07631da777c88, type: 3}
-  - {fileID: 8300000, guid: 476b53728d73fa84881476bc6ad15ba5, type: 3}
-  - {fileID: 8300000, guid: c7e9c0f7201c0c7469043c5ecadd7dba, type: 3}
-  - {fileID: 8300000, guid: 6807c1e2e2e83ea41b4f2f27c04fe296, type: 3}
+  audHurt: {fileID: 8300000, guid: 635cd98252fbda049a5d02a5767985ed, type: 3}
   audHurtVol: 0.3
   audSteps:
-  - {fileID: 8300000, guid: aabb5fe226b1cbd4db6dfeb57be6ce8d, type: 3}
-  - {fileID: 8300000, guid: 6d5038767bd114f40839fb5210fed2c4, type: 3}
-  - {fileID: 8300000, guid: 8fe8bbe954a04c34d9bd9f954085d3dc, type: 3}
-  - {fileID: 8300000, guid: 5166857dc6e9aa345b8f834cb7043f14, type: 3}
-  - {fileID: 8300000, guid: 0da22edf1d7fc0f47bf6e716ac0c80e1, type: 3}
-  - {fileID: 8300000, guid: 825e77fced8304649a41660a490abf7c, type: 3}
-  - {fileID: 8300000, guid: 3aecaad1120532f4f925ce85c4dd3070, type: 3}
-  - {fileID: 8300000, guid: 2c84eb8b3708bd045bb02debed07d03f, type: 3}
-  - {fileID: 8300000, guid: 3f04d0d393df1e04eb4fb71fb0ac4b3a, type: 3}
+  - {fileID: 8300000, guid: a26d7caa80759ff4c9fef3b7b0e9bb42, type: 3}
+  - {fileID: 8300000, guid: f070b196f13e4734a9b3bbba6bd83fcf, type: 3}
   audStepVol: 0.1
   audShoot:
   - {fileID: 8300000, guid: 0e408de57c16c7a458355ac5bb022c13, type: 3}
   audShootVol: 0.5
   audDeath: {fileID: 8300000, guid: 4b75067146c836648982bf167cb3bfe9, type: 3}
   audDeathVol: 0.5
+  audDash: {fileID: 8300000, guid: 010a9ea6394dcba438838366a8c896bd, type: 3}
+  audDashVol: 0.5
+  audWallrun: {fileID: 8300000, guid: 2054e4f6593aafa4f8224da7efb0ac88, type: 3}
+  audWallrunVol: 0.5
 --- !u!82 &-4391461388008492422
 AudioSource:
   m_ObjectHideFlags: 0

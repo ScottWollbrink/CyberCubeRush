@@ -61773,22 +61773,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7499731180259687068, guid: 38531b65aeedf7c43859bc7883e518f0, type: 3}
-      propertyPath: audIn
-      value: 
-      objectReference: {fileID: 8300000, guid: ed206aa6ea39c7741a7fe6b150fb5d81, type: 3}
-    - target: {fileID: 7499731180259687068, guid: 38531b65aeedf7c43859bc7883e518f0, type: 3}
-      propertyPath: audOut
-      value: 
-      objectReference: {fileID: 8300000, guid: e6fec9d52a6c600498ac701fdb933d08, type: 3}
-    - target: {fileID: 7499731180259687068, guid: 38531b65aeedf7c43859bc7883e518f0, type: 3}
-      propertyPath: inspeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7499731180259687068, guid: 38531b65aeedf7c43859bc7883e518f0, type: 3}
-      propertyPath: outspeed
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7854066175028739829, guid: 38531b65aeedf7c43859bc7883e518f0, type: 3}
       propertyPath: m_LocalPosition.y
       value: -3

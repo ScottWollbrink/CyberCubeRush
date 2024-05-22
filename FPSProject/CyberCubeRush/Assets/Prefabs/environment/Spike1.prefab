@@ -315,9 +315,9 @@ MonoBehaviour:
   inspeed: 3
   goingspeed: 0
   waitTime: 2
-  audOut: {fileID: 8300000, guid: ed206aa6ea39c7741a7fe6b150fb5d81, type: 3}
+  audOut: {fileID: 8300000, guid: deea5344ca07d214fbcfa0a1473dd116, type: 3}
   audResting: {fileID: 8300000, guid: 4d33e9fe32680534fbfa39182df236b7, type: 3}
-  audIn: {fileID: 8300000, guid: e6fec9d52a6c600498ac701fdb933d08, type: 3}
+  audIn: {fileID: 8300000, guid: 082222fcfc2bff349bc35e571847cc3a, type: 3}
   vol: 0.5
   movingToEndPoint: 1
 --- !u!1 &5775116475383749183

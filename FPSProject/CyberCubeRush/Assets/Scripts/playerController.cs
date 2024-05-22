@@ -226,7 +226,7 @@ public class playerController : MonoBehaviour, IDamage
         else if ( isWallRunning && (moveDir.x == 0  || ((!wallRunLeft && !wallRunRight) || !offTheGround())))
         {
             //Debug.Log(isWallRunning);
-
+            aud.Stop();
             WallRunStop();
         }
 
@@ -436,7 +436,7 @@ public class playerController : MonoBehaviour, IDamage
         runSpeed += wallRunSpeed;
         playerVel.y = wallRunUpForce;
         gravity = wallRunGravity;
-        aud.PlayOneShot(audWallrun, audWallrunVol);
+        
         StartCoroutine(WallRunDuration());
     }
 
@@ -455,7 +455,10 @@ public class playerController : MonoBehaviour, IDamage
     IEnumerator WallRunDuration()
     {
         isWallRunning = true;
+        aud.PlayOneShot(audWallrun, audWallrunVol);
+        aud.clip = audWallrun;
         yield return new WaitForSeconds(wallRunDuration);
+        aud.Stop();
         WallRunStop();
     }
     
