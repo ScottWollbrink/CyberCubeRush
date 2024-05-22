@@ -61,10 +61,7 @@ public class winCube : MonoBehaviour, IWinCube, IDamage
         yield return new WaitForSeconds(0.3f);
         model.material.color = Color.white;
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        
-    }
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision == null || GameManager.Instance.holdController.hasCube)
