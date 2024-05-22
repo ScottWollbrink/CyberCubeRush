@@ -5,6 +5,7 @@ using UnityEngine;
 public class playerController : MonoBehaviour, IDamage
 {
     [SerializeField] CharacterController controller;
+    [SerializeField] Animator characterModelAnimator;
     [SerializeField] AudioSource aud;
 
     [Header("Player Basics")]
@@ -17,6 +18,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float jumpDamping;
     [SerializeField] int maxJumps;
     [SerializeField] float gravity;
+    [SerializeField] float terminalVelocity;
 
     [Header("Wall Jump")]
     [SerializeField] LayerMask wallMask;
@@ -98,6 +100,7 @@ public class playerController : MonoBehaviour, IDamage
     bool isRegularJump = false;
     bool canWallRunRight = true;
     bool canWallRunLeft = true;
+    bool isJumping = false;
 
 
 
@@ -127,16 +130,16 @@ public class playerController : MonoBehaviour, IDamage
             SelectGun();
             movement();
             WallCheck();
-            if (GameManager.Instance.holdController.hasCube)
-            {
-                Camera.main.GetComponentInChildren<Renderer>().enabled = false;
-                canShoot = false;
-            }
-            else if(!canShoot)
-            {
-                Camera.main.GetComponentInChildren<Renderer>().enabled = true;
-                StartCoroutine(pullOutGun());
-            }
+            //if (GameManager.Instance.holdController.hasCube)
+            //{
+            //    Camera.main.GetComponentInChildren<Renderer>().enabled = false;
+            //    canShoot = false;
+            //}
+            //else if(!canShoot)
+            //{
+            //    Camera.main.GetComponentInChildren<Renderer>().enabled = true;
+            //    StartCoroutine(pullOutGun());
+            //}
         }
         
     }
@@ -156,6 +159,7 @@ public class playerController : MonoBehaviour, IDamage
             canWallRunRight = true;
             canWallRunLeft = true;
             isWallJumping = false;
+            isJumping = false;
         }
         
 
@@ -164,18 +168,60 @@ public class playerController : MonoBehaviour, IDamage
         {
             horizontalInput = HorizontalInputEnabled ? Input.GetAxis("Horizontal") : 0f;
             float verticalInput = Input.GetAxis("Vertical");
-            if (horizontalInput != 0 && playerVel.z != 0)
-            {
-                playerVel.z -= .25f;
-            }
+            
             moveDir = horizontalInput * transform.right + verticalInput * transform.forward;
             if (moveDir == Vector3.zero && !Input.GetButton("Jump"))
             {
                 controller.enabled = false;
+                if (!isJumping)
+                {
+                    characterModelAnimator.Play("BasicMotions@Idle01");
+                }
             }
             else
             {
                 controller.enabled = true;
+                if (!isJumping)
+                {
+                    if (verticalInput > 0f)
+                    {
+                        if (horizontalInput == 0f)
+                        {
+                            characterModelAnimator.Play("BasicMotions@Run01 - Forwards");
+                        }
+                        else if (horizontalInput > 0f)
+                        {
+                            characterModelAnimator.Play("BasicMotions@Run01 - ForwardsRight");
+                        }
+                        else if (horizontalInput < 0f)
+                        {
+                            characterModelAnimator.Play("BasicMotions@Run01 - ForwardsLeft");
+                        }
+                    }
+                    else if (verticalInput < 0f)
+                    {
+                        if (horizontalInput == 0f)
+                        {
+                            characterModelAnimator.Play("BasicMotions@Run01 - Backwards");
+                        }
+                        else if (horizontalInput > 0f)
+                        {
+                            characterModelAnimator.Play("BasicMotions@Run01 - BackwardsRight");
+                        }
+                        else if (horizontalInput < 0f)
+                        {
+                            characterModelAnimator.Play("BasicMotions@Run01 - BackwardsLeft");
+                        }
+                    }
+                    if (horizontalInput < 0f && verticalInput == 0)
+                    {
+                        characterModelAnimator.Play("BasicMotions@Run01 - Left");
+                    }
+                    else if (horizontalInput > 0f && verticalInput == 0)
+                    {
+                        characterModelAnimator.Play("BasicMotions@Run01 - Right");
+                    }
+                }
                 controller.Move(moveDir * runSpeed * Time.deltaTime);
             }
         }
@@ -184,9 +230,56 @@ public class playerController : MonoBehaviour, IDamage
             // move the controler in the direction inputed
             horizontalInput = HorizontalInputEnabled ? Input.GetAxis("Horizontal") : 0f;
             float verticalInput = Input.GetAxis("Vertical");
-            if (horizontalInput != 0 && playerVel.z != 0)
+            if(moveDir != Vector3.zero)
             {
-                playerVel.z -= .01f;
+                if (!isJumping)
+                {
+                    if (verticalInput > 0f)
+                    {
+                        if (horizontalInput == 0f)
+                        {
+                            characterModelAnimator.Play("BasicMotions@Run01 - Forwards");
+                        }
+                        else if (horizontalInput > 0f)
+                        {
+                            characterModelAnimator.Play("BasicMotions@Run01 - ForwardsRight");
+                        }
+                        else if (horizontalInput < 0f)
+                        {
+                            characterModelAnimator.Play("BasicMotions@Run01 - ForwardsLeft");
+                        }
+                    }
+                    else if (verticalInput < 0f)
+                    {
+                        if (horizontalInput == 0f)
+                        {
+                            characterModelAnimator.Play("BasicMotions@Run01 - Backwards");
+                        }
+                        else if (horizontalInput > 0f)
+                        {
+                            characterModelAnimator.Play("BasicMotions@Run01 - BackwardsRight");
+                        }
+                        else if (horizontalInput < 0f)
+                        {
+                            characterModelAnimator.Play("BasicMotions@Run01 - BackwardsLeft");
+                        }
+                    }
+                    if (horizontalInput < 0f && verticalInput == 0)
+                    {
+                        characterModelAnimator.Play("BasicMotions@Run01 - Left");
+                    }
+                    else if (horizontalInput > 0f && verticalInput == 0)
+                    {
+                        characterModelAnimator.Play("BasicMotions@Run01 - Right");
+                    }
+                }
+            }
+            else
+            {
+                if (!isJumping)
+                {
+                    characterModelAnimator.Play("BasicMotions@Idle01");
+                }
             }
             moveDir = horizontalInput * transform.right + verticalInput * transform.forward;
             controller.Move(moveDir * runSpeed * Time.deltaTime);
@@ -235,14 +328,17 @@ public class playerController : MonoBehaviour, IDamage
         if (Input.GetButtonDown("Jump") && wallJumpTimes < maxWallJumps && offTheGround() && ((wallRight || wallLeft) || (wallRunRight || wallRunLeft)))
         {
             WallJump();
+            isJumping = true;
             aud.PlayOneShot(audJump, audJumpVol);
         }
         else if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps) 
         {
+            isJumping = true;
             isRegularJump = true;
             controller.enabled = true;
             jumpedTimes++;
             playerVel.y = jumpSpeed;
+            characterModelAnimator.Play("BasicMotions@Jump01");
             aud.PlayOneShot(audJump, audJumpVol);
         }
 
@@ -257,7 +353,10 @@ public class playerController : MonoBehaviour, IDamage
         // add gravity to the player so that they fall when going over and edge or jump
         if (controller.enabled)
         {
-            playerVel.y -= gravity * Time.deltaTime;
+            if (playerVel.y < terminalVelocity)
+            {
+                playerVel.y -= gravity * Time.deltaTime;
+            }
             controller.Move(playerVel * Time.deltaTime);
         }
 
