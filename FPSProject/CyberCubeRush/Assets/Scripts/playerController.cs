@@ -18,6 +18,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float jumpDamping;
     [SerializeField] int maxJumps;
     [SerializeField] float gravity;
+    [SerializeField] float terminalVelocity;
 
     [Header("Wall Jump")]
     [SerializeField] LayerMask wallMask;
@@ -352,7 +353,10 @@ public class playerController : MonoBehaviour, IDamage
         // add gravity to the player so that they fall when going over and edge or jump
         if (controller.enabled)
         {
-            playerVel.y -= gravity * Time.deltaTime;
+            if (playerVel.y < terminalVelocity)
+            {
+                playerVel.y -= gravity * Time.deltaTime;
+            }
             controller.Move(playerVel * Time.deltaTime);
         }
 
