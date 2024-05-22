@@ -50,7 +50,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
     [SerializeField] List<GunStats> gunList = new List<GunStats>();
-    [SerializeField] GameObject gunModel;
+    //[SerializeField] GameObject gunModel;
 
     [Header("Audio")]
     [SerializeField] AudioClip audJump;
@@ -63,8 +63,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField, Range(0, 1f)] float audShootVol;
     [SerializeField] AudioClip audDeath;
     [SerializeField, Range(0, 1f)] float audDeathVol;
-//    [SerializeField] AudioClip audThrow;//Added here originally, commented out for now unless needed to be taken out so holdcontroller continues to be the throwing code
-  //  [SerializeField, Range(0, 1f)] float audThrowVol;
+
     [SerializeField] AudioClip audDash;
     [SerializeField, Range(0, 1f)] float audDashVol;
     [SerializeField] AudioClip audWallrun;
@@ -101,6 +100,8 @@ public class playerController : MonoBehaviour, IDamage
     bool canWallRunRight = true;
     bool canWallRunLeft = true;
     bool isJumping = false;
+    bool canDoubleJumpIcon = true;
+    bool canWallJumpIcon = true;
 
 
 
@@ -127,7 +128,7 @@ public class playerController : MonoBehaviour, IDamage
 
         if (!GameManager.Instance.isPaused)
         {
-            SelectGun();
+            //SelectGun();
             movement();
             WallCheck();
             //if (GameManager.Instance.holdController.hasCube)
@@ -140,6 +141,11 @@ public class playerController : MonoBehaviour, IDamage
             //    Camera.main.GetComponentInChildren<Renderer>().enabled = true;
             //    StartCoroutine(pullOutGun());
             //}
+            GameManager.Instance.setDashIconAplha(canDash);
+            GameManager.Instance.setWallRunIconAplha(canWallRun);
+            GameManager.Instance.setDoubleJumpIconAplha(canDoubleJumpIcon);
+            GameManager.Instance.setWallJumpIconAplha(canWallJumpIcon);
+
         }
         
     }
@@ -160,6 +166,8 @@ public class playerController : MonoBehaviour, IDamage
             canWallRunLeft = true;
             isWallJumping = false;
             isJumping = false;
+            canDoubleJumpIcon = true;
+            canWallJumpIcon = true;
         }
         
 
@@ -330,6 +338,10 @@ public class playerController : MonoBehaviour, IDamage
             WallJump();
             isJumping = true;
             aud.PlayOneShot(audJump, audJumpVol);
+            if(wallJumpTimes == maxWallJumps)
+            {
+                canWallJumpIcon = false;
+            }
         }
         else if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps) 
         {
@@ -338,8 +350,12 @@ public class playerController : MonoBehaviour, IDamage
             controller.enabled = true;
             jumpedTimes++;
             playerVel.y = jumpSpeed;
-            characterModelAnimator.Play("BasicMotions@Jump01");
+            characterModelAnimator.Play("BasicMotions@Jump01 (In Place)");
             aud.PlayOneShot(audJump, audJumpVol);
+            if(jumpedTimes == maxJumps)
+            {
+                canDoubleJumpIcon = false;
+            }
         }
 
         if (Input.GetButtonUp("Jump") && playerVel.y > 0 && isRegularJump && !isWallRunning)
@@ -353,7 +369,7 @@ public class playerController : MonoBehaviour, IDamage
         // add gravity to the player so that they fall when going over and edge or jump
         if (controller.enabled)
         {
-            if (playerVel.y < terminalVelocity)
+            if (playerVel.y > terminalVelocity)
             {
                 playerVel.y -= gravity * Time.deltaTime;
             }
@@ -598,48 +614,48 @@ public class playerController : MonoBehaviour, IDamage
         controller.enabled = true;
     }
 
-    public void GetGunStats(GunStats gun)
-    {
-        gunList.Add(gun);
-        selectedGun = gunList.Count - 1;
+    //public void GetGunStats(GunStats gun)
+    //{
+    //    gunList.Add(gun);
+    //    selectedGun = gunList.Count - 1;
 
-        shootDamage = gun.damage;
-        shootRate = gun.rateOfFire;
-        shootDist = gun.range;
+    //    shootDamage = gun.damage;
+    //    shootRate = gun.rateOfFire;
+    //    shootDist = gun.range;
 
-        gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+    //    gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
+    //    gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
-        GameManager.Instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
-        GameManager.Instance.ammoCurr.text = gunList[selectedGun].ammoCurrent.ToString("F0");
-    }
+    //    GameManager.Instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
+    //    GameManager.Instance.ammoCurr.text = gunList[selectedGun].ammoCurrent.ToString("F0");
+    //}
 
-    private void SelectGun()
-    {
-        if ((Input.GetAxis("Mouse ScrollWheel") > 0 || Input.GetKey(KeyCode.Alpha1)) && selectedGun < gunList.Count - 1)
-        {
-            selectedGun++;
-            ChangeGun();
-        }
-        else if ((Input.GetAxis("Mouse ScrollWheel") < 0 || Input.GetKey(KeyCode.Alpha2)) && selectedGun > 0)
-        {
-            selectedGun--;
-            ChangeGun();
-        }
-    }
+    //private void SelectGun()
+    //{
+    //    if ((Input.GetAxis("Mouse ScrollWheel") > 0 || Input.GetKey(KeyCode.Alpha1)) && selectedGun < gunList.Count - 1)
+    //    {
+    //        selectedGun++;
+    //        ChangeGun();
+    //    }
+    //    else if ((Input.GetAxis("Mouse ScrollWheel") < 0 || Input.GetKey(KeyCode.Alpha2)) && selectedGun > 0)
+    //    {
+    //        selectedGun--;
+    //        ChangeGun();
+    //    }
+    //}
 
-    private void ChangeGun()
-    {
-        shootDamage = gunList[selectedGun].damage;
-        shootRate = gunList[selectedGun].rateOfFire;
-        shootDist = gunList[selectedGun].range;
+    //private void ChangeGun()
+    //{
+    //    shootDamage = gunList[selectedGun].damage;
+    //    shootRate = gunList[selectedGun].rateOfFire;
+    //    shootDist = gunList[selectedGun].range;
 
-        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+    //    gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
+    //    gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
-        GameManager.Instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
-        GameManager.Instance.ammoCurr.text = gunList[selectedGun].ammoCurrent.ToString("F0");
-    }
+    //    GameManager.Instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
+    //    GameManager.Instance.ammoCurr.text = gunList[selectedGun].ammoCurrent.ToString("F0");
+    //}
 
     public Vector3 GetVelocity()
     {

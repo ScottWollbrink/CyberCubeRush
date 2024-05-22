@@ -84,6 +84,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text countDownText;
     [SerializeField] int howLongToCountDown;
 
+    [Header("----------- Abilities -------------")]
+    [SerializeField] Image dashIcon;
+    [SerializeField] Image wallRunIcon;
+    [SerializeField] Image wallJumpIcon;
+    [SerializeField] Image doubleJumpIcon;
+
     [Header("---------- ammo/enemy ----------")]
     public TMP_Text ammoCurr;
     public TMP_Text ammoMax;
@@ -553,6 +559,51 @@ public class GameManager : MonoBehaviour
             
                 creditTxt.transform.position = Vector3.MoveTowards(creditTxt.transform.position, new Vector3(960, 2000, 0), 55 * Time.unscaledDeltaTime);
             yield return null;
+        }
+    }
+
+    public void setDashIconAplha(bool isActive)
+    {
+        if (isActive)
+        {
+            dashIcon.color = new Color(dashIcon.color.r, dashIcon.color.g, dashIcon.color.b, 1);
+        }
+        else
+        {
+            dashIcon.color = new Color(dashIcon.color.r, dashIcon.color.g, dashIcon.color.b, 0.5f);
+        }
+    }
+    public void setWallRunIconAplha(bool isActive)
+    {
+        if (isActive)
+        {
+            wallRunIcon.color = new Color(wallRunIcon.color.r, wallRunIcon.color.g, wallRunIcon.color.b, 1);
+        }
+        else
+        {
+            wallRunIcon.color = new Color(wallRunIcon.color.r, wallRunIcon.color.g, wallRunIcon.color.b, 0.5f);
+        }
+    }
+    public void setWallJumpIconAplha(bool isActive)
+    {
+        if (isActive)
+        {
+            wallJumpIcon.color = new Color(wallJumpIcon.color.r, wallJumpIcon.color.g, wallJumpIcon.color.b, 1);
+        }
+        else
+        {
+            wallJumpIcon.color = new Color(wallJumpIcon.color.r, wallJumpIcon.color.g, wallJumpIcon.color.b, 0.5f);
+        }
+    }
+    public void setDoubleJumpIconAplha(bool isActive)
+    {
+        if (isActive)
+        {
+            doubleJumpIcon.color = new Color(doubleJumpIcon.color.r, doubleJumpIcon.color.g, doubleJumpIcon.color.b, 1);
+        }
+        else
+        {
+            doubleJumpIcon.color = new Color(doubleJumpIcon.color.r, doubleJumpIcon.color.g, doubleJumpIcon.color.b, 0.5f);
         }
     }
 }
