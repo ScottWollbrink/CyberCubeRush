@@ -13,7 +13,7 @@ public class winCube : MonoBehaviour, IWinCube, IDamage
     float maxHP;
     [Header("Audio")]
     [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip[] audImpact;
+    [SerializeField] AudioClip audImpact;
     [SerializeField, Range(0, 1f)] float audImpactVol;
 
 
@@ -64,6 +64,13 @@ public class winCube : MonoBehaviour, IWinCube, IDamage
     private void OnTriggerEnter(Collider other)
     {
         
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision == null || GameManager.Instance.holdController.hasCube)
+            return;
+        if (collision.relativeVelocity.magnitude > 0.1)
+            aud.PlayOneShot(audImpact, audImpactVol * collision.relativeVelocity.magnitude);
     }
     public void ApplyVelocity(Vector3 velocity)
     {

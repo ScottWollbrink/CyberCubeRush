@@ -53,8 +53,7 @@ MonoBehaviour:
   model: {fileID: 1821053813743945054}
   rb: {fileID: 5031228349315895447}
   aud: {fileID: 5886709910573829619}
-  audImpact:
-  - {fileID: 8300000, guid: 2a1123978548ea4488cf10dfe9303f79, type: 3}
+  audImpact: {fileID: 8300000, guid: 2a1123978548ea4488cf10dfe9303f79, type: 3}
   audImpactVol: 0.5
 --- !u!33 &1401849328097630366
 MeshFilter:
@@ -165,7 +164,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2a1123978548ea4488cf10dfe9303f79, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
