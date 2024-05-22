@@ -6,7 +6,8 @@ public class HoldController : MonoBehaviour
     [SerializeField] float pickupRange;
     [SerializeField] float pickupSpeed;
     [SerializeField] float launchStrength;
-
+    [SerializeField] AudioClip audThrow;
+    [SerializeField, Range(0, 1f)] float audThrowVol;
 
     [HideInInspector] public GameObject heldObj;
     [SerializeField] Rigidbody rb;
@@ -43,6 +44,7 @@ public class HoldController : MonoBehaviour
                 doNotDropThroughObj();
                 drop();
                 cube.ApplyVelocity((Camera.main.transform.forward * launchStrength) + GameManager.Instance.playerCntrl.GetVelocity());
+                GameManager.Instance.player.GetComponent<AudioSource>().PlayOneShot(audThrow, audThrowVol);
             }
             //if the pickup object is not close enough to the player move the object to the hold location
             else if(Vector3.Distance(heldObj.transform.position, holdPos.position) > 0.1f)

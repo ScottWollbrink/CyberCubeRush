@@ -51,18 +51,22 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] GameObject gunModel;
 
     [Header("Audio")]
-    [SerializeField] AudioClip[] audJump;
+    [SerializeField] AudioClip audJump;
     [SerializeField, Range(0, 1f)] float audJumpVol;
-    [SerializeField] AudioClip[] audHurt;
+    [SerializeField] AudioClip audHurt;
     [SerializeField, Range(0, 1f)] float audHurtVol;
     [SerializeField] AudioClip[] audSteps;
     [SerializeField, Range(0, 1f)] float audStepVol;
-    [SerializeField] AudioClip[] audShoot;
+    [SerializeField] AudioClip[] audShoot;//confirm before commenting out shooting code
     [SerializeField, Range(0, 1f)] float audShootVol;
     [SerializeField] AudioClip audDeath;
     [SerializeField, Range(0, 1f)] float audDeathVol;
-
-    
+//    [SerializeField] AudioClip audThrow;//Added here originally, commented out for now unless needed to be taken out so holdcontroller continues to be the throwing code
+  //  [SerializeField, Range(0, 1f)] float audThrowVol;
+    [SerializeField] AudioClip audDash;
+    [SerializeField, Range(0, 1f)] float audDashVol;
+    [SerializeField] AudioClip audWallrun;
+    [SerializeField, Range(0, 1f)] float audWallrunVol;
     int selectedGun;
 
     Vector3 moveDir;
@@ -231,7 +235,7 @@ public class playerController : MonoBehaviour, IDamage
         if (Input.GetButtonDown("Jump") && wallJumpTimes < maxWallJumps && offTheGround() && ((wallRight || wallLeft) || (wallRunRight || wallRunLeft)))
         {
             WallJump();
-            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
+            aud.PlayOneShot(audJump, audJumpVol);
         }
         else if (Input.GetButtonDown("Jump") && jumpedTimes < maxJumps) 
         {
@@ -239,7 +243,7 @@ public class playerController : MonoBehaviour, IDamage
             controller.enabled = true;
             jumpedTimes++;
             playerVel.y = jumpSpeed;
-            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
+            aud.PlayOneShot(audJump, audJumpVol);
         }
 
         if (Input.GetButtonUp("Jump") && playerVel.y > 0 && isRegularJump && !isWallRunning)
@@ -329,7 +333,7 @@ public class playerController : MonoBehaviour, IDamage
 
     public void takeDamage(float amount)
     {
-        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+        aud.PlayOneShot(audHurt, audHurtVol);
         currentHP -= amount;
         UpdatePlayerUI();
         StartCoroutine(FlashDamage());
@@ -406,7 +410,7 @@ public class playerController : MonoBehaviour, IDamage
     private void Dash()
     {
         Vector3 dashDirection = Camera.main.transform.forward.normalized;
-
+        aud.PlayOneShot(audDash, audDashVol);
         playerVel = dashDirection * dashSpeed;
         StartCoroutine(DashLengthWhileGrounded());
         StartCoroutine(DashCooldown());
@@ -432,6 +436,7 @@ public class playerController : MonoBehaviour, IDamage
         runSpeed += wallRunSpeed;
         playerVel.y = wallRunUpForce;
         gravity = wallRunGravity;
+        aud.PlayOneShot(audWallrun, audWallrunVol);
         StartCoroutine(WallRunDuration());
     }
 
