@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 public class Spike : MonoBehaviour
@@ -19,6 +20,7 @@ public class Spike : MonoBehaviour
     [SerializeField] AudioClip audIn;
     [SerializeField, Range(0, 1f)] float vol;
     public bool movingToEndPoint = true;
+    public bool willMove;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +36,12 @@ public class Spike : MonoBehaviour
             goingspeed = outspeed;
 
 
+        }
+        if (!willMove)
+        { 
+            aud.clip = audResting;
+            aud.loop = true;
+            //aud.Play();
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -67,17 +75,20 @@ public class Spike : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 targetLocation = whereToMove();
+        if (willMove)
+        { 
+            Vector3 targetLocation = whereToMove();
 
-        spike.position = Vector3.MoveTowards(spike.position, targetLocation, goingspeed * Time.deltaTime);
+            spike.position = Vector3.MoveTowards(spike.position, targetLocation, goingspeed * Time.deltaTime);
 
-        if ((targetLocation - spike.position).magnitude <= 0.3f)
-        {
-            goingspeed = 0;
-            
-            StartCoroutine(waiting());
-            
+            if ((targetLocation - spike.position).magnitude <= 0.3f)
+            {
+                goingspeed = 0;
+
+                StartCoroutine(waiting());
+
             //targetLocation = whereToMove();
+            }
         }
     }
     IEnumerator sparking() 
