@@ -132,6 +132,7 @@ MonoBehaviour:
   damMult: 1
   damdiv: 2
   isDaming: 0
+  isMovingChilds: 1
 --- !u!82 &3448256529317819985
 AudioSource:
   m_ObjectHideFlags: 0
@@ -400,6 +401,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7185703654988647876}
     m_Modifications:
+    - target: {fileID: 2952032545383660434, guid: 3dd283c220de3bc4c94f8d7b499c03b6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952032545383660434, guid: 3dd283c220de3bc4c94f8d7b499c03b6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 5775116475383749183, guid: 3dd283c220de3bc4c94f8d7b499c03b6, type: 3}
       propertyPath: m_Name
       value: Spike1
@@ -472,6 +481,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8739523248004851555, guid: 3dd283c220de3bc4c94f8d7b499c03b6, type: 3}
+      propertyPath: aud
+      value: 
+      objectReference: {fileID: 3448256529317819985}
     - target: {fileID: 8739523248004851555, guid: 3dd283c220de3bc4c94f8d7b499c03b6, type: 3}
       propertyPath: parent
       value: 
