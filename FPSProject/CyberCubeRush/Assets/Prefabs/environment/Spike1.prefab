@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 945966787374723616}
   - component: {fileID: 8533455862214149477}
   - component: {fileID: 3636401593132189003}
-  - component: {fileID: 6182112308010670910}
+  - component: {fileID: 8739523248004851555}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -294,7 +294,7 @@ CapsuleCollider:
   m_Height: 2.48
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &6182112308010670910
+--- !u!114 &8739523248004851555
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -320,7 +320,7 @@ MonoBehaviour:
   audIn: {fileID: 8300000, guid: 082222fcfc2bff349bc35e571847cc3a, type: 3}
   vol: 0.5
   movingToEndPoint: 1
-  willMove: 0
+  willMove: 1
 --- !u!1 &5775116475383749183
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +364,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5775116475383749183}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4d33e9fe32680534fbfa39182df236b7, type: 3}
