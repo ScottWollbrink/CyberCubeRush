@@ -142,7 +142,6 @@ public class playerController : MonoBehaviour, IDamage
             //    StartCoroutine(pullOutGun());
             //}
             GameManager.Instance.setDashIconAplha(canDash);
-            GameManager.Instance.setWallRunIconAplha(canWallRun);
             GameManager.Instance.setDoubleJumpIconAplha(canDoubleJumpIcon);
             GameManager.Instance.setWallJumpIconAplha(canWallJumpIcon);
 

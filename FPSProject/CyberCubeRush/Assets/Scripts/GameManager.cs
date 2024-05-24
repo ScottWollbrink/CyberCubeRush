@@ -86,7 +86,6 @@ public class GameManager : MonoBehaviour
 
     [Header("----------- Abilities -------------")]
     [SerializeField] Image dashIcon;
-    [SerializeField] Image wallRunIcon;
     [SerializeField] Image wallJumpIcon;
     [SerializeField] Image doubleJumpIcon;
 
@@ -570,20 +569,10 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            dashIcon.color = new Color(dashIcon.color.r, dashIcon.color.g, dashIcon.color.b, 0.5f);
+            dashIcon.color = new Color(dashIcon.color.r, dashIcon.color.g, dashIcon.color.b, 0.25f);
         }
     }
-    public void setWallRunIconAplha(bool isActive)
-    {
-        if (isActive)
-        {
-            wallRunIcon.color = new Color(wallRunIcon.color.r, wallRunIcon.color.g, wallRunIcon.color.b, 1);
-        }
-        else
-        {
-            wallRunIcon.color = new Color(wallRunIcon.color.r, wallRunIcon.color.g, wallRunIcon.color.b, 0.5f);
-        }
-    }
+    
     public void setWallJumpIconAplha(bool isActive)
     {
         if (isActive)
@@ -592,7 +581,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            wallJumpIcon.color = new Color(wallJumpIcon.color.r, wallJumpIcon.color.g, wallJumpIcon.color.b, 0.5f);
+            wallJumpIcon.color = new Color(wallJumpIcon.color.r, wallJumpIcon.color.g, wallJumpIcon.color.b, 0.25f);
         }
     }
     public void setDoubleJumpIconAplha(bool isActive)
@@ -603,7 +592,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            doubleJumpIcon.color = new Color(doubleJumpIcon.color.r, doubleJumpIcon.color.g, doubleJumpIcon.color.b, 0.5f);
+            doubleJumpIcon.color = new Color(doubleJumpIcon.color.r, doubleJumpIcon.color.g, doubleJumpIcon.color.b, 0.25f);
         }
     }
 }
