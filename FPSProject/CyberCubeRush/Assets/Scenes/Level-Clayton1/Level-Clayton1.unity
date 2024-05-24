@@ -97420,6 +97420,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovingPlatform2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7768700499026740154, guid: 4eab2967cb5b3414ea61bd36dff97945, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
