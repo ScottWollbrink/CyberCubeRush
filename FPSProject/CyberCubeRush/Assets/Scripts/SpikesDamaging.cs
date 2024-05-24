@@ -9,7 +9,7 @@ public class SpikesDamaging : MonoBehaviour
     [SerializeField] int damMult;
     [SerializeField] int damdiv;
     public bool isDaming;
-    
+    public bool isMovingChilds;
     
     public IEnumerator DamingEnter(IDamage dmg)
     {

@@ -37,6 +37,7 @@ public class Spike : MonoBehaviour
 
 
         }
+        willMove = parent.GetComponent<SpikesDamaging>().isMovingChilds;
         if (!willMove)
         { 
             aud.clip = audResting;
