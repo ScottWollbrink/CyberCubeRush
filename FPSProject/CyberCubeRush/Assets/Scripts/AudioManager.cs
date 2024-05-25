@@ -82,8 +82,8 @@ public class AudioManager : MonoBehaviour
         {
             sfxSources[x].volume = sfxVol;
             //Debug.Log(sliders[x].name + " value changed to: " + value.ToString("F2"));
-            Debug.Log("sfxvolset used");
-            Debug.Log(x);
+            //Debug.Log("sfxvolset used");
+            //Debug.Log(x);
         }
         sfxVolText.text = sfxVol.ToString("F2");
     }
