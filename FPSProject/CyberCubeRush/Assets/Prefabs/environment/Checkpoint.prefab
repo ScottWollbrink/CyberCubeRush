@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Model: {fileID: 0}
   heals: 1
+  audioManager: {fileID: 0}
 --- !u!135 &7436193970675470455
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -99,7 +100,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fcd8389d6f8efdf418a6354a4cc853ae, type: 2}
+  - {fileID: 2100000, guid: 47c738d86f6874d48a7e76d2245cd11c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
