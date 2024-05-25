@@ -551,6 +551,7 @@ GameObject:
   - component: {fileID: 2977356050139190432}
   - component: {fileID: 6882084019353531208}
   - component: {fileID: 4831425487564401207}
+  - component: {fileID: 6213341839140379799}
   m_Layer: 5
   m_Name: Main Menu
   m_TagString: Untagged
@@ -622,6 +623,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6213341839140379799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394655087988966846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65db5011aee00d4e8fe3a74f47d283c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 150312649836066598}
+  - {fileID: 8391733442880559989}
+  - {fileID: 1407580148796084665}
+  - {fileID: 1586059539228252426}
+  - {fileID: 6775587066082557377}
 --- !u!1 &534904544208333567
 GameObject:
   m_ObjectHideFlags: 0
@@ -2758,7 +2777,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
+    rgba: 4279079623
   m_fontColor: {r: 0.78039217, g: 0.57254905, b: 0.050980393, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -4063,6 +4082,7 @@ GameObject:
   - component: {fileID: 2291269711645131562}
   - component: {fileID: 6302681009812044941}
   - component: {fileID: 4327119332079382947}
+  - component: {fileID: 3504805724137461488}
   m_Layer: 5
   m_Name: Pause Menu
   m_TagString: Untagged
@@ -4139,6 +4159,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3504805724137461488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2326405921780519159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65db5011aee00d4e8fe3a74f47d283c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 4647554982662775041}
+  - {fileID: 6064687633553135440}
+  - {fileID: 3570302168501182050}
+  - {fileID: 6359575080988107782}
+  - {fileID: 2361045318644541150}
+  - {fileID: 1173416643937281388}
 --- !u!1 &2407705330690376457
 GameObject:
   m_ObjectHideFlags: 0
@@ -4655,7 +4694,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
+    rgba: 4279079623
   m_fontColor: {r: 0.78039217, g: 0.57254905, b: 0.050980393, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -5195,7 +5234,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
+    rgba: 4279079623
   m_fontColor: {r: 0.78039217, g: 0.57254905, b: 0.050980393, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -5266,6 +5305,7 @@ GameObject:
   - component: {fileID: 2551381867456831521}
   - component: {fileID: 1680118913051110347}
   - component: {fileID: 1294920817320883113}
+  - component: {fileID: 4014599858435607372}
   m_Layer: 5
   m_Name: Delete Save Menu
   m_TagString: Untagged
@@ -5334,6 +5374,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4014599858435607372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3015963419935602216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65db5011aee00d4e8fe3a74f47d283c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 6067931934599456316}
+  - {fileID: 9194205027236479537}
 --- !u!1 &3078992149547401413
 GameObject:
   m_ObjectHideFlags: 0
@@ -5822,6 +5877,7 @@ GameObject:
   - component: {fileID: 8516009770324359047}
   - component: {fileID: 6382439239329544482}
   - component: {fileID: 3269909851890846667}
+  - component: {fileID: 8997177982678130611}
   m_Layer: 5
   m_Name: Lose Menu
   m_TagString: Untagged
@@ -5895,6 +5951,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8997177982678130611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277316269259566754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65db5011aee00d4e8fe3a74f47d283c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 553885191281036333}
+  - {fileID: 7509882568266573522}
+  - {fileID: 8365073124406743176}
 --- !u!1 &3282177636877375618
 GameObject:
   m_ObjectHideFlags: 0
@@ -9418,7 +9490,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
+    rgba: 4279079623
   m_fontColor: {r: 0.78039217, g: 0.57254905, b: 0.050980393, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -10840,7 +10912,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
+    rgba: 4279079623
   m_fontColor: {r: 0.78039217, g: 0.57254905, b: 0.050980393, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -12635,6 +12707,7 @@ GameObject:
   - component: {fileID: 3951351655948316364}
   - component: {fileID: 4895635335056382330}
   - component: {fileID: 2384952659873104431}
+  - component: {fileID: 5853634282621333756}
   m_Layer: 5
   m_Name: Win Menu
   m_TagString: Untagged
@@ -12712,6 +12785,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5853634282621333756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6464974921618032031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65db5011aee00d4e8fe3a74f47d283c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 6335642679633041169}
+  - {fileID: 8141557367699749065}
+  - {fileID: 3293828714081634792}
+  - {fileID: 3883774535023130768}
+  - {fileID: 6233513120997338980}
 --- !u!1 &6485103319978878688
 GameObject:
   m_ObjectHideFlags: 0
@@ -14179,6 +14270,7 @@ GameObject:
   - component: {fileID: 9102090618819829661}
   - component: {fileID: 8245595595250091433}
   - component: {fileID: 3942446286826869886}
+  - component: {fileID: 8401998834316261005}
   m_Layer: 5
   m_Name: Level Selection Menu
   m_TagString: Untagged
@@ -14247,6 +14339,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8401998834316261005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7142208869151140407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65db5011aee00d4e8fe3a74f47d283c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 7668572675438034044}
 --- !u!1 &7142947009245667167
 GameObject:
   m_ObjectHideFlags: 0
@@ -15196,7 +15302,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
+    rgba: 4279079623
   m_fontColor: {r: 0.78039217, g: 0.57254905, b: 0.050980393, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -16365,6 +16471,7 @@ GameObject:
   - component: {fileID: 2097680178114018719}
   - component: {fileID: 1106233147780357255}
   - component: {fileID: 3062192001973479027}
+  - component: {fileID: 6422905691332081541}
   m_Layer: 5
   m_Name: Settings Menu
   m_TagString: Untagged
@@ -16440,6 +16547,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6422905691332081541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8020217362935447707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65db5011aee00d4e8fe3a74f47d283c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 7702638436748073902}
+  - {fileID: 5883123772375688051}
+  - {fileID: 5899319614440986242}
 --- !u!1 &8120823010846479790
 GameObject:
   m_ObjectHideFlags: 0
@@ -17560,7 +17683,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
+    rgba: 4279079623
   m_fontColor: {r: 0.78039217, g: 0.57254905, b: 0.050980393, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -18171,7 +18294,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
+    rgba: 4279079623
   m_fontColor: {r: 0.78039217, g: 0.57254905, b: 0.050980393, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -18380,7 +18503,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
+    rgba: 4279079623
   m_fontColor: {r: 0.78039217, g: 0.57254905, b: 0.050980393, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -18683,6 +18806,7 @@ GameObject:
   - component: {fileID: 4576199494043775382}
   - component: {fileID: 1395168092470248307}
   - component: {fileID: 5295829722892683307}
+  - component: {fileID: 2333919512600592637}
   m_Layer: 5
   m_Name: Credits Menu
   m_TagString: Untagged
@@ -18751,6 +18875,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2333919512600592637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8874607755350376644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65db5011aee00d4e8fe3a74f47d283c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 2401760399766202620}
+  - {fileID: 1719601495167615054}
+  - {fileID: 7229794481509137737}
 --- !u!1 &8884176122866344850
 GameObject:
   m_ObjectHideFlags: 0

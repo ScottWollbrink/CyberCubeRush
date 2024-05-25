@@ -275,6 +275,7 @@ public class GameManager : MonoBehaviour
                 clearedTimePM.text = TimeManager.Instance.GetCurrentTime();
                 goalTimePM.text = timeManager.GetLevelTime(SceneManager.GetActiveScene().buildIndex);
                 usedTime.enabled = false;
+                levelPR.enabled = false;
                 levelTime.enabled = false;
                 activeMenu = pauseMenu;
                 activeMenu.SetActive(isPaused);
@@ -333,6 +334,7 @@ public class GameManager : MonoBehaviour
         }
         usedTime.enabled = true;
         levelTime.enabled = true;
+        levelPR.enabled = true;
         TimeManager.Instance.ToggleTimer(true);
     }
 
@@ -488,6 +490,7 @@ public class GameManager : MonoBehaviour
             winContinueBtn.SetActive(true);
         }
         usedTime.enabled = false;
+        levelPR.enabled = false;
         levelTime.enabled = false;
         activeMenu.SetActive(isPaused);
     }
@@ -513,6 +516,7 @@ public class GameManager : MonoBehaviour
         clearedTimeLM.text = TimeManager.Instance.GetCurrentTime();
         goalTimeLM.text = timeManager.GetLevelTime(SceneManager.GetActiveScene().buildIndex);
         usedTime.enabled = false;
+        levelPR.enabled = false;
         levelTime.enabled = false;
         activeMenu.SetActive(isPaused);
     }
@@ -528,6 +532,7 @@ public class GameManager : MonoBehaviour
         clearedTimeWM.text = TimeManager.Instance.GetCurrentTime();
         goalTimeWM.text = timeManager.GetLevelTime(SceneManager.GetActiveScene().buildIndex);
         usedTime.enabled = false;
+        levelPR.enabled = false;
         levelTime.enabled = false;
         activeMenu.SetActive(isPaused);
     }
