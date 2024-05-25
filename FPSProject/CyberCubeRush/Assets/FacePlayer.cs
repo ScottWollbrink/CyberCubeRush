@@ -1,20 +1,24 @@
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FacePlayer : MonoBehaviour
 {
     [SerializeField] float alpha = .8f;
+    [SerializeField] Image background;
+    [SerializeField] Image border;
+    [SerializeField] TMP_Text text;
+
     private GameObject player;
     private bool insideRange = false;
     private bool fade = false;
     private void Start()
     {
         player = GameManager.Instance.player;
-        GetComponentInChildren<Image>().CrossFadeAlpha(0, 0, true);
-        GetComponentInChildren<TMP_Text>().CrossFadeAlpha(0, 0, true);
+        background.CrossFadeAlpha(0, 0, true);
+        border.CrossFadeAlpha(0, 0, true);
+        text.CrossFadeAlpha(0, 0, true);
     }
 
     void Update()
@@ -22,7 +26,7 @@ public class FacePlayer : MonoBehaviour
         Vector3 dir = transform.position - player.transform.position;
         transform.forward = dir;
 
-        if (dir.magnitude < 2f)        
+        if (dir.magnitude < 3f)        
             insideRange = true;        
         else 
             insideRange = false;
@@ -41,8 +45,9 @@ public class FacePlayer : MonoBehaviour
 
     IEnumerator Fade(float percent, float speed)
     {
-        GetComponentInChildren<Image>().CrossFadeAlpha(percent, speed, true);
-        GetComponentInChildren<TMP_Text>().CrossFadeAlpha(percent, speed, true);
+        background.CrossFadeAlpha(percent, speed, true);
+        border.CrossFadeAlpha(percent, speed, true);
+        text.CrossFadeAlpha(percent, speed, true);
         yield return new WaitForSeconds(speed);
     }
 
