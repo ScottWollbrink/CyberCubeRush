@@ -57,6 +57,10 @@ public class AudioManager : MonoBehaviour
         for(int x = 0; x < sfxSources.Count; x++) 
         {
             sfxSources[x].volume = sfxVol;
+            if (sfxSources[x].CompareTag("Lazer"))
+            {
+                sfxSources[x].volume *= .2f;
+            }
         }
         
         UISource.volume = UIVol;
@@ -84,6 +88,10 @@ public class AudioManager : MonoBehaviour
             //Debug.Log(sliders[x].name + " value changed to: " + value.ToString("F2"));
             //Debug.Log("sfxvolset used");
             //Debug.Log(x);
+            if (sfxSources[x].CompareTag("Lazer"))
+            {
+                sfxSources[x].volume *= .20f;
+            }
         }
         sfxVolText.text = sfxVol.ToString("F2");
     }
