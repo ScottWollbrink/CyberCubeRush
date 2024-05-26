@@ -529,6 +529,16 @@ public class GameManager : MonoBehaviour
         PRTimeWM.gameObject.SetActive(false);
         PRTextWM.gameObject.SetActive(false);
 
+        if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)
+        {
+            winMainMenuBtn.SetActive(true);
+            winContinueBtn.SetActive(false);
+        }
+        else
+        {
+            winMainMenuBtn.SetActive(false);
+            winContinueBtn.SetActive(true);
+        }
         clearedTimeWM.text = TimeManager.Instance.GetCurrentTime();
         goalTimeWM.text = timeManager.GetLevelTime(SceneManager.GetActiveScene().buildIndex);
         usedTime.enabled = false;
