@@ -103,8 +103,15 @@ public class GameManager : MonoBehaviour
     public GameObject playerSpawnPos;
     public GameObject cubeSpawnPos;
     [SerializeField] public SaveAndLoad saveAndLoad;
-    
 
+    [Header("-------------- Quit Buttons -------------------")]
+    [SerializeField] GameObject PauseQuit;
+    [SerializeField] GameObject WinQuit;
+    [SerializeField] GameObject LoseQuit;
+    [SerializeField] GameObject MainQuit;
+
+
+    [Header("----------- Game settings/state ----------------")]
     public bool isPaused;
     public bool reticleIsShowing;
 
@@ -120,6 +127,17 @@ public class GameManager : MonoBehaviour
         creditTxtStartPos = creditTxt.transform.position;
         saveAndLoad.Load();
         GetSettings();
+#if UNITY_WEBGL
+        PauseQuit.SetActive(false);
+        WinQuit.SetActive(false);
+        LoseQuit.SetActive(false);
+        MainQuit.SetActive(false);
+#else
+        PauseQuit.SetActive(true);
+        WinQuit.SetActive(true);
+        LoseQuit.SetActive(true);
+        MainQuit.SetActive(true);
+#endif
     }
 
     private void GetSettings()
@@ -261,7 +279,7 @@ public class GameManager : MonoBehaviour
 
     private void HandlePause()
     {
-        if (Input.GetButtonDown("Cancel") && activeMenu != mainMenu && activeMenu != winMenu && activeMenu != countDownMenu) // button input
+        if ((Input.GetButtonDown("Cancel") || Input.GetKeyDown(KeyCode.P)) && activeMenu != mainMenu && activeMenu != winMenu && activeMenu != countDownMenu) // button input
         {
             if (!isPaused && SceneManager.GetActiveScene().buildIndex != 0) // Not paused
             {
