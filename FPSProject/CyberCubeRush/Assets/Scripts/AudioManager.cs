@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Slider = UnityEngine.UI.Slider;
 using Button = UnityEngine.UI.Button;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -54,7 +55,9 @@ public class AudioManager : MonoBehaviour
         sfxSources.Remove(uitemp.GetComponent<AudioSource>());
         sfxSources.Remove(musicSource.GetComponent<AudioSource>());
         musicSource.volume = musVol;
-        for(int x = 0; x < sfxSources.Count; x++) 
+        musicSource.clip = tunes[SceneManager.GetActiveScene().buildIndex % 5];
+        musicSource.Play();
+        for (int x = 0; x < sfxSources.Count; x++) 
         {
             sfxSources[x].volume = sfxVol;
             if (sfxSources[x].CompareTag("Lazer"))
