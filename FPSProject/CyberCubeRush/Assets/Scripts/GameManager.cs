@@ -88,6 +88,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image dashIcon;
     [SerializeField] Image wallJumpIcon;
     [SerializeField] Image doubleJumpIcon;
+    [SerializeField] GameObject dashIconActivity;
+    [SerializeField] GameObject wallJumpIconActivity;
+    [SerializeField] GameObject doubleJumpIconActivity;
 
     [Header("---------- ammo/enemy ----------")]
     public TMP_Text ammoCurr;
@@ -253,6 +256,9 @@ public class GameManager : MonoBehaviour
 
         levelTime.gameObject.SetActive(val);
         ammoMax.gameObject.SetActive(val);
+        dashIconActivity.SetActive(val);
+        wallJumpIconActivity.SetActive(val);
+        doubleJumpIconActivity.SetActive(val);
 
         Cursor.visible = !val;
         Cursor.lockState = CursorLockMode.Confined;
@@ -295,6 +301,9 @@ public class GameManager : MonoBehaviour
                 usedTime.enabled = false;
                 levelPR.enabled = false;
                 levelTime.enabled = false;
+                dashIconActivity.SetActive(false);
+                wallJumpIconActivity.SetActive(false);
+                doubleJumpIconActivity.SetActive(false);
                 activeMenu = pauseMenu;
                 activeMenu.SetActive(isPaused);
             }
@@ -353,6 +362,9 @@ public class GameManager : MonoBehaviour
         usedTime.enabled = true;
         levelTime.enabled = true;
         levelPR.enabled = true;
+        dashIconActivity.SetActive(true);
+        wallJumpIconActivity.SetActive(true);
+        doubleJumpIconActivity.SetActive(true);
         TimeManager.Instance.ToggleTimer(true);
     }
 

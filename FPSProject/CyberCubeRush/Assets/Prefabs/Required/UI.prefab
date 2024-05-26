@@ -638,9 +638,9 @@ MonoBehaviour:
   buttons:
   - {fileID: 150312649836066598}
   - {fileID: 8391733442880559989}
-  - {fileID: 1407580148796084665}
   - {fileID: 1586059539228252426}
   - {fileID: 6775587066082557377}
+  - {fileID: 1407580148796084665}
 --- !u!1 &534904544208333567
 GameObject:
   m_ObjectHideFlags: 0
@@ -6067,6 +6067,9 @@ MonoBehaviour:
   dashIcon: {fileID: 3623831071250782450}
   wallJumpIcon: {fileID: 1776175953698278031}
   doubleJumpIcon: {fileID: 5188237877164225410}
+  dashIconActivity: {fileID: 6771454161456514886}
+  wallJumpIconActivity: {fileID: 6974246809134165915}
+  doubleJumpIconActivity: {fileID: 5964781825147665342}
   ammoCurr: {fileID: 8347280093354984736}
   ammoMax: {fileID: 2593405605987750432}
   goalLabel: {fileID: 2567269730194258247}
@@ -14201,7 +14204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &350034268184104623
 RectTransform:
   m_ObjectHideFlags: 0
