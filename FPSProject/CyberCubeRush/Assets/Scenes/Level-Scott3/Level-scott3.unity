@@ -876,26 +876,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1341066894555629361, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
-      propertyPath: ben3SaveState
-      value: 
-      objectReference: {fileID: 11400000, guid: fd8e9bd44db50204783af88c8d05f79a, type: 2}
-    - target: {fileID: 1341066894555629361, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
-      propertyPath: scott3SaveState
-      value: 
-      objectReference: {fileID: 11400000, guid: 024120c4c0f7f7c4184854941a96ea60, type: 2}
-    - target: {fileID: 1341066894555629361, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
-      propertyPath: clayton3SaveState
-      value: 
-      objectReference: {fileID: 11400000, guid: 4c10ffeaf9119454b9ea70ca2b5e9f54, type: 2}
-    - target: {fileID: 1341066894555629361, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
-      propertyPath: clayton4SaveState
-      value: 
-      objectReference: {fileID: 11400000, guid: 0d369b070fbc42c468c65fdbc9a227af, type: 2}
-    - target: {fileID: 1341066894555629361, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
-      propertyPath: clayton5SaveState
-      value: 
-      objectReference: {fileID: 11400000, guid: 50bbb9d33dbd5c8459458e5f0ac7cbac, type: 2}
     - target: {fileID: 1923326719888785737, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
       propertyPath: m_Name
       value: UI
