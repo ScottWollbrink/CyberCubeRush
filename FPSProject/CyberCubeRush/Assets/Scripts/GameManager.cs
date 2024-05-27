@@ -598,10 +598,10 @@ public class GameManager : MonoBehaviour
 
     IEnumerator MoveCreditText()
     {
-        while (creditTxt.transform.position.y < 2000)
+        while (creditTxt.transform.position.y < 6000)
         {
             
-                creditTxt.transform.position = Vector3.MoveTowards(creditTxt.transform.position, new Vector3(960, 2000, 0), 55 * Time.unscaledDeltaTime);
+                creditTxt.transform.position = Vector3.MoveTowards(creditTxt.transform.position, new Vector3(960, 6000, 0), 55 * Time.unscaledDeltaTime);
             yield return null;
         }
     }

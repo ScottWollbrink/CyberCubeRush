@@ -18370,8 +18370,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -583.25}
-  m_SizeDelta: {x: 400, y: 50}
+  m_AnchoredPosition: {x: 0, y: -5470.25}
+  m_SizeDelta: {x: 800, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6017441712736877107
 CanvasRenderer:
@@ -18401,30 +18401,51 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Congrats on Beating CyberCube Rush
-
-
-
-    -----Credits------
-
-
-
-    --Programers--
-
-
-
-    Benjamin
-    Bissett
-
-
-    Scott Wollbrink
-
-
-    Clayton McAdow
-
-
-
-    --Assets--'
+  m_text: "Congrats on Beating CyberCube Rush\n\n\n-----Credits------\n\n\n--Programers--\n\n\nBenjamin
+    Bissett\n\nScott Wollbrink\n\nClayton McAdow\n\n\n--Assets--\n\n--Music--\n\nMatt
+    Oakley - Queens of Oblivion TV Theme - Free Music Archive\r\nhttps://freemusicarchive.org/music/Matt_Oakley/scifi-soundtrack-kit/queens-of-oblivion-tv-theme/\r\n\nMatt
+    Oakley - Mercury Ascendant - Free Music Archive\r\nhttps://freemusicarchive.org/music/Matt_Oakley/scifi-soundtrack-kit/mercury-ascendant/\r\n\nInom
+    - Run From You - Free Music Archive\r\nhttps://freemusicarchive.org/music/Inom/Run_From_You/01_inom_-_run_from_you/\r\n\nAndrew
+    R Codeman - Run - Free Music Archive\r\nhttps://freemusicarchive.org/music/Andrew_Codeman/Ice_Country/Andrew_Codeman_Ice_Country_04_Run/\r\n\nViscid
+    - Climb - Free Music Archive\r\nhttps://freemusicarchive.org/music/viscid/disconnected/climb/\r\n\nFreesound
+    - Futuristic Sci Fi Cinematic (loop1) by AudioCoffee\r\nhttps://freesound.org/people/AudioCoffee/sounds/722858/\r\n\nFreesound
+    - Attention is a suspenseful film score licensed CC BY-SA 4.0 by kjartan_abel\r\nhttps://freesound.org/people/kjartan_abel/sounds/568005/\r\n\nFreesound
+    - ggr o2 b2 87 battle synth.wav by ERH\r\nhttps://freesound.org/people/ERH/sounds/48953/\r\n\r\n\r\n--Sound
+    effects:--\n\r\nAcid bubbling: Freesound - Fizzing & Bubbling (Bicarbonate of
+    Soda / Baking Powder) by Idalize\r\nhttps://freesound.org/people/Idalize/sounds/408121/\r\n\nPoison
+    bubbling: Freesound - PoisonedLayerBigBubbles.wav by wobesound\r\nhttps://freesound.org/people/wobesound/sounds/488391/\r\n\nCheckpoint:
+    Freesound - 8-Bit Coin Or Power Up FX For Retro Video Games by Cloud-10\r\nhttps://freesound.org/people/Cloud-10/sounds/647977/\r\n\nLava
+    flowing: Freesound - S35-09 Volcano and lava flow.wav by craigsmith\r\nhttps://freesound.org/people/craigsmith/sounds/675730/\r\n\nCube
+    impact: Freesound - Metall.wav by SuGu14\r\nhttps://freesound.org/people/SuGu14/sounds/78262/\r\n\nSpikes
+    holding up: Freesound - Light Electric Flow by Wakerone\r\nhttps://freesound.org/people/Wakerone/sounds/393821/\r\n\nSpikes
+    rising: Freesound - Elevator - Electronic, Retro, Rising.wav by 8bitmyketison\r\nhttps://freesound.org/people/8bitmyketison/sounds/699951/\r\n\nSpikes
+    retracting (powering down): Freesound - Power Down by noirenex\r\nhttps://freesound.org/people/noirenex/sounds/159399/\r\n\nLasers:
+    Freesound - laser transport (Mix2).wav by shimsewn\r\nhttps://freesound.org/people/shimsewn/sounds/35191/\r\n\r\n--Player
+    sfx--\nHurt: Freesound - Man oof.wav by xtrgamr\r\nhttps://freesound.org/people/xtrgamr/sounds/257780/\r\n\nDeath
+    scream: Freesound - wilhelm.wav by SweetNeo85\r\nhttps://freesound.org/people/SweetNeo85/sounds/13797/\r\n\nStep
+    1: Freesound - footstep_metal.ogg by raceynovel\r\nhttps://freesound.org/people/raceynovel/sounds/398554/\r\n\nStep
+    2: Freesound - Step 1.wav by carrigsound\r\nhttps://freesound.org/people/carrigsound/sounds/32635/\r\n\nJump:
+    Freesound - VOC_Male_Jump_02.wav by pekena_larva\r\nhttps://freesound.org/people/pekena_larva/sounds/667292/\r\n\nDash
+    (currently): Freesound - FX - Swoosh - Whip by bolkmar\r\nhttps://freesound.org/people/bolkmar/sounds/475139/\r\n\nThrowing:
+    Freesound - Tossing a thing at someone by pfranzen\r\nhttps://freesound.org/people/pfranzen/sounds/321505/\r\n\nWall
+    running: Freesound - Running strong steps.wav by Hawkeye_Sprout\r\nhttps://freesound.org/people/Hawkeye_Sprout/sounds/469049/\r\n\r\n\r--UI--\n\nUI
+    assets: by: 3d.rina\r\n Sci-fi GUI skin | 2D GUI | Unity Asset Store\r\nhttps://assetstore.unity.com/packages/2d/gui/sci-fi-gui-skin-15606\r\n\nSHIFTUI:
+    Shift - Complete Sci-Fi UI by Michsky\r\nhttps://assetstore.unity.com/packages/2d/gui/shift-complete-sci-fi-ui-157943\r\n\r\n--UI
+    sounds:--\nSingle beep sound for mouse enter: Freesound - OneBeep.flac by kwahmah_02\r\nhttps://freesound.org/people/kwahmah_02/sounds/259703/\r\n\nSingle
+    beep for mouse clicks: Freesound - Cell phone beep (2012).wav by TRP\r\nhttps://freesound.org/people/TRP/sounds/616821/\r\n\nSingle
+    beep for countdown timer: Freesound - Beep_06_single_2015-06-22.wav by PaulMorek\r\nhttps://freesound.org/people/PaulMorek/sounds/330067/\r\n\nCountdown
+    timer end (not entirely sold on it): Freesound - Futuristic shot #3 by BloodPixelHero\r\nhttps://freesound.org/people/BloodPixelHero/sounds/635426/\r\n\nVictory
+    cheer when the player wins a level: Freesound - Victory 2 by pumodi\r\nhttps://freesound.org/people/pumodi/sounds/150223/\r\n\nTextures
+    and models:\r\nShippingContainer: ShippingContainer by SimpleModelsForMe\r\nhttps://assetstore.unity.com/packages/3d/environments/shippingcontainer-147902\r\n\nCityBuildings:
+    Demo City By Versatile Studio\r\nhttps://assetstore.unity.com/packages/3d/environments/urban/demo-city-by-versatile-studio-mobile-friendly-269772\r\n\r\n--Texture
+    Assets--\n\nLava Texture: by: Rob luo\r\nhttps://assetstore.unity.com/packages/2d/textures-materials/stylized-lava-materials-180943\r\n\nScifi
+    walls, floors, and decorations: by: karboosx\r\nhttps://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-styled-modular-pack-82913\r\nCharacter
+    animations: by: Kevin Iglesias\r\nhttps://assetstore.unity.com/packages/3d/animations/basic-motions-free-154271\r\nCharacter
+    Model: by: AlexMakes3D\r\nhttps://assetstore.unity.com/packages/3d/characters/humanoids/sci-fi/futuristic-soldier-scifi-character-202085\r\nCube:
+    by: NeutronCat\r\n https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-pbr-props-118783\r\n\nScifi
+    environmental objects: by: \r\nkarboosx\r\nhttps://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-styled-modular-pack-82913\r\n\nIcons:
+    by: Heathen Engineering\r\n  https://assetstore.unity.com/packages/2d/gui/icons/ux-flat-icons-free-202525#content\r\n\nLiquid
+    Foams: Foam Textures | 2D Water | Unity Asset Store\r https://assetstore.unity.com/packages/2d/textures-materials/water/foam-textures-72313\n\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 501c3584798b7544daed173223ef3afd, type: 2}
   m_sharedMaterial: {fileID: 21393239730493860, guid: 501c3584798b7544daed173223ef3afd, type: 2}
@@ -18459,7 +18480,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
