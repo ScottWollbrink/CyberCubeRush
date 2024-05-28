@@ -3717,14 +3717,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4052261315659595426, guid: 8c65eb2af86d13443a876c8a6af41d97, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052261315659595426, guid: 8c65eb2af86d13443a876c8a6af41d97, type: 3}
-      propertyPath: m_UseWorldSpace
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5297976493605453487, guid: 8c65eb2af86d13443a876c8a6af41d97, type: 3}
       propertyPath: m_Name
       value: lazer (1)
@@ -8664,14 +8656,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -3.186
       objectReference: {fileID: 0}
-    - target: {fileID: 4052261315659595426, guid: 8c65eb2af86d13443a876c8a6af41d97, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052261315659595426, guid: 8c65eb2af86d13443a876c8a6af41d97, type: 3}
-      propertyPath: m_UseWorldSpace
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5297976493605453487, guid: 8c65eb2af86d13443a876c8a6af41d97, type: 3}
       propertyPath: m_Name
       value: lazer (3)
@@ -9844,21 +9828,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4052261315659595426, guid: 8c65eb2af86d13443a876c8a6af41d97, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052261315659595426, guid: 8c65eb2af86d13443a876c8a6af41d97, type: 3}
-      propertyPath: m_UseWorldSpace
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5297976493605453487, guid: 8c65eb2af86d13443a876c8a6af41d97, type: 3}
       propertyPath: m_Name
       value: lazer
-      objectReference: {fileID: 0}
-    - target: {fileID: 6130036856853381212, guid: 8c65eb2af86d13443a876c8a6af41d97, type: 3}
-      propertyPath: m_Volume
-      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -47407,14 +47379,6 @@ PrefabInstance:
     - target: {fileID: 1779041819053591308, guid: 8c65eb2af86d13443a876c8a6af41d97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052261315659595426, guid: 8c65eb2af86d13443a876c8a6af41d97, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052261315659595426, guid: 8c65eb2af86d13443a876c8a6af41d97, type: 3}
-      propertyPath: m_UseWorldSpace
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5297976493605453487, guid: 8c65eb2af86d13443a876c8a6af41d97, type: 3}
       propertyPath: m_Name
