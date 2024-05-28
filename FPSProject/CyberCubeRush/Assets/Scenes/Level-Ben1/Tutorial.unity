@@ -327,6 +327,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: office_building_4_bgr (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.66
@@ -395,6 +399,10 @@ PrefabInstance:
     - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_Name
       value: office_building_4_bgr (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
@@ -696,6 +704,10 @@ PrefabInstance:
     - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_Name
       value: office_building_4_bgr (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
@@ -1071,6 +1083,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: office_building_4_bgr (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.26844665
@@ -1196,6 +1212,10 @@ PrefabInstance:
     - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_Name
       value: office_building_4_bgr (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
@@ -1468,6 +1488,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: office_building_4_bgr (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -1537,6 +1561,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: office_building_4_bgr (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.6
@@ -1605,6 +1633,10 @@ PrefabInstance:
     - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_Name
       value: office_building_4_bgr (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
@@ -1879,6 +1911,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: office_building_4_bgr (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.66
@@ -1948,6 +1984,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: office_building_4_bgr (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.6
@@ -2016,6 +2056,10 @@ PrefabInstance:
     - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_Name
       value: office_building_4_bgr (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
@@ -2200,6 +2244,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: office_building_4_bgr (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.66
@@ -2268,6 +2316,10 @@ PrefabInstance:
     - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_Name
       value: office_building_4_bgr (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
@@ -2451,6 +2503,10 @@ PrefabInstance:
     - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_Name
       value: office_building_4_bgr (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
@@ -2770,6 +2826,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: office_building_4_bgr (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.66
@@ -2921,6 +2981,10 @@ PrefabInstance:
     - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_Name
       value: office_building_4_bgr (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
@@ -3355,6 +3419,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: office_building_4_bgr (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.6362001
@@ -3538,6 +3606,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: office_building_4_bgr (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.6362001
@@ -3607,6 +3679,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: office_building_4_bgr (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.26844665
@@ -3672,14 +3748,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1531212472092582703, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1864493973040016034, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1923326719888785737, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
       propertyPath: m_Name
       value: UI
@@ -3762,34 +3830,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3225409833760793719, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3748255416238409154, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3790542371412874441, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4961465107058847269, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6373654959101123396, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6734584379968188006, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7729219693652764544, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8184639487042931272, guid: 780b19dfe7c141c468bd0a99f23c25f2, type: 3}
-      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4037,6 +4077,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: office_building_4_bgr (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -4270,6 +4314,10 @@ PrefabInstance:
     - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_Name
       value: office_building_4_bgr (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
@@ -4629,6 +4677,10 @@ PrefabInstance:
     - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_Name
       value: office_building_4_bgr (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
@@ -5492,6 +5544,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: office_building_4_bgr (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.66
@@ -5670,6 +5726,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: factory_chimney-stalk
       objectReference: {fileID: 0}
+    - target: {fileID: 1918532739001452207, guid: ff40f4bb80a592a449bd5dc020a38fc0, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5743,6 +5803,10 @@ PrefabInstance:
     - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_Name
       value: office_building_4_bgr
+      objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
@@ -5865,6 +5929,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: factory_chimney-stalk (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1918532739001452207, guid: ff40f4bb80a592a449bd5dc020a38fc0, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5961,6 +6029,10 @@ PrefabInstance:
     - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_Name
       value: office_building_4_bgr (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x
@@ -6087,6 +6159,10 @@ PrefabInstance:
     - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_Name
       value: office_building_4_bgr (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 112945275596704255, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 782099722015888197, guid: 44f78b98bb705704a86127ce68d48b4e, type: 3}
       propertyPath: m_LocalScale.x

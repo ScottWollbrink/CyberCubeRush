@@ -129,6 +129,7 @@ public class GameManager : MonoBehaviour
         cubeSpawnPos = GameObject.FindWithTag("Cube Spwan Position");
         creditTxtStartPos = creditTxt.transform.position;
         saveAndLoad.Load();
+        
         GetSettings();
 #if UNITY_WEBGL
         PauseQuit.SetActive(false);
@@ -174,7 +175,6 @@ public class GameManager : MonoBehaviour
         // reticle
         reticleIsShowing = reticleSetting.transform.Find("toggle").GetComponent<Toggle>().isOn;
         userSettings.showReticle = reticleIsShowing;
-
         // invert mouse
         userSettings.invertMouse = invertMouse.transform.Find("toggle").GetComponent<Toggle>().isOn;
         Camera.main.GetComponent<cameraController>().SetInvert(userSettings.invertMouse);
@@ -285,7 +285,7 @@ public class GameManager : MonoBehaviour
 
     private void HandlePause()
     {
-        if ((Input.GetButtonDown("Cancel") || Input.GetKeyDown(KeyCode.P)) && activeMenu != mainMenu && activeMenu != winMenu && activeMenu != countDownMenu) // button input
+        if ((Input.GetButtonDown("Cancel") || Input.GetKeyDown(KeyCode.P)) && activeMenu != mainMenu && activeMenu != winMenu && activeMenu != countDownMenu && activeMenu != creditMenu) // button input
         {
             if (!isPaused && SceneManager.GetActiveScene().buildIndex != 0) // Not paused
             {
@@ -469,7 +469,7 @@ public class GameManager : MonoBehaviour
 
     private void CheckReticle()
     {
-        reticleIsShowing = reticle.activeSelf;
+        reticleIsShowing = userSettings.showReticle;
     }
 
     public void SetReticle()

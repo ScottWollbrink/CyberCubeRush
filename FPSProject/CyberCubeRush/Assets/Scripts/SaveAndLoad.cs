@@ -56,7 +56,7 @@ public class SaveAndLoad : MonoBehaviour
     public void Load()
     {
         playersSettings.showReticle = (PlayerPrefs.GetInt("Show Reticle", Convert.ToInt32(defaultStettings.showReticle)) != 0);
-        playersSettings.showReticle = (PlayerPrefs.GetInt("Invert Mouse", Convert.ToInt32(defaultStettings.invertMouse)) != 0);
+        playersSettings.invertMouse = (PlayerPrefs.GetInt("Invert Mouse", Convert.ToInt32(defaultStettings.invertMouse)) != 0);
         playersSettings.mouseSense = PlayerPrefs.GetFloat("Mouse Sense", defaultStettings.mouseSense);
         playersSettings.musicVolume = PlayerPrefs.GetFloat("Music Volume", defaultStettings.musicVolume);
         playersSettings.sfxVolume = PlayerPrefs.GetFloat("SFX Volume", defaultStettings.sfxVolume);
