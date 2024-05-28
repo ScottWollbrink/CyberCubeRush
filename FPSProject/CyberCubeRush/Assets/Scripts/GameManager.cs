@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static Unity.VisualScripting.Member;
 
 public class GameManager : MonoBehaviour
 {
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject reticleSetting;
     [SerializeField] GameObject invertMouse;
     [SerializeField] GameObject mouseSense;
+    [SerializeField] TMP_Text mouseSenseVal;
     [SerializeField] GameObject musicVol;
     [SerializeField] GameObject sfxVol;
     public GameObject checkpointMenu;
@@ -180,8 +182,8 @@ public class GameManager : MonoBehaviour
         Camera.main.GetComponent<cameraController>().SetInvert(userSettings.invertMouse);
 
         // mouse sense
-        userSettings.mouseSense = mouseSense.transform.Find("Slider").GetComponentInChildren<Slider>().value;
-        Camera.main.GetComponent<cameraController>().SetSettingsSense(userSettings.mouseSense);
+        //userSettings.mouseSense = mouseSense.transform.Find("Slider").GetComponentInChildren<Slider>().value;
+        //Camera.main.GetComponent<cameraController>().SetSettingsSense(userSettings.mouseSense);
 
         // music
         //userSettings.musicVolume = musicVol.transform.Find("Slider").GetComponentInChildren<Slider>().value;
@@ -639,5 +641,12 @@ public class GameManager : MonoBehaviour
         {
             doubleJumpIcon.color = new Color(doubleJumpIcon.color.r, doubleJumpIcon.color.g, doubleJumpIcon.color.b, 0.25f);
         }
+    }
+
+    public void UISensitivitySet(float value)
+    {
+        userSettings.mouseSense = value;
+        Camera.main.GetComponent<cameraController>().SetSettingsSense(userSettings.mouseSense);
+        mouseSenseVal.text = userSettings.mouseSense.ToString("F2");                              
     }
 }
