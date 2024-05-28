@@ -562,6 +562,7 @@ public class playerController : MonoBehaviour, IDamage
             playerVel.y = 0;
         }
         isWallRunning = false;
+        canDash = true;
         gravity = gravityOriginal;
         StartCoroutine(WallRunCooldown());
     }
@@ -613,48 +614,7 @@ public class playerController : MonoBehaviour, IDamage
         controller.enabled = true;
     }
 
-    //public void GetGunStats(GunStats gun)
-    //{
-    //    gunList.Add(gun);
-    //    selectedGun = gunList.Count - 1;
-
-    //    shootDamage = gun.damage;
-    //    shootRate = gun.rateOfFire;
-    //    shootDist = gun.range;
-
-    //    gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
-    //    gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-
-    //    GameManager.Instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
-    //    GameManager.Instance.ammoCurr.text = gunList[selectedGun].ammoCurrent.ToString("F0");
-    //}
-
-    //private void SelectGun()
-    //{
-    //    if ((Input.GetAxis("Mouse ScrollWheel") > 0 || Input.GetKey(KeyCode.Alpha1)) && selectedGun < gunList.Count - 1)
-    //    {
-    //        selectedGun++;
-    //        ChangeGun();
-    //    }
-    //    else if ((Input.GetAxis("Mouse ScrollWheel") < 0 || Input.GetKey(KeyCode.Alpha2)) && selectedGun > 0)
-    //    {
-    //        selectedGun--;
-    //        ChangeGun();
-    //    }
-    //}
-
-    //private void ChangeGun()
-    //{
-    //    shootDamage = gunList[selectedGun].damage;
-    //    shootRate = gunList[selectedGun].rateOfFire;
-    //    shootDist = gunList[selectedGun].range;
-
-    //    gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
-    //    gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-
-    //    GameManager.Instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
-    //    GameManager.Instance.ammoCurr.text = gunList[selectedGun].ammoCurrent.ToString("F0");
-    //}
+   
 
     public Vector3 GetVelocity()
     {
