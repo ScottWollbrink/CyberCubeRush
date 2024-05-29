@@ -63,7 +63,8 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField, Range(0, 1f)] float audShootVol;
     [SerializeField] AudioClip audDeath;
     [SerializeField, Range(0, 1f)] float audDeathVol;
-
+    [SerializeField] AudioClip audLand;
+    [SerializeField, Range(0, 1f)] float audLandVol;
     [SerializeField] AudioClip audDash;
     [SerializeField, Range(0, 1f)] float audDashVol;
     [SerializeField] AudioClip audWallrun;
@@ -102,7 +103,7 @@ public class playerController : MonoBehaviour, IDamage
     bool isJumping = false;
     bool canDoubleJumpIcon = true;
     bool canWallJumpIcon = true;
-
+    bool isLanding = false;
 
 
 
@@ -148,7 +149,22 @@ public class playerController : MonoBehaviour, IDamage
         }
         
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        landing();
+    }
+    
 
+        
+    
+    IEnumerator landing()
+    {
+        isLanding = true;
+        aud.PlayOneShot(audLand, audLandVol);
+        yield return new WaitForSeconds(1f);
+        aud.Stop();
+        isLanding = false;
+    }
     void movement()
     {
         // reset jump if player is on the ground
@@ -156,6 +172,8 @@ public class playerController : MonoBehaviour, IDamage
         {
             jumpedTimes = 0;
             wallJumpTimes = 0;
+            //aud.PlayOneShot(audLand, audLandVol);
+            
             if (!isDashing)
             {
                 playerVel = Vector3.zero;
