@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage
@@ -149,14 +150,21 @@ public class playerController : MonoBehaviour, IDamage
         }
         
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(UnityEngine.Collider other)
     {
+        //Debug.Log(other.gameObject.name);
         landing();
     }
-    
+    private void OnCollisionEnter(UnityEngine.Collision other)
+    {
+        Debug.Log(other.gameObject.name);
+        landing();
+    }
 
-        
-    
+
+
+
+
     IEnumerator landing()
     {
         isLanding = true;
