@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public float musVol;
     [SerializeField] public float sfxVol;
     [SerializeField] public float UIVol;
+    [SerializeField] public float masterVol;
     [SerializeField] public Slider[] sliders;
 
     [Header("---------- UI Sounds ----------")]
@@ -38,6 +39,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] SettingsSO userSettings;
 
     [Header("---------- Texts ----------")]
+    [SerializeField] TMP_Text masterVolText;
     [SerializeField] TMP_Text musicVolText;
     [SerializeField] TMP_Text sfxVolText;
     [SerializeField] TMP_Text UIVolText;
@@ -54,21 +56,22 @@ public class AudioManager : MonoBehaviour
         UIVol = userSettings.UIVolume;
         sfxSources.Remove(uitemp.GetComponent<AudioSource>());
         sfxSources.Remove(musicSource.GetComponent<AudioSource>());
-        musicSource.volume = musVol;
+        musicSource.volume = musVol * masterVol/2;
         musicSource.clip = tunes[SceneManager.GetActiveScene().buildIndex % 5];
         musicSource.Play();
         for (int x = 0; x < sfxSources.Count; x++) 
         {
-            sfxSources[x].volume = sfxVol;
+            sfxSources[x].volume = sfxVol * masterVol/2;
             if (sfxSources[x].CompareTag("Lazer"))
             {
                 sfxSources[x].volume *= .2f;
             }
         }
         
-        UISource.volume = UIVol;
+        UISource.volume = UIVol * masterVol / 2;
         sfxVolText.text = sfxVol.ToString("F2");
         musicVolText.text = musVol.ToString("F2");
+        masterVolText.text = masterVol.ToString("F2");
     }
     // Start is called before the first frame update
     void Start()
@@ -84,10 +87,10 @@ public class AudioManager : MonoBehaviour
     public void sfxVolSet(float value)
     {
         sfxVol = value;
-        userSettings.sfxVolume = sfxVol;
+        userSettings.sfxVolume = sfxVol * masterVol / 2;
         for (int x = 0; x < sfxSources.Count; x++)
         {
-            sfxSources[x].volume = sfxVol;
+            sfxSources[x].volume = sfxVol * masterVol / 2;
             //Debug.Log(sliders[x].name + " value changed to: " + value.ToString("F2"));
             //Debug.Log("sfxvolset used");
             //Debug.Log(x);
@@ -103,7 +106,7 @@ public class AudioManager : MonoBehaviour
 
         musVol = value;
         userSettings.musicVolume = musVol;
-        musicSource.volume = musVol;
+        musicSource.volume = musVol * masterVol / 2;
         musicVolText.text = musVol.ToString("F2");
     }
     public void UIVolSet(float value)
@@ -111,8 +114,27 @@ public class AudioManager : MonoBehaviour
 
         UIVol = value;
         userSettings.UIVolume = UIVol;
-        UISource.volume = UIVol;
+        UISource.volume = UIVol * masterVol/2;
         UIVolText.text = UIVol.ToString("F2");
+        UISource.PlayOneShot(buttonHover);
+    }
+    public void masterVolSet(float value)
+    {
+        masterVol = value;
+        userSettings.masterVolume = masterVol;
+        //setting all sources by master vol
+        UISource.volume = UIVol * masterVol / 2;
+        musicSource.volume = musVol * masterVol / 2;
+        masterVolText.text = masterVol.ToString("F2");
+        for (int x = 0; x < sfxSources.Count; x++)
+        {
+            sfxSources[x].volume = sfxVol * masterVol/2;
+            
+            if (sfxSources[x].CompareTag("Lazer"))
+            {
+                sfxSources[x].volume *= .20f;
+            }
+        }
         UISource.PlayOneShot(buttonHover);
     }
     public void SliderValueChanged(GameObject slider, float value)

@@ -8,6 +8,7 @@ public class SettingsSO : ScriptableObject
     public bool showReticle = true;
     public bool invertMouse = false;
     public float mouseSense = .25f;
+    public float masterVolume = 1f;
     public float musicVolume = .25f;
     public float sfxVolume = .5f;
     public float UIVolume = .5f;

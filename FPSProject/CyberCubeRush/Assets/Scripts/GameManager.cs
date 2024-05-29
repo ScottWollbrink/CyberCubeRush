@@ -55,8 +55,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject invertMouse;
     [SerializeField] GameObject mouseSense;
     [SerializeField] TMP_Text mouseSenseVal;
+    [SerializeField] GameObject masterVol;
     [SerializeField] GameObject musicVol;
     [SerializeField] GameObject sfxVol;
+    [SerializeField] GameObject UIVol;
     public GameObject checkpointMenu;
 
     [Header("----------- Delete Save -------------")]
@@ -164,12 +166,19 @@ public class GameManager : MonoBehaviour
         // music
         musicVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.musicVolume).ToString("F2");
         musicVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.musicVolume;
-        //GetComponent<AudioSource>().volume = userSettings.musicVolume;
-        audioManager.musVol = userSettings.musicVolume;
+        audioManager.musicVolSet(userSettings.musicVolume);
         //sfx
         sfxVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.sfxVolume).ToString("F2");
         sfxVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.sfxVolume;
-        //audioManager.sfxVolSet(userSettings.sfxVolume);
+        audioManager.sfxVolSet(userSettings.sfxVolume);
+        //UI
+        UIVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.UIVolume).ToString("F2");
+        UIVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.UIVolume;
+        audioManager.UIVolSet(userSettings.UIVolume);
+        //master
+        masterVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.masterVolume).ToString("F2");
+        masterVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.masterVolume;
+        audioManager.masterVolSet(userSettings.masterVolume);
     }
 
     private void SetSettings()
@@ -209,8 +218,16 @@ public class GameManager : MonoBehaviour
         audioManager.GetComponent<AudioSource>().volume = userSettings.musicVolume;
         userSettings.sfxVolume = defaultSettings.sfxVolume;
         audioManager.sfxVol = defaultSettings.sfxVolume;
+        userSettings.UIVolume = defaultSettings.UIVolume;
+        audioManager.UIVol = defaultSettings.UIVolume;
+        userSettings.masterVolume = defaultSettings.masterVolume;
+        audioManager.masterVol = defaultSettings.masterVolume;
+        masterVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.masterVolume).ToString("F2");
+        masterVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.masterVolume;
         sfxVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.sfxVolume).ToString("F2");
         sfxVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.sfxVolume;
+        UIVol.transform.Find("SliderVal").GetComponentInChildren<TMP_Text>().text = (userSettings.UIVolume).ToString("F2");
+        UIVol.transform.Find("Slider").GetComponentInChildren<Slider>().value = userSettings.UIVolume;
     }
 
     private void Start()
