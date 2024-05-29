@@ -104,7 +104,7 @@ public class playerController : MonoBehaviour, IDamage
     bool isJumping = false;
     bool canDoubleJumpIcon = true;
     bool canWallJumpIcon = true;
-    bool isLanding = false;
+    bool hasLanded = false;
 
 
 
@@ -133,6 +133,7 @@ public class playerController : MonoBehaviour, IDamage
             //SelectGun();
             movement();
             WallCheck();
+            landingOnGround();
             //if (GameManager.Instance.holdController.hasCube)
             //{
             //    Camera.main.GetComponentInChildren<Renderer>().enabled = false;
@@ -146,33 +147,11 @@ public class playerController : MonoBehaviour, IDamage
             GameManager.Instance.setDashIconAplha(canDash);
             GameManager.Instance.setDoubleJumpIconAplha(canDoubleJumpIcon);
             GameManager.Instance.setWallJumpIconAplha(canWallJumpIcon);
-
+            
         }
         
     }
-    private void OnTriggerEnter(UnityEngine.Collider other)
-    {
-        //Debug.Log(other.gameObject.name);
-        landing();
-    }
-    private void OnCollisionEnter(UnityEngine.Collision other)
-    {
-        Debug.Log(other.gameObject.name);
-        landing();
-    }
 
-
-
-
-
-    IEnumerator landing()
-    {
-        isLanding = true;
-        aud.PlayOneShot(audLand, audLandVol);
-        yield return new WaitForSeconds(1f);
-        aud.Stop();
-        isLanding = false;
-    }
     void movement()
     {
         // reset jump if player is on the ground
@@ -193,6 +172,7 @@ public class playerController : MonoBehaviour, IDamage
             isJumping = false;
             canDoubleJumpIcon = true;
             canWallJumpIcon = true;
+            hasLanded = true;
         }
         
 
@@ -446,11 +426,7 @@ public class playerController : MonoBehaviour, IDamage
         isShooting = false;
     }
 
-    IEnumerator pullOutGun()
-    {
-        yield return new WaitForSeconds(.5f);
-        canShoot = true;
-    }
+    
 
     IEnumerator JumpDampen()
     {
@@ -545,6 +521,22 @@ public class playerController : MonoBehaviour, IDamage
     private bool offTheGround()
     {
         return !Physics.Raycast(transform.position, -transform.up, distanceToGround, groundMask);
+    }
+
+    private void landingOnGround()
+    {
+        if(Physics.Raycast(transform.position, -transform.up, .1f))
+        {
+            if (!hasLanded)
+            {
+                aud.PlayOneShot(audLand, audLandVol);
+            }
+            hasLanded = true;
+        }
+        else
+        {
+            hasLanded = false;
+        }
     }
 
     private void Dash()
