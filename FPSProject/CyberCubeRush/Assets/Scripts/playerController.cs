@@ -525,11 +525,16 @@ public class playerController : MonoBehaviour, IDamage
 
     private void landingOnGround()
     {
-        if(Physics.Raycast(transform.position, -transform.up, .1f))
+        if(Physics.Raycast(transform.position, -transform.up, .1f) || 
+            Physics.Raycast(transform.position, transform.right, 1f) ||
+            Physics.Raycast(transform.position, -transform.right, 1f)
+            )
         {
+            
             if (!hasLanded)
             {
                 aud.PlayOneShot(audLand, audLandVol);
+                Debug.Log("something landed on!");
             }
             hasLanded = true;
         }
