@@ -859,6 +859,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 7696958484853761031, guid: 227a86fce37863848927fa60a0b820ab, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1236,6 +1240,14 @@ PrefabInstance:
     - target: {fileID: 3516920798458964946, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098506879229053228, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
+      propertyPath: audLand
+      value: 
+      objectReference: {fileID: 8300000, guid: 7061803c1a442e74699c977d37705c0a, type: 3}
+    - target: {fileID: 7098506879229053228, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
+      propertyPath: audLandVol
+      value: 0.496
       objectReference: {fileID: 0}
     - target: {fileID: 7387438162693466731, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
       propertyPath: m_Name
@@ -2433,22 +2445,6 @@ PrefabInstance:
     - target: {fileID: 2424035068967884396, guid: 4eab2967cb5b3414ea61bd36dff97945, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2640975465143111699, guid: 4eab2967cb5b3414ea61bd36dff97945, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 2640975465143111699, guid: 4eab2967cb5b3414ea61bd36dff97945, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -7.3617725
-      objectReference: {fileID: 0}
-    - target: {fileID: 5670138791224066973, guid: 4eab2967cb5b3414ea61bd36dff97945, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 5670138791224066973, guid: 4eab2967cb5b3414ea61bd36dff97945, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 8.388227
       objectReference: {fileID: 0}
     - target: {fileID: 7768700499026740154, guid: 4eab2967cb5b3414ea61bd36dff97945, type: 3}
       propertyPath: m_Name
