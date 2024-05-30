@@ -623,18 +623,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7098506879229053228, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
-      propertyPath: audLand
-      value: 
-      objectReference: {fileID: 8300000, guid: 7061803c1a442e74699c977d37705c0a, type: 3}
-    - target: {fileID: 7098506879229053228, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
-      propertyPath: runSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7098506879229053228, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
-      propertyPath: audLandVol
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 7387438162693466731, guid: 25f29fd7292ecfa499502b84f6cdf73f, type: 3}
       propertyPath: m_Name
       value: Player
