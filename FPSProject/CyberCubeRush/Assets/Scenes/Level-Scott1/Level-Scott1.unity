@@ -30617,6 +30617,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7614075305030053767, guid: 0d29f41a8a7b30141a34c55cb7d08cda, type: 3}
+      propertyPath: slowing
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 256729539352846467, guid: 0d29f41a8a7b30141a34c55cb7d08cda, type: 3}
       propertyPath: m_Name
       value: Poison Trap
@@ -30635,7 +30639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3702194599984324807, guid: 0d29f41a8a7b30141a34c55cb7d08cda, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.818255
+      value: -7.0750003
       objectReference: {fileID: 0}
     - target: {fileID: 3702194599984324807, guid: 0d29f41a8a7b30141a34c55cb7d08cda, type: 3}
       propertyPath: m_LocalPosition.z

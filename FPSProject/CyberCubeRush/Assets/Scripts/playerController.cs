@@ -496,7 +496,7 @@ public class playerController : MonoBehaviour, IDamage
 
     private void landingOnGround()
     {
-        if(Physics.Raycast(transform.position, -transform.up, .1f))
+        if(Physics.Raycast(transform.position, -transform.up, .25f))
         {
             if (!hasLanded)
             {
