@@ -2,12 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
-using System;
-using Unity.VisualScripting;
-using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
-using Button = UnityEngine.UI.Button;
-using System.Reflection;
 
 public class LevelSelection : MonoBehaviour
 {
@@ -22,8 +16,8 @@ public class LevelSelection : MonoBehaviour
         {
             if (!TimeManager.Instance.GetLevelUnlocked(i+1))
             {
-                levelBtns[i].GetComponent<UnityEngine.UI.Image>().color = Color.grey;
-                
+                levelBtns[i].GetComponent<Image>().color = Color.grey;
+                levelBtns[i].GetComponent<Button>().interactable = false;
             }
             levelBtns[i].transform.Find("prTime").GetComponent<TMP_Text>().text = TimeManager.Instance.GetPlayerLevelPR(i+1);
             levelBtns[i].transform.Find("goalTime").GetComponent<TMP_Text>().text = TimeManager.Instance.GetLevelTime(i + 1);
