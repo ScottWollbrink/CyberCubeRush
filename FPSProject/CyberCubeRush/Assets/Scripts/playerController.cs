@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage
@@ -60,17 +61,16 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField, Range(0, 1f)] float audHurtVol;
     [SerializeField] AudioClip[] audSteps;
     [SerializeField, Range(0, 1f)] float audStepVol;
-    [SerializeField] AudioClip[] audShoot;//confirm before commenting out shooting code
-    [SerializeField, Range(0, 1f)] float audShootVol;
     [SerializeField] AudioClip audDeath;
     [SerializeField, Range(0, 1f)] float audDeathVol;
     [SerializeField] AudioClip audLand;
     [SerializeField, Range(0, 1f)] float audLandVol;
+    [SerializeField] AudioClip audHitWall;
+    [SerializeField, Range(0, 1f)] float audHitWallVol;
     [SerializeField] AudioClip audDash;
     [SerializeField, Range(0, 1f)] float audDashVol;
     [SerializeField] AudioClip audWallrun;
     [SerializeField, Range(0, 1f)] float audWallrunVol;
-    int selectedGun;
 
     Vector3 moveDir;
     Vector3 playerVel;
@@ -105,6 +105,7 @@ public class playerController : MonoBehaviour, IDamage
     bool canDoubleJumpIcon = true;
     bool canWallJumpIcon = true;
     bool hasLanded = false;
+    bool hasHitWall = false;
 
 
 
@@ -134,16 +135,7 @@ public class playerController : MonoBehaviour, IDamage
             movement();
             WallCheck();
             landingOnGround();
-            //if (GameManager.Instance.holdController.hasCube)
-            //{
-            //    Camera.main.GetComponentInChildren<Renderer>().enabled = false;
-            //    canShoot = false;
-            //}
-            //else if(!canShoot)
-            //{
-            //    Camera.main.GetComponentInChildren<Renderer>().enabled = true;
-            //    StartCoroutine(pullOutGun());
-            //}
+            
             GameManager.Instance.setDashIconAplha(canDash);
             GameManager.Instance.setDoubleJumpIconAplha(canDoubleJumpIcon);
             GameManager.Instance.setWallJumpIconAplha(canWallJumpIcon);
@@ -303,11 +295,6 @@ public class playerController : MonoBehaviour, IDamage
             StartCoroutine(PlaySteps());
         }
 
-        if (Input.GetButton("Shoot") && canShoot && !isShooting && gunList.Count > 0 && gunList[selectedGun].ammoCurrent > 0)
-        {
-            StartCoroutine(shoot());
-        }
-
         if (Input.GetButtonDown("Dash") && canDash)
         {
             Dash();
@@ -394,36 +381,6 @@ public class playerController : MonoBehaviour, IDamage
         float interval = (isSprinting) ? 0.3f : 0.5f;
         yield return new WaitForSeconds(interval);
         isPlayingSteps = false;
-    }
-
-    IEnumerator shoot()
-    {
-        isShooting = true;
-        aud.PlayOneShot(audShoot[Random.Range(0, audShoot.Length)], audShootVol);
-
-        // create a Raycasthit to pass into physics raycast
-        gunList[selectedGun].ammoCurrent--;
-        GameManager.Instance.ammoCurr.text = gunList[selectedGun].ammoCurrent.ToString("F0");
-        RaycastHit hit;
-        // create a raycast and check to see if it hit something
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
-        {
-            // create a IDamage called dmg to hold information of the object hit
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-            // checkt to see if dmg has an IDmage
-            if (hit.transform != transform && dmg != null)
-            {
-                // pass damage to dmg take damage method
-                dmg.takeDamage(shootDamage);
-            }
-            else
-            {
-                Instantiate(gunList[selectedGun].hitEffect, hit.point, Quaternion.identity);
-            }
-        }
-        // create a timer that will last for the time passed in by shootRate
-        yield return new WaitForSeconds(shootRate);
-        isShooting = false;
     }
 
     
@@ -517,6 +474,20 @@ public class playerController : MonoBehaviour, IDamage
         wallLeft = Physics.Raycast(transform.position, -transform.right, out leftWallHit, distanceToWallCheck, wallMask);
         wallRunRight = Physics.Raycast(transform.position, transform.right, out rightWallRunHit, distanceToWallCheck, wallRunMask);
         wallRunLeft = Physics.Raycast(transform.position, -transform.right, out leftWallRunHit, distanceToWallCheck, wallRunMask);
+
+        if (wallRight || wallLeft)
+        {
+            if (!hasHitWall)
+            {
+                aud.PlayOneShot(audHitWall, audHitWallVol);
+                
+            }
+            hasHitWall = true;
+        }
+        else
+        {
+            hasHitWall = false;
+        }
     }
     private bool offTheGround()
     {
@@ -525,16 +496,11 @@ public class playerController : MonoBehaviour, IDamage
 
     private void landingOnGround()
     {
-        if(Physics.Raycast(transform.position, -transform.up, .1f) || 
-            Physics.Raycast(transform.position, transform.right, 1f) ||
-            Physics.Raycast(transform.position, -transform.right, 1f)
-            )
+        if(Physics.Raycast(transform.position, -transform.up, .1f))
         {
-            
             if (!hasLanded)
             {
                 aud.PlayOneShot(audLand, audLandVol);
-                Debug.Log("something landed on!");
             }
             hasLanded = true;
         }
