@@ -6349,7 +6349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playersSettings: {fileID: 11400000, guid: 922fee70a77df6c47b1c0e710dc994aa, type: 2}
-  defaultStettings: {fileID: 11400000, guid: 8deeb25bc0c970e4aa8ed364915be367, type: 2}
+  defaultSettings: {fileID: 11400000, guid: 8deeb25bc0c970e4aa8ed364915be367, type: 2}
   ben1SaveState: {fileID: 11400000, guid: b154f08c2fdcd1d479b7bb6457eff6ed, type: 2}
   ben2SaveState: {fileID: 11400000, guid: 686652054dec05a4b94c94191d7a43ce, type: 2}
   ben3SaveState: {fileID: 11400000, guid: fd8e9bd44db50204783af88c8d05f79a, type: 2}
@@ -18976,7 +18976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -4889.25}
+  m_AnchoredPosition: {x: 0, y: -4930.25}
   m_SizeDelta: {x: 800, y: 9800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6017441712736877107
