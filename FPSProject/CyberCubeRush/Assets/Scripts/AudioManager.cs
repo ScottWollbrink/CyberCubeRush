@@ -11,6 +11,8 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance;
+
     [Header("---------- Sources ----------")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] List<AudioSource> sfxSources;

@@ -1,12 +1,9 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static Unity.VisualScripting.Member;
 
 public class GameManager : MonoBehaviour
 {
@@ -74,7 +71,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject creditTxt;
     [SerializeField] GameObject MainMenuBtn;
     [SerializeField] GameObject ReturnBtn;
-    Vector3 creditTxtStartPos;
+    Transform creditTxtStartPos;
 
     [Header("---------- Timers ----------")]
     [SerializeField] TMP_Text clearedTimePM;
@@ -131,7 +128,7 @@ public class GameManager : MonoBehaviour
         holdController = Camera.main.GetComponent<HoldController>();
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Position");
         cubeSpawnPos = GameObject.FindWithTag("Cube Spwan Position");
-        creditTxtStartPos = creditTxt.transform.position;
+        creditTxtStartPos = creditTxt.transform;
         saveAndLoad.Load();
         
         GetSettings();
@@ -181,7 +178,7 @@ public class GameManager : MonoBehaviour
         audioManager.masterVolSet(userSettings.masterVolume);
     }
 
-    private void SetSettings()
+    public void SetSettings()
     {
         // reticle
         reticleIsShowing = reticleSetting.transform.Find("toggle").GetComponent<Toggle>().isOn;
@@ -458,7 +455,7 @@ public class GameManager : MonoBehaviour
     public void ShowCredits()
     {
         SwitchScene(creditMenu);
-        creditTxt.transform.position = creditTxtStartPos;
+        creditTxt.transform.position = creditTxtStartPos.position;
         playerHPBar.gameObject.SetActive(false);
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
@@ -617,12 +614,12 @@ public class GameManager : MonoBehaviour
 
     IEnumerator MoveCreditText()
     {
-        while (creditTxt.transform.position.y < 6000)
+        while (creditTxt.transform.position.y < 8000)
         {
-            
-                creditTxt.transform.position = Vector3.MoveTowards(creditTxt.transform.position, new Vector3(960, 6000, 0), 55 * Time.unscaledDeltaTime);
+            creditTxt.transform.position = Vector3.MoveTowards(creditTxt.transform.position, creditTxtStartPos.position + new Vector3(0, 8000, 0), 55 * Time.unscaledDeltaTime);
             yield return null;
         }
+        SceneManager.LoadScene(0);
     }
 
     public void setDashIconAplha(bool isActive)

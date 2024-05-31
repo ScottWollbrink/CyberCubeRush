@@ -7,7 +7,7 @@ using UnityEngine;
 public class SaveAndLoad : MonoBehaviour
 {
     [SerializeField] SettingsSO playersSettings;
-    [SerializeField] SettingsSO defaultStettings;
+    [SerializeField] SettingsSO defaultSettings;
 
     [SerializeField] HighScores ben1SaveState;
     [SerializeField] HighScores ben2SaveState;
@@ -26,6 +26,8 @@ public class SaveAndLoad : MonoBehaviour
         PlayerPrefs.SetInt("Show Reticle", (playersSettings.showReticle ? 1 : 0));
         PlayerPrefs.SetInt("Invert Mouse", (playersSettings.invertMouse ? 1 : 0));
         PlayerPrefs.SetFloat("Mouse Sense", playersSettings.mouseSense);
+        PlayerPrefs.SetFloat("Master Volume", playersSettings.masterVolume);
+        PlayerPrefs.SetFloat("UI Volume", playersSettings.UIVolume);
         PlayerPrefs.SetFloat("Music Volume", playersSettings.musicVolume);
         PlayerPrefs.SetFloat("SFX Volume", playersSettings.sfxVolume);
 
@@ -55,11 +57,14 @@ public class SaveAndLoad : MonoBehaviour
 
     public void Load()
     {
-        playersSettings.showReticle = (PlayerPrefs.GetInt("Show Reticle", Convert.ToInt32(defaultStettings.showReticle)) != 0);
-        playersSettings.invertMouse = (PlayerPrefs.GetInt("Invert Mouse", Convert.ToInt32(defaultStettings.invertMouse)) != 0);
-        playersSettings.mouseSense = PlayerPrefs.GetFloat("Mouse Sense", defaultStettings.mouseSense);
-        playersSettings.musicVolume = PlayerPrefs.GetFloat("Music Volume", defaultStettings.musicVolume);
-        playersSettings.sfxVolume = PlayerPrefs.GetFloat("SFX Volume", defaultStettings.sfxVolume);
+        
+        playersSettings.showReticle = (PlayerPrefs.GetInt("Show Reticle", Convert.ToInt32(defaultSettings.showReticle)) != 0);
+        playersSettings.invertMouse = (PlayerPrefs.GetInt("Invert Mouse", Convert.ToInt32(defaultSettings.invertMouse)) != 0);
+        playersSettings.mouseSense = PlayerPrefs.GetFloat("Mouse Sense", defaultSettings.mouseSense);
+        playersSettings.masterVolume = PlayerPrefs.GetFloat("Master Volume", defaultSettings.masterVolume);
+        playersSettings.UIVolume = PlayerPrefs.GetFloat("UI Volume", defaultSettings.UIVolume);
+        playersSettings.musicVolume = PlayerPrefs.GetFloat("Music Volume", defaultSettings.musicVolume);
+        playersSettings.sfxVolume = PlayerPrefs.GetFloat("SFX Volume", defaultSettings.sfxVolume);
 
         ben1SaveState.levelIsUnlocked = (PlayerPrefs.GetInt("Level Unlocked Tutorial", 1) != 0);
         ben1SaveState.playerPR = PlayerPrefs.GetFloat("PR Tutorial", 0f);
@@ -89,5 +94,12 @@ public class SaveAndLoad : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         Load();
+        GameManager.Instance.SetSettings();
+        GameManager.Instance.SetMouseInvert();
+        GameManager.Instance.UISensitivitySet(defaultSettings.mouseSense);
+        AudioManager.Instance.masterVolSet(defaultSettings.masterVolume);
+        AudioManager.Instance.UIVolSet(defaultSettings.UIVolume);
+        AudioManager.Instance.sfxVolSet(defaultSettings.sfxVolume);
+        AudioManager.Instance.musicVolSet(defaultSettings.musicVolume);
     }
 }
