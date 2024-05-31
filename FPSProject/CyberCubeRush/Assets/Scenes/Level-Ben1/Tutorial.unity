@@ -5210,7 +5210,7 @@ PrefabInstance:
     - target: {fileID: 620856854692892006, guid: 6f6971a81a4cdfb4baa356d24c7d60b4, type: 3}
       propertyPath: m_text
       value: "LEFT MOUSE BUTTON\nwhile holding the cube to throw it at the goal \n\nor
-        tuch the goal while holding the cube"
+        touch the goal while holding the cube"
       objectReference: {fileID: 0}
     - target: {fileID: 620856854692892006, guid: 6f6971a81a4cdfb4baa356d24c7d60b4, type: 3}
       propertyPath: m_fontSizeBase
