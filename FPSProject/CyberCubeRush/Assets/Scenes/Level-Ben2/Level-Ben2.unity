@@ -443,6 +443,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 16.05
       objectReference: {fileID: 0}
+    - target: {fileID: 5437599603359779050, guid: 327b79ccc553f8247924512d3f73aa7e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -12.7
+      objectReference: {fileID: 0}
     - target: {fileID: 5860921553247304769, guid: 327b79ccc553f8247924512d3f73aa7e, type: 3}
       propertyPath: m_Name
       value: MovingPlatformControllerBottomLight (1)
@@ -1654,6 +1658,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 5437599603359779050, guid: 327b79ccc553f8247924512d3f73aa7e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.549999
+      objectReference: {fileID: 0}
     - target: {fileID: 5860921553247304769, guid: 327b79ccc553f8247924512d3f73aa7e, type: 3}
       propertyPath: m_Name
       value: MovingPlatformControllerBottomLight (2)
@@ -1942,6 +1950,10 @@ PrefabInstance:
     - target: {fileID: 3610648113426869192, guid: 327b79ccc553f8247924512d3f73aa7e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 19.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5437599603359779050, guid: 327b79ccc553f8247924512d3f73aa7e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.19999981
       objectReference: {fileID: 0}
     - target: {fileID: 5860921553247304769, guid: 327b79ccc553f8247924512d3f73aa7e, type: 3}
       propertyPath: m_Name
