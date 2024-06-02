@@ -50,6 +50,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] List<Button> buttons;
     private void Awake()
     {
+        Instance = this;
         sfxSources = new List<AudioSource>(AudioSource.FindObjectsOfType(typeof(AudioSource)) as AudioSource[]);
         buttons = new List<Button>(Button.FindObjectsOfType(typeof(Button)) as Button[]);
         GameObject uitemp = GameObject.FindWithTag("UI");
@@ -77,16 +78,7 @@ public class AudioManager : MonoBehaviour
         masterVolText.text = masterVol.ToString("F2");
     }
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     public void sfxVolSet(float value)
     {
         sfxVol = value;
